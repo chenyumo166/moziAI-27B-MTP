@@ -37,7 +37,7 @@ Supporta llama.cpp, Ollama, LM Studio e altri framework di inferenza.
 
 - **Verticalità finanziaria**: Ottimizzazione profonda per Q&A finanziaria, programmazione quantitativa, chiamata strumenti
 - **Quantizzazione intelligente MoziSmartBit**: Compressione a **~13,7 GB** con **~99% di precisione**
-- **Deploy su GPU consumer**: 20 GB VRAM+, contesto 256K
+- **Deploy su GPU consumer**: 16 GB+ VRAM per il deploy locale, 20 GB+ per contesto 256K completo
 - **Decodifica speculativa MTP**: Layer multi-token integrato, velocità x1.5-2
 - **Multilingua**: 201 lingue e dialetti
 - **Programmazione generale**: Python/JS/TS/Go/Rust
@@ -55,7 +55,7 @@ Supporta llama.cpp, Ollama, LM Studio e altri framework di inferenza.
 | Quantizzazione | MoziSmartBit + formato GGUF |
 | Lunghezza contesto | 256K (262.144 token) |
 | Dimensione modello | ~13,7 GB |
-| VRAM min. | 20 GB+ (RTX 4060 Ti 16G: CPU offload) |
+| VRAM min. | **16 GB+** deployabile (CPU offload)；**20 GB+** contesto lungo fluido；**24 GB+** 256K completo + visione |
 | Velocità inferenza | MTP: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s |
 
 ## Formati di quantizzazione

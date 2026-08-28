@@ -42,7 +42,7 @@ Ondersteunt llama.cpp, Ollama, LM Studio en andere inferentieframeworks.
 | Kwantisatie | MoziSmartBit + GGUF standaard |
 | Contextlengte | 256K (262.144 tokens) |
 | Modelgrootte | ~13,7 GB |
-| Min. VRAM | 20 GB+ (RTX 4060 Ti 16G: CPU offload) |
+| Min. VRAM | **16 GB+** bruikbaar (CPU offload)；**20 GB+** vloeiende lange context；**24 GB+** volledige 256K + visie |
 | Inferentiesnelheid | MTP: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s |
 
 ## Kwantisatieformaten

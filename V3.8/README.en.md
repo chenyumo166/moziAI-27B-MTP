@@ -39,7 +39,7 @@ Supports llama.cpp, Ollama, LM Studio and other mainstream inference frameworks.
 
 - **Financial Vertical Focus**: Deep optimization for financial Q&A, quantitative programming, and tool calling
 - **MoziSmartBit Intelligent Quantization**: Self-developed smart quantization, best balance of precision and size, compressed to approximately **13.7 GB** with **~99%** precision retention
-- **Consumer-grade Deployment**: Deployable on consumer GPUs with 20GB+ VRAM, supports 256K long context
+- **Consumer-grade Deployment**: Deployable on 16GB+ VRAM GPUs (with CPU offloading); 20GB+ for full 256K long context
 - **MTP Speculative Decoding**: Built-in multi-token prediction layer for 1.5-2x inference speedup when enabled
 - **Multilingual Support**: 201 languages and dialects, with enhanced Chinese capabilities, covering English/Japanese/Korean/German/French/Spanish/Portuguese and more
 - **General Programming**: Full-stack development, code debugging, architecture design, script writing, covering Python/JS/TS/Go/Rust and other mainstream languages
@@ -68,7 +68,7 @@ Supports llama.cpp, Ollama, LM Studio and other mainstream inference frameworks.
 | Quantization | Self-developed MoziSmartBit Intelligent Quantization + GGUF standard format |
 | Context Length | 256K (262,144 tokens) |
 | Model Size | ~13.7 GB |
-| Min VRAM | 20GB+ consumer GPU (e.g., RX 7900 XT 20G, RTX 4060 Ti 16G requires CPU offload), 24GB for inference (incl. vision + long context) |
+| Min VRAM | **16GB+** deployable (with CPU offload, e.g., RTX 4060 Ti 16G); **20GB+** smooth long context (e.g., RX 7900 XT 20G); **24GB+** full 256K + vision |
 | Inference Framework | llama.cpp / Ollama / LM Studio / Jan |
 | Inference Speed | With MTP speculative decoding: AMD R9700 70+ tok/s, AMD MAX+395 CPU 50+ tok/s, AMD MAX+395 GPU 35+ tok/s, enabling local 7x24 token freedom |
 | Developer | Chen Yumo Team |
@@ -94,11 +94,11 @@ Traditional quantization uses uniform precision across all layers. Chen Yumo's s
 
 - **Minimal Precision Loss**: Training gains > quantization losses, making the post-training MoziAI-27B outperform the pre-training BF16 base in financial domain text perplexity
 - **4.0x Volume Reduction**: Compressed from FP16 (~54 GB) to ~13.7 GB, significantly smaller than Q4_K_M (~17 GB), dramatically reducing VRAM and storage requirements
-- **Consumer GPU Deployment**: The 27B Dense model, previously requiring high-end GPUs, can now run smoothly on GPUs with 20GB+ VRAM
+- **Consumer GPU Deployment**: The 27B Dense model, previously requiring high-end GPUs, can now be deployed on 16GB+ VRAM GPUs, with 20GB+ for full 256K long context
 
 ### Comparison Advantages
 
-**vs Q4_K_M (~17 GB)**: ~20% smaller (~13.7 GB), better precision (~99% vs ~98%), lower VRAM threshold, smooth deployment on mid-range consumer GPUs (24GB)
+**vs Q4_K_M (~17 GB)**: ~20% smaller (~13.7 GB), better precision than Q4_K_M, lower VRAM threshold, deployable on 16GB+ GPUs, smooth 256K on 20GB+
 
 **vs FP16 (~54 GB)**: ~4.0x compression, ~99% precision retention, from professional-grade GPUs down to consumer GPUs for 256K long context
 
