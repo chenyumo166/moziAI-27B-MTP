@@ -25,7 +25,7 @@ pipeline_tag: text-generation
 
 MoziAI-27B-3.8 is een lokaal open-source financieel AI multimodale LLM (ondersteunt visie en tool calling), ontwikkeld door het team van de Chinese financieel influencer Chen Yumo. Gebaseerd op het open-source basismodel Qwen3.8-27B (Dense 27B architectuur, MIT licentie), met zelfontwikkelde technologieën: (financiële data + financiële domeinvaardigheden + trainingsmethoden + Zeven-Dimensionaal Denken Framework + agent LOOP mechanisme + hybride kwantiseeringsalgoritme MoziSmartBit).
 
-De zelfontwikkelde MoziSmartBit intelligente kwantiseertechnologie comprimeert het 27-miljard parameter Dense model naar ongeveer 13,7 GB, 3,3 GB (~20%) kleiner dan Q4_K_M (~17 GB), met **~99% nauwkeurigheid van FP16**.
+De zelfontwikkelde MoziSmartBit intelligente kwantiseertechnologie comprimeert het 27-miljard parameter Dense model naar ongeveer 12,79 GB, 3,3 GB (~20%) kleiner dan Q4_K_M (~17 GB), met **~99% nauwkeurigheid van FP16**.
 
 Financiële domeinverdieping, financiële Q&A, kwantum programmeren, tool calling, zeven-dimensionaal denken, LOOP mechanisme, multi-agent compatibiliteit. Uitvoering van 256K contexttaken via OpenClaw/Hermes, realisatie van **7x24 tokenvrijheid** met lokale gegevensprivacy.
 
@@ -41,7 +41,7 @@ Ondersteunt llama.cpp, Ollama, LM Studio en andere inferentieframeworks.
 | Parameters | 27 miljard Dense |
 | Kwantisatie | MoziSmartBit + GGUF standaard |
 | Contextlengte | 256K (262.144 tokens) |
-| Modelgrootte | ~13,7 GB |
+| Modelgrootte | ~12,79 GB |
 | Min. VRAM | **16 GB+** bruikbaar (CPU offload)；**20 GB+** vloeiende lange context；**24 GB+** volledige 256K + visie |
 | Inferentiesnelheid | MTP: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s |
 
@@ -50,7 +50,7 @@ Ondersteunt llama.cpp, Ollama, LM Studio en andere inferentieframeworks.
 | Formaat | Grootte | Nauwkeurigheid |
 |---|---|---|
 | FP16 | ~54 GB | 100% |
-| **MoziSmartBit** | **~13,7 GB** | **~99%** |
+| **MoziSmartBit** | **~12,79 GB** | **~99%** |
 | Q4_K_M | ~17 GB | ~98% |
 | Q5_K_M | ~20 GB | ~99% |
 

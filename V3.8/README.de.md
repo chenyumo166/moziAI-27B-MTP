@@ -25,7 +25,7 @@ pipeline_tag: text-generation
 
 MoziAI-27B-3.8 ist ein lokales Open-Source-Finanz-AI-Multimodales LLM (mit Sicht- und Tool-Calling-Unterstützung), entwickelt vom Team des chinesischen Finanz-Influencers Chen Yumo. Basierend auf dem Open-Source-Grundmodell Qwen3.8-27B (Dense 27B Architektur, MIT-Lizenz), integriert die selbst entwickelten Technologien: (Finanzdaten + Finanzdomänenfähigkeiten + Trainingsmethoden + Sieben-Dimensionales-Denken-Framework + Agent-LOOP-Mechanismus + Hybride Quantisierungsalgorithmus MoziSmartBit).
 
-Durch die selbst entwickelte MoziSmartBit-Intelligenzquantisierungstechnologie wird das 27-Milliarden-Parameter-Dense-Modell auf ca. 13.7 GB komprimiert — ca. 3,3 GB (ca. 20 %) kleiner als die konventionelle Q4_K_M-Quantisierung (ca. 17 GB). Optimales Gleichgewicht zwischen Genauigkeit und Größe mit **ca. 99 % der FP16-Genauigkeit**.
+Durch die selbst entwickelte MoziSmartBit-Intelligenzquantisierungstechnologie wird das 27-Milliarden-Parameter-Dense-Modell auf ca. 12.79 GB komprimiert — ca. 3,3 GB (ca. 20 %) kleiner als die konventionelle Q4_K_M-Quantisierung (ca. 17 GB). Optimales Gleichgewicht zwischen Genauigkeit und Größe mit **ca. 99 % der FP16-Genauigkeit**.
 
 Starke Finanzdomäne: Finanz-Q&A, Quant-Programmierung, Tool-Calling, Sieben-Dimensionales-Denken, LOOP-Mechanismus. Kompatibel mit OpenClaw/Hermes für 256K-Kontextaufgaben. Lokale Consumer-GPU-Implementierung spart Cloud-Token-Kosten und erreicht **7×24-Stunden Token-Freiheit** mit lokalem Datenschutz.
 
@@ -36,7 +36,7 @@ Unterstützt llama.cpp, Ollama, LM Studio und andere Mainstream-Inferenz-Framewo
 ## Modellmerkmale
 
 - **Finanz-Domäne-Tiefe**: Tiefgreifende Optimierung für Finanz-Q&A, Quant-Programmierung und Tool-Calling
-- **MoziSmartBit-Intelligenzquantisierung**: Komprimiert auf ca. **13,7 GB** mit **~99 % Genauigkeit**
+- **MoziSmartBit-Intelligenzquantisierung**: Komprimiert auf ca. **12,79 GB** mit **~99 % Genauigkeit**
 - **Consumer-GPU-Einsatz**: 16 GB+ VRAM ermöglicht lokale Bereitstellung, 20 GB+ für vollständigen 256K-Kontext
 - **MTP-Spezulative Dekodierung**: Integrierter Multi-Token-Prädiktionslayer, 1,5-2× Inferenzgeschwindigkeit
 - **Mehrsprachig**: 201 Sprachen und Dialekte
@@ -64,7 +64,7 @@ Unterstützt llama.cpp, Ollama, LM Studio und andere Mainstream-Inferenz-Framewo
 | Parameter | 27 Milliarden Dense |
 | Quantisierung | MoziSmartBit + GGUF-Standard |
 | Kontextlänge | 256K (262.144 Tokens) |
-| Modellgröße | ~13,7 GB |
+| Modellgröße | ~12,79 GB |
 | Mindest-VRAM | **16 GB+** einsatzbereit (mit CPU-Offload)；**20 GB+** flüssiger Langkontext；**24 GB+** vollständiges 256K + Vision |
 | Inferenzgeschwindigkeit | MTP aktiv: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s, MAX+395 GPU 35+ tok/s |
 
@@ -73,7 +73,7 @@ Unterstützt llama.cpp, Ollama, LM Studio und andere Mainstream-Inferenz-Framewo
 | Format | Größe | Genauigkeit | Beschreibung |
 |---|---|---|---|
 | FP16 | ~54 GB | 100 % | Originalgenauigkeit |
-| **MoziSmartBit** | **~13,7 GB** | **~99 %** | **Selbst entwickelte Intelligenzquantisierung** |
+| **MoziSmartBit** | **~12,79 GB** | **~99 %** | **Selbst entwickelte Intelligenzquantisierung** |
 | Q4_K_M | ~17 GB | ~98 % | GGUF-Standard 4-Bit |
 | Q5_K_M | ~20 GB | ~99 % | Höhere Genauigkeit |
 | Q6_K | ~23 GB | ~99,5 % | Nahezu verlustfrei |

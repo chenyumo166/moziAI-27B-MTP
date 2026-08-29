@@ -36,7 +36,7 @@ Supporte llama.cpp, Ollama, LM Studio et autres frameworks d'inférence.
 ## Caractéristiques du modèle
 
 - **Spécialisation financière** : Optimisation approfondie pour Q&A financière, programmation quantitative, appels d'outils
-- **Quantification intelligente MoziSmartBit** : Compression à **~13,7 Go** avec **~99% de précision**
+- **Quantification intelligente MoziSmartBit** : Compression à **~12,79 Go** avec **~99% de précision**
 - **Déploiement grand public** : 16 Go+ VRAM pour déploiement local, 20 Go+ pour le contexte 256K complet
 - **Décodage spéculatif MTP** : Couche multi-token intégrée, vitesse x1.5-2
 - **Multilingue** : 201 langues et dialectes
@@ -64,7 +64,7 @@ Supporte llama.cpp, Ollama, LM Studio et autres frameworks d'inférence.
 | Paramètres | 27 milliards Dense |
 | Quantification | MoziSmartBit + format GGUF standard |
 | Longueur de contexte | 256K (262 144 tokens) |
-| Taille du modèle | ~13,7 Go |
+| Taille du modèle | ~12,79 Go |
 | VRAM min. | **16 Go+** déployable (déchargement CPU nécessaire)；**20 Go+** contexte long fluide；**24 Go+** 256K complet + vision |
 | Vitesse d'inférence | MTP : R9700 70+ tok/s, MAX+395 CPU 50+ tok/s, MAX+395 GPU 35+ tok/s |
 
@@ -73,7 +73,7 @@ Supporte llama.cpp, Ollama, LM Studio et autres frameworks d'inférence.
 | Format | Taille | Précision | Description |
 |---|---|---|---|
 | FP16 (original) | ~54 Go | 100% | Précision 16 bits originale |
-| **MoziSmartBit** | **~13,7 Go** | **~99%** | **Quantification intelligente auto-développée** |
+| **MoziSmartBit** | **~12,79 Go** | **~99%** | **Quantification intelligente auto-développée** |
 | Q4_K_M | ~17 Go | ~98% | GGUF standard 4 bits |
 | Q5_K_M | ~20 Go | ~99% | Précision supérieure |
 | Q6_K | ~23 Go | ~99,5% | Quasi sans perte |

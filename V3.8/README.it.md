@@ -25,7 +25,7 @@ pipeline_tag: text-generation
 
 MoziAI-27B-3.8 è un LLM multimodale finanziario open-source locale sviluppato dal team dell'influencer finanziario cinese Chen Yumo. Basato sul modello open-source Qwen3.8-27B (architettura Dense 27B, licenza MIT), integra le tecnologie sviluppate internamente: (dati finanziari + capacità del dominio finanziario + metodi di addestramento + framework di ragionamento a sette dimensioni + meccanismo LOOP agente + algoritmo di quantizzazione ibrida MoziSmartBit).
 
-La tecnologia di quantizzazione intelligente MoziSmartBit comprime il modello Dense da 27 miliardi di parametri a circa 13,7 GB, circa 3,3 GB (~20%) più piccolo della quantizzazione Q4_K_M convenzionale (~17 GB), con **~99% della precisione FP16**.
+La tecnologia di quantizzazione intelligente MoziSmartBit comprime il modello Dense da 27 miliardi di parametri a circa 12,79 GB, circa 3,3 GB (~20%) più piccolo della quantizzazione Q4_K_M convenzionale (~17 GB), con **~99% della precisione FP16**.
 
 Capacità: Q&A finanziaria, programmazione quantitativa, chiamata strumenti, ragionamento in 7 dimensioni, meccanismo LOOP, compatibilità multi-agente. Esecuzione di task con 256K di contesto via OpenClaw/Hermes, realizzando la **libertà dei token 7×24** con privacy locale.
 
@@ -36,7 +36,7 @@ Supporta llama.cpp, Ollama, LM Studio e altri framework di inferenza.
 ## Caratteristiche
 
 - **Verticalità finanziaria**: Ottimizzazione profonda per Q&A finanziaria, programmazione quantitativa, chiamata strumenti
-- **Quantizzazione intelligente MoziSmartBit**: Compressione a **~13,7 GB** con **~99% di precisione**
+- **Quantizzazione intelligente MoziSmartBit**: Compressione a **~12,79 GB** con **~99% di precisione**
 - **Deploy su GPU consumer**: 16 GB+ VRAM per il deploy locale, 20 GB+ per contesto 256K completo
 - **Decodifica speculativa MTP**: Layer multi-token integrato, velocità x1.5-2
 - **Multilingua**: 201 lingue e dialetti
@@ -54,7 +54,7 @@ Supporta llama.cpp, Ollama, LM Studio e altri framework di inferenza.
 | Parametri | 27 miliardi Dense |
 | Quantizzazione | MoziSmartBit + formato GGUF |
 | Lunghezza contesto | 256K (262.144 token) |
-| Dimensione modello | ~13,7 GB |
+| Dimensione modello | ~12,79 GB |
 | VRAM min. | **16 GB+** deployabile (CPU offload)；**20 GB+** contesto lungo fluido；**24 GB+** 256K completo + visione |
 | Velocità inferenza | MTP: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s |
 
@@ -63,7 +63,7 @@ Supporta llama.cpp, Ollama, LM Studio e altri framework di inferenza.
 | Formato | Dimensione | Precisione |
 |---|---|---|
 | FP16 | ~54 GB | 100% |
-| **MoziSmartBit** | **~13,7 GB** | **~99%** |
+| **MoziSmartBit** | **~12,79 GB** | **~99%** |
 | Q4_K_M | ~17 GB | ~98% |
 | Q5_K_M | ~20 GB | ~99% |
 | Q6_K | ~23 GB | ~99,5% |

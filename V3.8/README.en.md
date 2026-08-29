@@ -25,7 +25,7 @@ pipeline_tag: text-generation
 
 MoziAI-27B-3.8 is a local open-source financial AI multimodal LLM (supports vision and tool calling) developed by Chinese finance influencer Chen Yumo's team. moziAI-27B-3.8 is built on the open-source base model Qwen3.8-27B (Dense 27B architecture, MIT licensed), incorporating the Chen Yumo team's self-developed: (financial data + financial domain capabilities + training methods + Seven-Dimensional Thinking framework + agent LOOP mechanism + hybrid quantization algorithm MoziSmartBit).
 
-Through the self-developed MoziSmartBit intelligent quantization technology, the 27-billion parameter Dense model is compressed to approximately 13.7 GB, which is 3.3G (about 20%) smaller than conventional Q4_K_M quantization models of about 17 GB; achieving the optimal balance between precision and size, delivering **~99% of FP16 precision quality**.
+Through the self-developed MoziSmartBit intelligent quantization technology, the 27-billion parameter Dense model is compressed to approximately 12.79 GB, which is 3.3G (about 20%) smaller than conventional Q4_K_M quantization models of about 17 GB; achieving the optimal balance between precision and size, delivering **~99% of FP16 precision quality**.
 
 In addition to retaining general AI capabilities, this model enhances: financial vertical domain applications, financial Q&A, quantitative programming, tool calling, and general programming, as well as the model's Seven-Dimensional Thinking capability, LOOP mechanism, and compatibility with various agent platforms.
 
@@ -38,7 +38,7 @@ Supports llama.cpp, Ollama, LM Studio and other mainstream inference frameworks.
 ## Model Features
 
 - **Financial Vertical Focus**: Deep optimization for financial Q&A, quantitative programming, and tool calling
-- **MoziSmartBit Intelligent Quantization**: Self-developed smart quantization, best balance of precision and size, compressed to approximately **13.7 GB** with **~99%** precision retention
+- **MoziSmartBit Intelligent Quantization**: Self-developed smart quantization, best balance of precision and size, compressed to approximately **12.79 GB** with **~99%** precision retention
 - **Consumer-grade Deployment**: Deployable on 16GB+ VRAM GPUs (with CPU offloading); 20GB+ for full 256K long context
 - **MTP Speculative Decoding**: Built-in multi-token prediction layer for 1.5-2x inference speedup when enabled
 - **Multilingual Support**: 201 languages and dialects, with enhanced Chinese capabilities, covering English/Japanese/Korean/German/French/Spanish/Portuguese and more
@@ -67,7 +67,7 @@ Supports llama.cpp, Ollama, LM Studio and other mainstream inference frameworks.
 | Parameters | 27B Dense |
 | Quantization | Self-developed MoziSmartBit Intelligent Quantization + GGUF standard format |
 | Context Length | 256K (262,144 tokens) |
-| Model Size | ~13.7 GB |
+| Model Size | ~12.79 GB |
 | Min VRAM | **16GB+** deployable (with CPU offload, e.g., RTX 4060 Ti 16G); **20GB+** smooth long context (e.g., RX 7900 XT 20G); **24GB+** full 256K + vision |
 | Inference Framework | llama.cpp / Ollama / LM Studio / Jan |
 | Inference Speed | With MTP speculative decoding: AMD R9700 70+ tok/s, AMD MAX+395 CPU 50+ tok/s, AMD MAX+395 GPU 35+ tok/s, enabling local 7x24 token freedom |
@@ -78,27 +78,27 @@ Supports llama.cpp, Ollama, LM Studio and other mainstream inference frameworks.
 | Format | Size | Precision | Notes |
 |--------|------|-----------|-------|
 | FP16 (Original) | ~54 GB | 100% | Original 16-bit precision |
-| **MoziSmartBit** | **~13.7 GB** | **~99%** | **Self-developed intelligent quantization** |
+| **MoziSmartBit** | **~12.79 GB** | **~99%** | **Self-developed intelligent quantization** |
 | Q4_K_M | ~17 GB | ~98% | GGUF standard 4-bit |
 | Q5_K_M | ~20 GB | ~99% | Higher precision |
 | Q6_K | ~23 GB | ~99.5% | Near lossless |
 | Q8_0 | ~31 GB | ~100% | Lossless |
 
-> MoziAI V3.8 uses MoziSmartBit intelligent quantization, compressing the 27-billion parameter Dense model to approximately 13.7 GB with ~99% precision retention, achieving a 4.0x compression ratio while balancing inference quality and deployment accessibility.
+> MoziAI V3.8 uses MoziSmartBit intelligent quantization, compressing the 27-billion parameter Dense model to approximately 12.79 GB with ~99% precision retention, achieving a 4.0x compression ratio while balancing inference quality and deployment accessibility.
 
 ## MoziSmartBit Intelligent Quantization
 
-Traditional quantization uses uniform precision across all layers. Chen Yumo's self-developed **MoziSmartBit Intelligent Quantization** adopts a differentiated strategy tailored to Dense model structures, achieving the optimal balance between size and precision. The model quality exceeds Q4_K_M format while occupying only 13.7 GB, with a 4.0x compression ratio and ~99% precision retention.
+Traditional quantization uses uniform precision across all layers. Chen Yumo's self-developed **MoziSmartBit Intelligent Quantization** adopts a differentiated strategy tailored to Dense model structures, achieving the optimal balance between size and precision. The model quality exceeds Q4_K_M format while occupying only 12.79 GB, with a 4.0x compression ratio and ~99% precision retention.
 
 ### Compression Results
 
 - **Minimal Precision Loss**: Training gains > quantization losses, making the post-training MoziAI-27B outperform the pre-training BF16 base in financial domain text perplexity
-- **4.0x Volume Reduction**: Compressed from FP16 (~54 GB) to ~13.7 GB, significantly smaller than Q4_K_M (~17 GB), dramatically reducing VRAM and storage requirements
+- **4.0x Volume Reduction**: Compressed from FP16 (~54 GB) to ~12.79 GB, significantly smaller than Q4_K_M (~17 GB), dramatically reducing VRAM and storage requirements
 - **Consumer GPU Deployment**: The 27B Dense model, previously requiring high-end GPUs, can now be deployed on 16GB+ VRAM GPUs, with 20GB+ for full 256K long context
 
 ### Comparison Advantages
 
-**vs Q4_K_M (~17 GB)**: ~20% smaller (~13.7 GB), better precision than Q4_K_M, lower VRAM threshold, deployable on 16GB+ GPUs, smooth 256K on 20GB+
+**vs Q4_K_M (~17 GB)**: ~20% smaller (~12.79 GB), better precision than Q4_K_M, lower VRAM threshold, deployable on 16GB+ GPUs, smooth 256K on 20GB+
 
 **vs FP16 (~54 GB)**: ~4.0x compression, ~99% precision retention, from professional-grade GPUs down to consumer GPUs for 256K long context
 
