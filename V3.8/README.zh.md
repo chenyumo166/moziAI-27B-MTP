@@ -84,8 +84,8 @@ MoziAI 自研的核心推理框架。面对任何任务，模型先输出 **mozi
 - **通用编程**：全栈开发、代码调试、架构设计，覆盖 Python/JS/TS/Go/Rust
 - **文章写作**：研报、分析文章、技术文档、创意内容等多体裁高质量写作
 - **视觉理解**：多模态视觉，支持本地截图理解图片内容
-- **多框架**：llama.cpp / Ollama / LM Studio / Jan
-- **多 Agent**：OpenClaw / Hermes / Cursor / Claude Code / Codex 等，原生工具调用与多轮任务编排
+- **多框架支持**：llama.cpp / Ollama / LM Studio / Jan
+- **多 Agent支持**：OpenClaw / Hermes / Cursor / Claude Code / Codex 等，原生工具调用与多轮任务编排
 
 ---
 
