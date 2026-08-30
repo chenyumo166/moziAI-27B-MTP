@@ -165,9 +165,9 @@ llama-server \
 
 | 平台 | 地址 |
 | --- | --- |
-| HuggingFace | [chenyumo/moziAI-27B-3.8-Q4\_K\_M](https://huggingface.co/chenyumo/moziAI-27B-3.8-Q4_K_M) |
-| ModelScope（魔搭） | [chenyumo/moziAI-27B-3.8-Q4\_K\_M](https://modelscope.cn/models/chenyumo/moziAI-27B-3.8-Q4_K_M) |
-| GitHub | [chenyumo166/moziAI-27B-3.8-Q4\_K\_M](https://github.com/chenyumo166/moziAI-27B-3.8-Q4_K_M) |
+| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main/V3.8) |
+| ModelScope（魔搭） | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master/V3.8) |
+| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master/V3.8) |
 
 > 💡 **LM Studio 用户**：在 [LM Studio](https://lmstudio.ai) 中搜索 `moziAI` 一键下载，无需手动下载文件。
 
