@@ -29,17 +29,17 @@ MoziAI-27B-3.8 是由中国财经大V陈雨墨团队开发的本地开源多模�
 
 本模型除了保留AI大模型的通用能力外，还增强了：金融垂直领域应用，金融问答、量化编程、工具调用和通用编程，模型的七维思考能力、LOOP机制，兼容各种agent平台调用。
 
-模型研发者陈雨墨常把本模型用于本地金融数据分析、量化策略研发、市场调研、任何的文章编写、整体项目推进、通用程序编写，OpenClaw/Hermes执行256K上下文的任务。因本地消费级显卡可部署使用，节约大量云端token成本，实现7×24小时token自由并且确保本地数据隐私与安全。
+模型研发者陈雨墨常把本模型用于本地金融数据分析、量化策略研发、市场调研、任何的文章编写、整体项目推进、通用程序编写，OpenClaw/Hermes执行128K上下文的任务。因本地消费级显卡可部署使用，节约大量云端token成本，实现7×24小时token自由并且确保本地数据隐私与安全。
 
 支持 llama.cpp、Ollama、LM Studio 等主流推理框架
 
-**发布日期：2026-08-25** | **版本：V3.8**
+**发布日期：2026-08-30** | **版本：V3.8**
 
 ## 模型特色
 
 - **金融垂直深度**：深度加强金融问答、量化程序编写、工具调用能力
 - **MoziSmartBit 智能量化**：自研的智能量化技术，精度与体积最佳平衡，模型几乎无损压缩至约 **12.79 GB**，精度保持 **~99%**
-- **消费级部署**：16GB显存以上的消费级显卡即可本地部署，20GB以上显卡可实现完整 256K 长上下文推理
+- **消费级部署**：16GB显存以上的消费级显卡即可本地部署，20GB以上显卡可实现完整 128K 长上下文推理
 - **MTP推测解码**：内置多Token预测层，可开启推测解码，推理速度提升1.5-2倍
 - **多语言支持**：支持201种语言和方言，中文能力特别优化，兼顾英语、日语、韓语、德语、法语、西班牙语、葡萄牙语等主流语言
 - **通用程序编写能力**：支持全栈开发、代码调试、架构设计、脚本编写，覆盖 Python/JS/TS/Go/Rust 等主流语言
@@ -66,9 +66,9 @@ MoziAI-27B-3.8 是由中国财经大V陈雨墨团队开发的本地开源多模�
 | 底座模型   | Qwen3.8-27B（Dense 架构，混合注意力 16 full + 48 linear，MIT 许可证）                         |
 | 参数规模   | 270亿（27B）Dense 架构                                         |
 | 量化方式   | 采用自研 MoziSmartBit 智能量化算法 + GGUF 标准格式                                               |
-| 上下文长度 | 256K（262,144 tokens）                                                             |
+| 上下文长度 | 128K（262,144 tokens）                                                             |
 | 模型体积   | ~12.79 GB                                                        |
-| 最低显存要求| **16GB+** 可部署（需CPU卸载，如 RTX 4060 Ti 16G）；**20GB+** 可流畅运行长上下文（如 RX 7900 XT 20G）；**24GB+** 支持完整256K + 视觉 |
+| 最低显存要求| **16GB+** 可部署（需CPU卸载，如 RTX 4060 Ti 16G）；**20GB+** 可流畅运行长上下文（如 RX 7900 XT 20G）；**24GB+** 支持完整128K + 视觉 |
 | 推理框架   | llama.cpp / Ollama / LM Studio / Jan                                               |
 | 推理速度   | 开启MTP推测解码：AMD R9700显卡可达 70+ token/s，AMD MAX+395 CPU核显可达 50+ token/s，AMD MAX+395 GPU可达 35+ token/s，实现本地token自由输出       |
 | 开发团队   | 陈雨墨团队                                                                             |
@@ -94,13 +94,13 @@ MoziAI-27B-3.8 是由中国财经大V陈雨墨团队开发的本地开源多模�
 
 - **量化精度损失极小**：训练增益 > 量化损失，训练后的MoziAI-27B 在金融领域文本上下PPL 优于训练前的 bf16 底座，降低了同类 AI 模型的幻觉与困惑。
 - **模型体积压缩至 4.0 倍**：从 FP16（~54 GB）压缩至 ~12.79 GB，也大幅小于Q4_K_M的~17 GB，大幅降低显存与存储门槛
-- **消费级显卡可部署**：原本需要高端显卡的 27B Dense 大模型，现在 16GB 显存即可本地部署，20GB 以上显卡实现完整 256K 长上下文推理
+- **消费级显卡可部署**：原本需要高端显卡的 27B Dense 大模型，现在 16GB 显存即可本地部署，20GB 以上显卡实现完整 128K 长上下文推理
 
 ### 对比优势
 
-**vs Q4_K_M（~17 GB）**：体积减少约 20%（~12.79 GB），精度优于 Q4_K_M，显存门槛更低，16GB 显卡即可部署，20GB 以上显卡即可流畅运行 256K 长上下文
+**vs Q4_K_M（~17 GB）**：体积减少约 20%（~12.79 GB），精度优于 Q4_K_M，显存门槛更低，16GB 显卡即可部署，20GB 以上显卡即可流畅运行 128K 长上下文
 
-**vs 原始 FP16（~54 GB）**：体积压缩约 4.0 倍，精度保持约99%，从需要专业级显卡降低到消费级显卡即可本地运行256K长上下文
+**vs 原始 FP16（~54 GB）**：体积压缩约 4.0 倍，精度保持约99%，从需要专业级显卡降低到消费级显卡即可本地运行128K长上下文
 
 ## 推荐推理参数
 
@@ -108,24 +108,24 @@ MoziAI-27B-3.8 是由中国财经大V陈雨墨团队开发的本地开源多模�
 
 | 参数 | 通用聊天 | 编码/Agent | 说明 |
 | --- | --- | --- | --- |
-| temperature | 0.6 | 0.6 | 平衡创意与准确性 |
+| temperature | 0.7 | 1.0 | 平衡创意与准确性 |
 | top\_p | 0.95 | 0.95 | 核采样阈值 |
 | top\_k | 20 | 20 | 截断采样 |
 | repeat\_penalty | 1.05 | 1.05 | 重复惩罚 |
 | presence\_penalty | 0 | 0 | 无存在惩罚 |
-| context\_length | 262144 | 262144 | 256K 长上下文 |
+| context\_length | 262144 | 262144 | 128K 长上下文 |
 | batch\_size | 2048 | 2048 | 批处理大小 |
 | ubatch\_size | 512 | 512 | 微批次大小 |
 | flash\_attention | auto | auto | 自动 Flash Attention |
 | kv\_cache | q4\_0 | q4\_0 | KV 缓存量化 |
 | poll | 0 | 0 | 闲置不轮询GPU，节能低延迟 |
-| reasoning | on | on | 开启推理链（思维链） |
+| reasoning | auto | auto | 开启推理链（思维链） |
 | reasoning\_budget | 400 | 400 | 推理预算 token |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | 推理格式 |
 | samplers | top\_k;top\_p;temperature;typ\_p | top\_k;top\_p;temperature;typ\_p | 采样器顺序 |
 | **spec-type** | **draft-mtp** | **draft-mtp** | **MTP推测解码（详见下方MTP章节）** |
 
-> 💡 **思考模式说明**：本模型内置 Qwen3.8 Thinking（思维链）能力。通过 `--reasoning on` 开启，模型会先进行内部推理再输出答案。`reasoning_budget` 控制最大思考token数（400为推荐值，可根据任务复杂度调整100-1000）。`reasoning-format deepseek-legacy` 输出思考过程到独立字段，不污染主输出内容。
+> 💡 **思考模式说明**：本模型内置 Qwen3.8 Thinking（思维链）能力。通过 `--reasoning auto` 开启，模型会先进行内部推理再输出答案。`reasoning_budget` 控制最大思考token数（400为推荐值，可根据任务复杂度调整100-1000）。`reasoning-format deepseek-legacy` 输出思考过程到独立字段，不污染主输出内容。
 
 ## MTP 推测解码（重要加速特性）
 
@@ -168,12 +168,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -187,9 +187,9 @@ llama-server \
 
 | 显存 | 推荐上下文 | KV 缓存 | 视觉支持 | 说明 |
 | --- | --- | --- | --- | --- |
-| 20 GB | 256K 满配 | q4\_0 | 完美支持 | 视觉+256K长上下文，推荐配置（模型+KV约需16GB，显存余量~4GB） |
-| 24 GB | 256K 满配 | q4\_0 | 完美支持 | 视觉+256K长上下文，显存余量充足 |
-| 32 GB+ | 256K 满配 | q4\_0 | 完美支持 | 视觉+256K长上下文，显存余量充足，最强配置 |
+| 20 GB | 128K 满配 | q4\_0 | 完美支持 | 视觉+128K长上下文，推荐配置（模型+KV约需16GB，显存余量~4GB） |
+| 24 GB | 128K 满配 | q4\_0 | 完美支持 | 视觉+128K长上下文，显存余量充足 |
+| 32 GB+ | 128K 满配 | q4\_0 | 完美支持 | 视觉+128K长上下文，显存余量充足，最强配置 |
 
 **NVIDIA 显卡参考表**
 
@@ -345,7 +345,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 > 需要视觉能力时加上 `--mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf`
@@ -369,7 +369,7 @@ moziAI-27B/
 
 ## SEO 关键词
 
-金融AI大模型、AI大模型、本地开源模型、端侧模型、量化程序编写、MoziSmartBit、智能量化、GGUF量化、Dense模型、本地开源大模型、本地部署、金融AI、工具调用、Agent、llama.cpp、Ollama、GGUF、Q4\_K\_M、Qwen3.8-27B、金融垂直领域、开源模型、MTP推测解码、256K长上下文、多模态、本地LLM、边缘AI、自托管AI、speculative decoding、self-hosted AI、local LLM、edge AI、Chinese financial AI、Qwen3.8 fine-tune、tool-calling、vision model、open-source LLM、consumer GPU deployment、intelligent quantization
+金融AI大模型、AI大模型、本地开源模型、端侧模型、量化程序编写、MoziSmartBit、智能量化、GGUF量化、Dense模型、本地开源大模型、本地部署、金融AI、工具调用、Agent、llama.cpp、Ollama、GGUF、Q4\_K\_M、Qwen3.8-27B、金融垂直领域、开源模型、MTP推测解码、128K长上下文、多模态、本地LLM、边缘AI、自托管AI、speculative decoding、self-hosted AI、local LLM、edge AI、Chinese financial AI、Qwen3.8 fine-tune、tool-calling、vision model、open-source LLM、consumer GPU deployment、intelligent quantization
 
 ## 许可证（重要事项）
 

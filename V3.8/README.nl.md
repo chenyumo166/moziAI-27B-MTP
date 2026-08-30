@@ -27,11 +27,11 @@ MoziAI-27B-3.8 is een lokaal open-source financieel AI multimodale LLM (onderste
 
 De zelfontwikkelde MoziSmartBit intelligente kwantiseertechnologie comprimeert het 27-miljard parameter Dense model naar ongeveer 12,79 GB, 3,3 GB (~20%) kleiner dan Q4_K_M (~17 GB), met **~99% nauwkeurigheid van FP16**.
 
-Financiële domeinverdieping, financiële Q&A, kwantum programmeren, tool calling, zeven-dimensionaal denken, LOOP mechanisme, multi-agent compatibiliteit. Uitvoering van 256K contexttaken via OpenClaw/Hermes, realisatie van **7x24 tokenvrijheid** met lokale gegevensprivacy.
+Financiële domeinverdieping, financiële Q&A, kwantum programmeren, tool calling, zeven-dimensionaal denken, LOOP mechanisme, multi-agent compatibiliteit. Uitvoering van 128K contexttaken via OpenClaw/Hermes, realisatie van **7x24 tokenvrijheid** met lokale gegevensprivacy.
 
 Ondersteunt llama.cpp, Ollama, LM Studio en andere inferentieframeworks.
 
-**Releasedatum: 2026-08-25** | **Versie: V3.8**
+**Releasedatum: 2026-08-30** | **Versie: V3.8**
 
 ## Modelspecificaties
 
@@ -40,9 +40,9 @@ Ondersteunt llama.cpp, Ollama, LM Studio en andere inferentieframeworks.
 | Basismodel | Qwen3.8-27B (Dense, hybride aandacht, MIT) |
 | Parameters | 27 miljard Dense |
 | Kwantisatie | MoziSmartBit + GGUF standaard |
-| Contextlengte | 256K (262.144 tokens) |
+| Contextlengte | 128K (262.144 tokens) |
 | Modelgrootte | ~12,79 GB |
-| Min. VRAM | **16 GB+** bruikbaar (CPU offload)；**20 GB+** vloeiende lange context；**24 GB+** volledige 256K + visie |
+| Min. VRAM | **16 GB+** bruikbaar (CPU offload)；**20 GB+** vloeiende lange context；**24 GB+** volledige 128K + visie |
 | Inferentiesnelheid | MTP: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s |
 
 ## Kwantisatieformaten
@@ -69,12 +69,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -114,7 +114,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 ### 3. Chatten

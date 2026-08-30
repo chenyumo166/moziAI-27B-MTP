@@ -27,17 +27,17 @@ MoziAI-27B-3.8 चीनी वित्तीय प्रभावकर्त
 
 MoziSmartBit बुद्धिमान क्वांटाइजेशन तकनीक 27 अरब पैरामीटर Dense मॉडल को ~12.79 GB तक संपीड़ित करती है, जो Q4_K_M से ~20% छोटा है और FP16 की **~99% सटीकता** बनाए रखता है।
 
-वित्तीय डोमेन गहन अनुकूलन, वित्तीय Q&A, क्वांटम प्रोग्रामिंग, टूल कॉलिंग, सात-आयामी सोच, LOOP मैकेनिज्म। OpenClaw/Hermes के माध्यम से 256K संदर्भ कार्य, **7×24 टोकन स्वतंत्रता**।
+वित्तीय डोमेन गहन अनुकूलन, वित्तीय Q&A, क्वांटम प्रोग्रामिंग, टूल कॉलिंग, सात-आयामी सोच, LOOP मैकेनिज्म। OpenClaw/Hermes के माध्यम से 128K संदर्भ कार्य, **7×24 टोकन स्वतंत्रता**।
 
 llama.cpp, Ollama, LM Studio समर्थित।
 
-**रिलीज़ दिनांक: 2026-08-25** | **संस्करण: V3.8**
+**रिलीज़ दिनांक: 2026-08-30** | **संस्करण: V3.8**
 
 ## मॉडल विशेषताएं
 
 - **वित्तीय गहनता**: वित्तीय Q&A, क्वांटम प्रोग्रामिंग, टूल कॉलिंग
 - **MoziSmartBit**: ~12.79 GB तक संपीड़न, **~99% सटीकता**
-- **उपभोक्ता GPU**: 16GB+ VRAM पर तैनात, 20GB+ पर पूर्ण 256K लंबा संदर्भ推理
+- **उपभोक्ता GPU**: 16GB+ VRAM पर तैनात, 20GB+ पर पूर्ण 128K लंबा संदर्भ推理
 - **MTP सटीक डीकोडिंग**: 1.5-2x गति वृद्धि
 - **बहुभाषी**: 201 भाषाएं
 - **सामान्य प्रोग्रामिंग**: Python/JS/TS/Go/Rust
@@ -50,9 +50,9 @@ llama.cpp, Ollama, LM Studio समर्थित।
 | बेस मॉडल | Qwen3.8-27B (Dense, MIT) |
 | पैरामीटर | 27 अरब Dense |
 | क्वांटाइजेशन | MoziSmartBit + GGUF |
-| संदर्भ लंबाई | 256K (262,144 टोकन) |
+| संदर्भ लंबाई | 128K (262,144 टोकन) |
 | मॉडल आकार | ~12.79 GB |
-| न्यूनतम VRAM | **16GB+** तैनाती संभव；**20GB+** लंबा संदर्भ；**24GB+** पूर्ण 256K + दृश्य |
+| न्यूनतम VRAM | **16GB+** तैनाती संभव；**20GB+** लंबा संदर्भ；**24GB+** पूर्ण 128K + दृश्य |
 
 ## MTP सटीक डीकोडिंग
 
@@ -69,12 +69,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -115,7 +115,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 ### 3. चैट शुरू करें

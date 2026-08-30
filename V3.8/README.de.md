@@ -27,17 +27,17 @@ MoziAI-27B-3.8 ist ein lokales Open-Source-Finanz-AI-Multimodales LLM (mit Sicht
 
 Durch die selbst entwickelte MoziSmartBit-Intelligenzquantisierungstechnologie wird das 27-Milliarden-Parameter-Dense-Modell auf ca. 12.79 GB komprimiert — ca. 3,3 GB (ca. 20 %) kleiner als die konventionelle Q4_K_M-Quantisierung (ca. 17 GB). Optimales Gleichgewicht zwischen Genauigkeit und Größe mit **ca. 99 % der FP16-Genauigkeit**.
 
-Starke Finanzdomäne: Finanz-Q&A, Quant-Programmierung, Tool-Calling, Sieben-Dimensionales-Denken, LOOP-Mechanismus. Kompatibel mit OpenClaw/Hermes für 256K-Kontextaufgaben. Lokale Consumer-GPU-Implementierung spart Cloud-Token-Kosten und erreicht **7×24-Stunden Token-Freiheit** mit lokalem Datenschutz.
+Starke Finanzdomäne: Finanz-Q&A, Quant-Programmierung, Tool-Calling, Sieben-Dimensionales-Denken, LOOP-Mechanismus. Kompatibel mit OpenClaw/Hermes für 128K-Kontextaufgaben. Lokale Consumer-GPU-Implementierung spart Cloud-Token-Kosten und erreicht **7×24-Stunden Token-Freiheit** mit lokalem Datenschutz.
 
 Unterstützt llama.cpp, Ollama, LM Studio und andere Mainstream-Inferenz-Frameworks.
 
-**Erscheinungsdatum: 2026-08-25** | **Version: V3.8**
+**Erscheinungsdatum: 2026-08-30** | **Version: V3.8**
 
 ## Modellmerkmale
 
 - **Finanz-Domäne-Tiefe**: Tiefgreifende Optimierung für Finanz-Q&A, Quant-Programmierung und Tool-Calling
 - **MoziSmartBit-Intelligenzquantisierung**: Komprimiert auf ca. **12,79 GB** mit **~99 % Genauigkeit**
-- **Consumer-GPU-Einsatz**: 16 GB+ VRAM ermöglicht lokale Bereitstellung, 20 GB+ für vollständigen 256K-Kontext
+- **Consumer-GPU-Einsatz**: 16 GB+ VRAM ermöglicht lokale Bereitstellung, 20 GB+ für vollständigen 128K-Kontext
 - **MTP-Spezulative Dekodierung**: Integrierter Multi-Token-Prädiktionslayer, 1,5-2× Inferenzgeschwindigkeit
 - **Mehrsprachig**: 201 Sprachen und Dialekte
 - **Allgemeine Programmierung**: Python/JS/TS/Go/Rust
@@ -63,9 +63,9 @@ Unterstützt llama.cpp, Ollama, LM Studio und andere Mainstream-Inferenz-Framewo
 | Grundmodell | Qwen3.8-27B (Dense, Hybrid-Attention, MIT) |
 | Parameter | 27 Milliarden Dense |
 | Quantisierung | MoziSmartBit + GGUF-Standard |
-| Kontextlänge | 256K (262.144 Tokens) |
+| Kontextlänge | 128K (262.144 Tokens) |
 | Modellgröße | ~12,79 GB |
-| Mindest-VRAM | **16 GB+** einsatzbereit (mit CPU-Offload)；**20 GB+** flüssiger Langkontext；**24 GB+** vollständiges 256K + Vision |
+| Mindest-VRAM | **16 GB+** einsatzbereit (mit CPU-Offload)；**20 GB+** flüssiger Langkontext；**24 GB+** vollständiges 128K + Vision |
 | Inferenzgeschwindigkeit | MTP aktiv: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s, MAX+395 GPU 35+ tok/s |
 
 ## Quantisierungsformate
@@ -100,12 +100,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -115,9 +115,9 @@ llama-server \
 
 | VRAM | Kontext | KV-Cache | Sicht | Beschreibung |
 |---|---|---|---|---|
-| 20 GB | 256K | q4_0 | Unterstützt | Empfohlen |
-| 24 GB | 256K | q4_0 | Voll | Ausreichend |
-| 32 GB+ | 256K | q4_0 | Voll | Beste Konfiguration |
+| 20 GB | 128K | q4_0 | Unterstützt | Empfohlen |
+| 24 GB | 128K | q4_0 | Voll | Ausreichend |
+| 32 GB+ | 128K | q4_0 | Voll | Beste Konfiguration |
 
 ## Benchmarks
 
@@ -162,7 +162,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 ### 3. Chat starten

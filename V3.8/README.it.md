@@ -27,17 +27,17 @@ MoziAI-27B-3.8 è un LLM multimodale finanziario open-source locale sviluppato d
 
 La tecnologia di quantizzazione intelligente MoziSmartBit comprime il modello Dense da 27 miliardi di parametri a circa 12,79 GB, circa 3,3 GB (~20%) più piccolo della quantizzazione Q4_K_M convenzionale (~17 GB), con **~99% della precisione FP16**.
 
-Capacità: Q&A finanziaria, programmazione quantitativa, chiamata strumenti, ragionamento in 7 dimensioni, meccanismo LOOP, compatibilità multi-agente. Esecuzione di task con 256K di contesto via OpenClaw/Hermes, realizzando la **libertà dei token 7×24** con privacy locale.
+Capacità: Q&A finanziaria, programmazione quantitativa, chiamata strumenti, ragionamento in 7 dimensioni, meccanismo LOOP, compatibilità multi-agente. Esecuzione di task con 128K di contesto via OpenClaw/Hermes, realizzando la **libertà dei token 7×24** con privacy locale.
 
 Supporta llama.cpp, Ollama, LM Studio e altri framework di inferenza.
 
-**Data di rilascio: 2026-08-25** | **Versione: V3.8**
+**Data di rilascio: 2026-08-30** | **Versione: V3.8**
 
 ## Caratteristiche
 
 - **Verticalità finanziaria**: Ottimizzazione profonda per Q&A finanziaria, programmazione quantitativa, chiamata strumenti
 - **Quantizzazione intelligente MoziSmartBit**: Compressione a **~12,79 GB** con **~99% di precisione**
-- **Deploy su GPU consumer**: 16 GB+ VRAM per il deploy locale, 20 GB+ per contesto 256K completo
+- **Deploy su GPU consumer**: 16 GB+ VRAM per il deploy locale, 20 GB+ per contesto 128K completo
 - **Decodifica speculativa MTP**: Layer multi-token integrato, velocità x1.5-2
 - **Multilingua**: 201 lingue e dialetti
 - **Programmazione generale**: Python/JS/TS/Go/Rust
@@ -53,9 +53,9 @@ Supporta llama.cpp, Ollama, LM Studio e altri framework di inferenza.
 | Modello base | Qwen3.8-27B (Dense, attention ibrida, MIT) |
 | Parametri | 27 miliardi Dense |
 | Quantizzazione | MoziSmartBit + formato GGUF |
-| Lunghezza contesto | 256K (262.144 token) |
+| Lunghezza contesto | 128K (262.144 token) |
 | Dimensione modello | ~12,79 GB |
-| VRAM min. | **16 GB+** deployabile (CPU offload)；**20 GB+** contesto lungo fluido；**24 GB+** 256K completo + visione |
+| VRAM min. | **16 GB+** deployabile (CPU offload)；**20 GB+** contesto lungo fluido；**24 GB+** 128K completo + visione |
 | Velocità inferenza | MTP: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s |
 
 ## Formati di quantizzazione
@@ -84,12 +84,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -130,7 +130,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 ### 3. Chat

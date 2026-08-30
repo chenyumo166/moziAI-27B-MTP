@@ -27,15 +27,15 @@ MoziAI-27B-3.8 是由中國財經大V陳雨墨團隊開發的本地開源多模�
 
 通過自研 MoziSmartBit 智能量化技術，將270億參數 Dense 模型壓縮至約 12.79 GB，比常規Q4_K_M量化約17GB的體積小3.3GB（約20%），實現幾乎≈FP16 的 **99%精度質量**。
 
-本模型增強了：金融垂直領域應用、金融問答、量化編程、工具調用、通用編程、七維思考能力、LOOP機制，兼容各種agent平台。可通過 OpenClaw/Hermes 執行256K上下文任務，節約雲端token成本，實現 **7x24 小時 token 自由**，確保本地數據隱私安全。
+本模型增強了：金融垂直領域應用、金融問答、量化編程、工具調用、通用編程、七維思考能力、LOOP機制，兼容各種agent平台。可通過 OpenClaw/Hermes 執行128K上下文任務，節約雲端token成本，實現 **7x24 小時 token 自由**，確保本地數據隱私安全。
 
-支持 llama.cpp、Ollama、LM Studio 等主流推理框架。**發布日期：2026-08-25** | **版本：V3.8**
+支持 llama.cpp、Ollama、LM Studio 等主流推理框架。**發布日期：2026-08-30** | **版本：V3.8**
 
 ## 模型特色
 
 - **金融垂直深度**：深度加強金融問答、量化編程、工具調用
 - **MoziSmartBit 智能量化**：自研量化技術，壓縮至約 **12.79 GB**，精度保持 **~99%**
-- **消費級部署**：16GB顯存以上即可本地部署，20GB以上可實現完整256K長上下文推理
+- **消費級部署**：16GB顯存以上即可本地部署，20GB以上可實現完整128K長上下文推理
 - **MTP推測解碼**：內置多Token預測層，推理速度提升1.5-2倍
 - **多語言支持**：201種語言，中文能力特別優化
 - **通用編程**：Python/JS/TS/Go/Rust 等主流語言
@@ -62,9 +62,9 @@ MoziAI-27B-3.8 是由中國財經大V陳雨墨團隊開發的本地開源多模�
 | 底座模型 | Qwen3.8-27B（Dense架構，混合注意力，MIT許可） |
 | 參數規模 | 270億 Dense |
 | 量化方式 | MoziSmartBit 智能量化 + GGUF 標準格式 |
-| 上下文長度 | 256K（262,144 tokens） |
+| 上下文長度 | 128K（262,144 tokens） |
 | 模型體積 | ~12.79 GB |
-| 最低顯存 | **16GB+** 可部署（需CPU卸載）；**20GB+** 可流暢運行長上下文；**24GB+** 完整256K + 視覺 |
+| 最低顯存 | **16GB+** 可部署（需CPU卸載）；**20GB+** 可流暢運行長上下文；**24GB+** 完整128K + 視覺 |
 | 推理框架 | llama.cpp / Ollama / LM Studio / Jan |
 | 推理速度 | MTP啟用：R9700 70+ tok/s，MAX+395 CPU 50+ tok/s，MAX+395 GPU 35+ tok/s |
 | 開發團隊 | 陳雨墨團隊 |
@@ -103,12 +103,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -120,9 +120,9 @@ llama-server \
 
 | 顯存 | 上下文 | KV 緩存 | 視覺 | 說明 |
 |------|--------|---------|------|------|
-| 20 GB | 256K | q4_0 | 支持 | 推薦配置 |
-| 24 GB | 256K | q4_0 | 完美 | 顯存充裕 |
-| 32 GB+ | 256K | q4_0 | 完美 | 最強配置 |
+| 20 GB | 128K | q4_0 | 支持 | 推薦配置 |
+| 24 GB | 128K | q4_0 | 完美 | 顯存充裕 |
+| 32 GB+ | 128K | q4_0 | 完美 | 最強配置 |
 
 ## 基準評測
 
@@ -174,7 +174,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 ### 3. 對話

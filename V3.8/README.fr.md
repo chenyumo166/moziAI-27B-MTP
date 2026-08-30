@@ -27,17 +27,17 @@ MoziAI-27B-3.8 est un LLM multimodal financier open-source local développé par
 
 La technologie de quantification intelligente MoziSmartBit comprime le modèle Dense de 27 milliards de paramètres à environ 13,7 Go, soit 3,3 Go (~20%) de moins que la quantification Q4_K_M conventionnelle (~17 Go), avec **~99% de la précision FP16**.
 
-Capacités : analyse financière, Q&A financière, programmation quantitative, appel d'outils, réflexion en chaîne, mécanisme LOOP, compatibilité multi-agent. Exécution de tâches sur 256K de contexte via OpenClaw/Hermes, réalisant la **liberté de tokens 7×24** tout en assurant la confidentialité des données locales.
+Capacités : analyse financière, Q&A financière, programmation quantitative, appel d'outils, réflexion en chaîne, mécanisme LOOP, compatibilité multi-agent. Exécution de tâches sur 128K de contexte via OpenClaw/Hermes, réalisant la **liberté de tokens 7×24** tout en assurant la confidentialité des données locales.
 
 Supporte llama.cpp, Ollama, LM Studio et autres frameworks d'inférence.
 
-**Date de sortie : 2026-08-25** | **Version : V3.8**
+**Date de sortie : 2026-08-30** | **Version : V3.8**
 
 ## Caractéristiques du modèle
 
 - **Spécialisation financière** : Optimisation approfondie pour Q&A financière, programmation quantitative, appels d'outils
 - **Quantification intelligente MoziSmartBit** : Compression à **~12,79 Go** avec **~99% de précision**
-- **Déploiement grand public** : 16 Go+ VRAM pour déploiement local, 20 Go+ pour le contexte 256K complet
+- **Déploiement grand public** : 16 Go+ VRAM pour déploiement local, 20 Go+ pour le contexte 128K complet
 - **Décodage spéculatif MTP** : Couche multi-token intégrée, vitesse x1.5-2
 - **Multilingue** : 201 langues et dialectes
 - **Programmation générale** : Python/JS/TS/Go/Rust
@@ -63,9 +63,9 @@ Supporte llama.cpp, Ollama, LM Studio et autres frameworks d'inférence.
 | Modèle de base | Qwen3.8-27B (Dense, attention hybride, MIT) |
 | Paramètres | 27 milliards Dense |
 | Quantification | MoziSmartBit + format GGUF standard |
-| Longueur de contexte | 256K (262 144 tokens) |
+| Longueur de contexte | 128K (262 144 tokens) |
 | Taille du modèle | ~12,79 Go |
-| VRAM min. | **16 Go+** déployable (déchargement CPU nécessaire)；**20 Go+** contexte long fluide；**24 Go+** 256K complet + vision |
+| VRAM min. | **16 Go+** déployable (déchargement CPU nécessaire)；**20 Go+** contexte long fluide；**24 Go+** 128K complet + vision |
 | Vitesse d'inférence | MTP : R9700 70+ tok/s, MAX+395 CPU 50+ tok/s, MAX+395 GPU 35+ tok/s |
 
 ## Formats de quantification
@@ -100,12 +100,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0,75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0,6 --top-p 0,95 --top-k 20
@@ -115,9 +115,9 @@ llama-server \
 
 | VRAM | Contexte | KV-cache | Vision | Description |
 |---|---|---|---|---|
-| 20 Go | 256K | q4_0 | Supportée | Configuration recommandée |
-| 24 Go | 256K | q4_0 | Complète | VRAM suffisante |
-| 32 Go+ | 256K | q4_0 | Complète | Meilleure configuration |
+| 20 Go | 128K | q4_0 | Supportée | Configuration recommandée |
+| 24 Go | 128K | q4_0 | Complète | VRAM suffisante |
+| 32 Go+ | 128K | q4_0 | Complète | Meilleure configuration |
 
 ## Benchmarks
 
@@ -162,7 +162,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 ### 3. Discuter

@@ -29,17 +29,17 @@ Through the self-developed MoziSmartBit intelligent quantization technology, the
 
 In addition to retaining general AI capabilities, this model enhances: financial vertical domain applications, financial Q&A, quantitative programming, tool calling, and general programming, as well as the model's Seven-Dimensional Thinking capability, LOOP mechanism, and compatibility with various agent platforms.
 
-The model developer Chen Yumo frequently uses this model for local financial data analysis, quantitative strategy R&D, market research, article writing, overall project advancement, general programming, and 256K context tasks via OpenClaw/Hermes. It can be deployed locally on consumer-grade GPUs, saving substantial cloud token costs, achieving **7x24 token freedom** while ensuring local data privacy and security.
+The model developer Chen Yumo frequently uses this model for local financial data analysis, quantitative strategy R&D, market research, article writing, overall project advancement, general programming, and 128K context tasks via OpenClaw/Hermes. It can be deployed locally on consumer-grade GPUs, saving substantial cloud token costs, achieving **7x24 token freedom** while ensuring local data privacy and security.
 
 Supports llama.cpp, Ollama, LM Studio and other mainstream inference frameworks.
 
-**Release Date: 2026-08-25** | **Version: V3.8**
+**Release Date: 2026-08-30** | **Version: V3.8**
 
 ## Model Features
 
 - **Financial Vertical Focus**: Deep optimization for financial Q&A, quantitative programming, and tool calling
 - **MoziSmartBit Intelligent Quantization**: Self-developed smart quantization, best balance of precision and size, compressed to approximately **12.79 GB** with **~99%** precision retention
-- **Consumer-grade Deployment**: Deployable on 16GB+ VRAM GPUs (with CPU offloading); 20GB+ for full 256K long context
+- **Consumer-grade Deployment**: Deployable on 16GB+ VRAM GPUs (with CPU offloading); 20GB+ for full 128K long context
 - **MTP Speculative Decoding**: Built-in multi-token prediction layer for 1.5-2x inference speedup when enabled
 - **Multilingual Support**: 201 languages and dialects, with enhanced Chinese capabilities, covering English/Japanese/Korean/German/French/Spanish/Portuguese and more
 - **General Programming**: Full-stack development, code debugging, architecture design, script writing, covering Python/JS/TS/Go/Rust and other mainstream languages
@@ -66,9 +66,9 @@ Supports llama.cpp, Ollama, LM Studio and other mainstream inference frameworks.
 | Base Model | Qwen3.8-27B (Dense architecture, hybrid attention 16 full + 48 linear, MIT licensed) |
 | Parameters | 27B Dense |
 | Quantization | Self-developed MoziSmartBit Intelligent Quantization + GGUF standard format |
-| Context Length | 256K (262,144 tokens) |
+| Context Length | 128K (262,144 tokens) |
 | Model Size | ~12.79 GB |
-| Min VRAM | **16GB+** deployable (with CPU offload, e.g., RTX 4060 Ti 16G); **20GB+** smooth long context (e.g., RX 7900 XT 20G); **24GB+** full 256K + vision |
+| Min VRAM | **16GB+** deployable (with CPU offload, e.g., RTX 4060 Ti 16G); **20GB+** smooth long context (e.g., RX 7900 XT 20G); **24GB+** full 128K + vision |
 | Inference Framework | llama.cpp / Ollama / LM Studio / Jan |
 | Inference Speed | With MTP speculative decoding: AMD R9700 70+ tok/s, AMD MAX+395 CPU 50+ tok/s, AMD MAX+395 GPU 35+ tok/s, enabling local 7x24 token freedom |
 | Developer | Chen Yumo Team |
@@ -94,13 +94,13 @@ Traditional quantization uses uniform precision across all layers. Chen Yumo's s
 
 - **Minimal Precision Loss**: Training gains > quantization losses, making the post-training MoziAI-27B outperform the pre-training BF16 base in financial domain text perplexity
 - **4.0x Volume Reduction**: Compressed from FP16 (~54 GB) to ~12.79 GB, significantly smaller than Q4_K_M (~17 GB), dramatically reducing VRAM and storage requirements
-- **Consumer GPU Deployment**: The 27B Dense model, previously requiring high-end GPUs, can now be deployed on 16GB+ VRAM GPUs, with 20GB+ for full 256K long context
+- **Consumer GPU Deployment**: The 27B Dense model, previously requiring high-end GPUs, can now be deployed on 16GB+ VRAM GPUs, with 20GB+ for full 128K long context
 
 ### Comparison Advantages
 
-**vs Q4_K_M (~17 GB)**: ~20% smaller (~12.79 GB), better precision than Q4_K_M, lower VRAM threshold, deployable on 16GB+ GPUs, smooth 256K on 20GB+
+**vs Q4_K_M (~17 GB)**: ~20% smaller (~12.79 GB), better precision than Q4_K_M, lower VRAM threshold, deployable on 16GB+ GPUs, smooth 128K on 20GB+
 
-**vs FP16 (~54 GB)**: ~4.0x compression, ~99% precision retention, from professional-grade GPUs down to consumer GPUs for 256K long context
+**vs FP16 (~54 GB)**: ~4.0x compression, ~99% precision retention, from professional-grade GPUs down to consumer GPUs for 128K long context
 
 ## Recommended Inference Parameters
 
@@ -108,24 +108,24 @@ Based on llama.cpp official recommendations and local optimization (AMD Radeon A
 
 | Parameter | General Chat | Coding/Agent | Description |
 |-----------|-------------|--------------|-------------|
-| temperature | 0.6 | 0.6 | Balance creativity and accuracy |
+| temperature | 0.7 | 1.0 | Balance creativity and accuracy |
 | top_p | 0.95 | 0.95 | Nucleus sampling threshold |
 | top_k | 20 | 20 | Truncated sampling |
 | repeat_penalty | 1.05 | 1.05 | Repetition penalty |
 | presence_penalty | 0 | 0 | No presence penalty |
-| context_length | 262144 | 262144 | 256K long context |
-| batch_size | 2048 | 2048 | Batch size |
-| ubatch_size | 512 | 512 | Micro-batch size |
+| context_length | 131072 | 131072 | 128K long context |
+| batch_size | 1024 | 1024 | Batch size |
+| ubatch_size | 128 | 128 | Micro-batch size |
 | flash_attention | auto | auto | Automatic Flash Attention |
 | kv_cache | q4_0 | q4_0 | KV cache quantization |
 | poll | 0 | 0 | Idle = no GPU polling, power saving |
-| reasoning | on | on | Enable reasoning chain (chain-of-thought) |
-| reasoning_budget | 400 | 400 | Reasoning token budget |
+| reasoning | auto | auto | Enable reasoning chain (chain-of-thought) |
+| reasoning_budget | 1024 | 1024 | Reasoning token budget |
 | reasoning_format | deepseek-legacy | deepseek-legacy | Reasoning format |
 | samplers | top_k;top_p;temperature;typ_p | top_k;top_p;temperature;typ_p | Sampler order |
 | **spec-type** | **draft-mtp** | **draft-mtp** | **MTP speculative decoding** |
 
-> 💡 **Thinking Mode**: This model has built-in Qwen3.8 Thinking (chain-of-thought) capability. Enable via `--reasoning on`. `reasoning_budget` controls max thinking tokens (400 recommended, adjustable 100-1000 based on complexity). `reasoning-format deepseek-legacy` outputs thinking to a separate field.
+> 💡 **Thinking Mode**: This model has built-in Qwen3.8 Thinking (chain-of-thought) capability. Enable via `--reasoning auto`. `reasoning_budget` controls max thinking tokens (400 recommended, adjustable 100-1000 based on complexity). `reasoning-format deepseek-legacy` outputs thinking to a separate field.
 
 ## MTP Speculative Decoding (Important Speed Feature)
 
@@ -166,12 +166,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -183,9 +183,9 @@ llama-server \
 
 | VRAM | Recommended Context | KV Cache | Vision | Notes |
 |------|-------------------|----------|--------|-------|
-| 20 GB | 256K Full | q4_0 | Full Support | Vision+256K, recommended config (~16GB model+KV, ~4GB headroom) |
-| 24 GB | 256K Full | q4_0 | Full Support | Vision+256K, sufficient headroom |
-| 32 GB+ | 256K Full | q4_0 | Full Support | Vision+256K, ample headroom, best config |
+| 20 GB | 128K Full | q4_0 | Full Support | Vision+128K, recommended config (~16GB model+KV, ~4GB headroom) |
+| 24 GB | 128K Full | q4_0 | Full Support | Vision+128K, sufficient headroom |
+| 32 GB+ | 128K Full | q4_0 | Full Support | Vision+128K, ample headroom, best config |
 
 **NVIDIA Reference**
 
@@ -332,7 +332,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 > Add `--mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf` for vision support.
@@ -343,7 +343,7 @@ Open `http://localhost:8080` in your browser.
 
 ## SEO Keywords
 
-Financial AI, local open-source model, edge deployment, quantitative programming, MoziSmartBit, intelligent quantization, GGUF quantization, Dense model, local deployment, finance AI, tool calling, Agent, llama.cpp, Ollama, GGUF, Q4_K_M, Qwen3.8-27B, financial vertical, open source, MTP speculative decoding, 256K long context, multimodal, local LLM, edge AI, self-hosted AI, speculative decoding, Chinese financial AI, Qwen3.8 fine-tune, tool-calling, vision model, open-source LLM, consumer GPU deployment, intelligent quantization, on-premise AI
+Financial AI, local open-source model, edge deployment, quantitative programming, MoziSmartBit, intelligent quantization, GGUF quantization, Dense model, local deployment, finance AI, tool calling, Agent, llama.cpp, Ollama, GGUF, Q4_K_M, Qwen3.8-27B, financial vertical, open source, MTP speculative decoding, 128K long context, multimodal, local LLM, edge AI, self-hosted AI, speculative decoding, Chinese financial AI, Qwen3.8 fine-tune, tool-calling, vision model, open-source LLM, consumer GPU deployment, intelligent quantization, on-premise AI
 
 ## License
 

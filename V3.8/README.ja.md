@@ -27,17 +27,17 @@ MoziAI-27B-3.8は、中国の金融インフルエンサー陳雨墨氏チーム
 
 独自開発のMoziSmartBit知的量子化技術により、270億パラメータのDenseモデルを約12.79 GBに圧縮。通常のQ4_K_M量子化（約17GB）より3.3GB（約20%）小さく、精度とサイズの最適バランスを実現。FP16の**約99%の精度品質**を維持。
 
-金融垂直ドメイン強化、金融Q&A、量化プログラミング、ツール呼び出し、七次元思考能力、LOOPメカニズム、各種エージェントプラットフォーム互換。OpenClaw/Hermesで256Kコンテキストタスクを実行可能。ローカル消費GPUデプロイでクラウドトークンコストを大幅節約、**7×24時間トークンフリー**を実現。
+金融垂直ドメイン強化、金融Q&A、量化プログラミング、ツール呼び出し、七次元思考能力、LOOPメカニズム、各種エージェントプラットフォーム互換。OpenClaw/Hermesで128Kコンテキストタスクを実行可能。ローカル消費GPUデプロイでクラウドトークンコストを大幅節約、**7×24時間トークンフリー**を実現。
 
 llama.cpp、Ollama、LM Studio等のメインストリーム推論フレームワークをサポート。
 
-**リリース日：2026-08-25** | **バージョン：V3.8**
+**リリース日：2026-08-30** | **バージョン：V3.8**
 
 ## モデル特長
 
 - **金融垂直最適化**：金融Q&A、量化プログラミング、ツール呼び出しの強化
 - **MoziSmartBit知的量子化**：独自量子化技術、精度**~99%**維持、**~12.79 GB**に圧縮
-- **コンシューマGPUデプロイ**：16GB VRAM以上でローカルデプロイ可能、20GB以上で完全な256K長コンテキスト推理
+- **コンシューマGPUデプロイ**：16GB VRAM以上でローカルデプロイ可能、20GB以上で完全な128K長コンテキスト推理
 - **MTP推測デコーディング**：内蔵マルチトークン予測レイヤー、推論速度1.5-2倍向上
 - **多言語サポート**：201言語・方言対応
 - **汎用プログラミング**：Python/JS/TS/Go/Rust等
@@ -63,9 +63,9 @@ llama.cpp、Ollama、LM Studio等のメインストリーム推論フレーム�
 | ベースモデル | Qwen3.8-27B（Dense、ハイブリッドアテンション、MIT） |
 | パラメータ | 270億 Dense |
 | 量子化 | MoziSmartBit知的量子化 + GGUF標準 |
-| コンテキスト長 | 256K（262,144トークン） |
+| コンテキスト長 | 128K（262,144トークン） |
 | モデルサイズ | ~12.79 GB |
-| 最低VRAM | **16GB+** デプロイ可能（CPUオフロード必要）；**20GB+** 長コンテキスト対応；**24GB+** 完全な256K + ビジョン |
+| 最低VRAM | **16GB+** デプロイ可能（CPUオフロード必要）；**20GB+** 長コンテキスト対応；**24GB+** 完全な128K + ビジョン |
 | 推論速度 | MTP有効：R9700 70+ tok/s、MAX+395 CPU 50+ tok/s、MAX+395 GPU 35+ tok/s |
 
 ## 量子化フォーマット
@@ -100,12 +100,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -117,9 +117,9 @@ llama-server \
 
 | VRAM | コンテキスト | KVキャッシュ | 視覚 | 備考 |
 |------|-------------|------------|------|------|
-| 20 GB | 256K | q4_0 | 対応 | 推奨構成 |
-| 24 GB | 256K | q4_0 | 完全対応 | VRAM余裕あり |
-| 32 GB+ | 256K | q4_0 | 完全対応 | 最強構成 |
+| 20 GB | 128K | q4_0 | 対応 | 推奨構成 |
+| 24 GB | 128K | q4_0 | 完全対応 | VRAM余裕あり |
+| 32 GB+ | 128K | q4_0 | 完全対応 | 最強構成 |
 
 ## ベンチマーク
 
@@ -164,7 +164,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 ### 3. チャット開始

@@ -27,17 +27,17 @@ MoziAI-27B-3.8은 중국 금융 인플루언서 천위모 팀이 개발한 로�
 
 독자 개발한 MoziSmartBit 지능형 양자화 기술로 270억 파라미터 Dense 모델을 약 12.79 GB로 압축. 일반 Q4_K_M 양자화(~17GB) 대비 3.3GB(약 20%) 작아지며, 정밀도와 크기의 최적 균형을 달성. FP16의 **약 99% 정밀도 품질**을 유지합니다.
 
-금융 수직 영역 강화, 금융 Q&A, 양자 프로그래밍, 도구 호출, 7차원 사고 능력, LOOP 메커니즘, 다양한 에이전트 플랫폼 호환. OpenClaw/Hermes로 256K 컨텍스트 작업 실행 가능. 로컬 소비자 GPU 배포로 클라우드 토큰 비용 대폭 절감, **7x24 시간 토큰 프리** 달성.
+금융 수직 영역 강화, 금융 Q&A, 양자 프로그래밍, 도구 호출, 7차원 사고 능력, LOOP 메커니즘, 다양한 에이전트 플랫폼 호환. OpenClaw/Hermes로 128K 컨텍스트 작업 실행 가능. 로컬 소비자 GPU 배포로 클라우드 토큰 비용 대폭 절감, **7x24 시간 토큰 프리** 달성.
 
 llama.cpp, Ollama, LM Studio 등 메인스트림 추론 프레임워크 지원.
 
-**출시일: 2026-08-25** | **버전: V3.8**
+**출시일: 2026-08-30** | **버전: V3.8**
 
 ## 모델 특징
 
 - **금융 수직 심화**: 금융 Q&A, 양자 프로그래밍, 도구 호출 강화
 - **MoziSmartBit 지능형 양자화**: 독자 양자화 기술, 약 **12.79 GB** 압축, **약 99%** 정밀도 유지
-- **소비자 GPU 배포**: 16GB VRAM 이상으로 로컬 배포 가능, 20GB 이상에서 완전한 256K 긴 컨텍스트 추론
+- **소비자 GPU 배포**: 16GB VRAM 이상으로 로컬 배포 가능, 20GB 이상에서 완전한 128K 긴 컨텍스트 추론
 - **MTP 추측 디코딩**: 멀티 토큰 예측 레이어 내장, 추론 속도 1.5-2배 향상
 - **다국어 지원**: 201개 언어·방언 지원
 - **범용 프로그래밍**: Python/JS/TS/Go/Rust 등
@@ -63,9 +63,9 @@ llama.cpp, Ollama, LM Studio 등 메인스트림 추론 프레임워크 지원.
 | 베이스 모델 | Qwen3.8-27B (Dense, 하이브리드 어텐션, MIT) |
 | 파라미터 | 270억 Dense |
 | 양자화 | MoziSmartBit 지능형 양자화 + GGUF 표준 |
-| 컨텍스트 길이 | 256K (262,144 토큰) |
+| 컨텍스트 길이 | 128K (262,144 토큰) |
 | 모델 크기 | ~12.79 GB |
-| 최소 VRAM | **16GB+** 배포 가능 (CPU 오프로드 필요)；**20GB+** 긴 컨텍스트 지원；**24GB+** 완전한 256K + 비전 |
+| 최소 VRAM | **16GB+** 배포 가능 (CPU 오프로드 필요)；**20GB+** 긴 컨텍스트 지원；**24GB+** 완전한 128K + 비전 |
 | 추론 속도 | MTP 시: R9700 70+ tok/s, MAX+395 CPU 50+ tok/s, MAX+395 GPU 35+ tok/s |
 
 ## 양자화 포맷
@@ -100,12 +100,12 @@ llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99 -t 28 \
-  --batch-size 2048 --ubatch-size 512 \
+  -c 131072 -ngl 99 -t 28 \
+  --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
   --poll 0 \
-  --reasoning on --reasoning-budget 400 --reasoning-format deepseek-legacy \
+  --reasoning auto --reasoning-budget 1024 --reasoning-format deepseek-legacy \
   --spec-type draft-mtp --spec-draft-n-max 2 --spec-draft-p-min 0.75 \
   --host 0.0.0.0 --port 8080 \
   --temp 0.6 --top-p 0.95 --top-k 20
@@ -117,9 +117,9 @@ llama-server \
 
 | VRAM | 컨텍스트 | KV캐시 | 비전 | 설명 |
 |------|---------|--------|------|------|
-| 20 GB | 256K | q4_0 | 지원 | 권장 구성 |
-| 24 GB | 256K | q4_0 | 완전 지원 | VRAM 여유 |
-| 32 GB+ | 256K | q4_0 | 완전 지원 | 최강 구성 |
+| 20 GB | 128K | q4_0 | 지원 | 권장 구성 |
+| 24 GB | 128K | q4_0 | 완전 지원 | VRAM 여유 |
+| 32 GB+ | 128K | q4_0 | 완전 지원 | 최강 구성 |
 
 ## 벤치마크
 
@@ -164,7 +164,7 @@ V3.8/
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 262144 -ngl 99
+  -c 131072 -ngl 99
 ```
 
 ### 3. 채팅 시작
