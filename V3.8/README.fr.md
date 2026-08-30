@@ -17,152 +17,176 @@ library_name: llama-cpp
 pipeline_tag: text-generation
 ---
 
-# MoziAI-27B-3.8 - Modèle AI multimodal petit mais puissant, déployable localement gratuitement
+# MoziAI-27B-3.8 — Un modèle d'IA multimodal compact et puissant, déployable localement gratuitement
 
-[English](README.en.md) | [简体中文](README.zh.md) | [繁體中文](README.zh-hant.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [हिन्दी](README.hi.md) | [Deutsch](README.de.md) | Français | [Nederlands](README.nl.md) | [Italiano](README.it.md) | [Русский](README.ru.md)
+[English](README.en.md) | [简体中文](README.zh.md) | [繁体中文](README.zh-hant.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [हिन्दी](README.hi.md) | [Deutsch](README.de.md) | [Français](README.fr.md) | [Nederlands](README.nl.md) | [Italiano](README.it.md) | [Русский](README.ru.md)
 
-## Présentation du modèle
+**Date de sortie : 2026-08-30** · **Version : V3.8**
 
-MoziAI-27B-3.8 est un grand modèle AI multimodal open-source local développé par l'équipe de l'influenceur financier chinois Chen Yumo (amélioré pour le domaine financier, support de la vision, des appels d'outils, déploiement local sur GPU grand public). moziAI-27B-3.8 est construit sur le modèle de base open-source Qwen3.8-27B (architecture Dense 27B, licence MIT), intégrant les technologies auto-développées de l'équipe Chen Yumo (données financières + capacités de domaine financier + méthodes d'entraînement + cadre de réflexion sept dimensionnel dynamique + mécanisme d'itération LOOP de l'agent + algorithme d'hybridation quantification MoziSmartBit). Il réduit les barriers de déploiement local pour les particuliers et les entreprises, avec une licence commerciale gratuite. Le déploiement sur GPU grand public local permet d'économiser considérablement les coûts de tokens cloud, réalisant la liberté de tokens 24/7 tout en garantissant la confidentialité et la sécurité des données locales.
+---
 
-**Cadre de réflexion sept dimensionnel dynamique + Mécanisme d'itération LOOP de l'agent** : Le mode de raisonnement principal auto-développé par MoziAI. Évalue intelligemment la complexité des tâches — les tâches simples activent une réflexion bidimensionnelle pour des réponses rapides, les tâches modérément complexes utilisent une réflexion pentadimensionnelle, et les tâches hautement complexes activent la réflexion sept dimensionnelle complète avec le mécanisme d'itération LOOP de réflexion. Il vise à défier la capacité des modèles à paramètres billions de fois plus grands à résoudre efficacement les tâches complexes, sans sacrifier la réactivité légère des tâches simples.
+## 📑 Table des matières
 
-**Grâce à la technologie de quantification intelligente MoziSmartBit auto-développée**, le modèle Dense de 27 milliards de paramètres est compressé à environ 12,79 GB, soit 3,3 GB (environ 20%) plus petit que les modèles de quantification Q4_K_M conventionnels (~17 GB) ; atteignant l'équilibre optimal entre précision et taille, offrant ~99% de la qualité de précision FP16.
+- [1. Présentation du modèle](#1-présentation-du-modèle)
+- [2. Caractéristiques du modèle](#2-caractéristiques-du-modèle) — Pensée dynamique en sept dimensions / LOOP / MoziSmartBit / Focus finance
+- [3. Notes de version](#3-notes-de-version)
+- [4. Capacités principales](#4-capacités-principales)
+- [5. Spécifications techniques](#5-spécifications-techniques)
+- [6. ⚡ Démarrage rapide](#6-démarrage-rapide-3-fichiers--100-dactivation-du-raisonnement-optimal) — **Téléchargement des trois fichiers**
+- [7. Téléchargement du modèle](#7-téléchargement-du-modèle)
+- [8. Commandes de démarrage](#8-commandes-de-démarrage)
+- [9. Paramètres de raisonnement recommandés](#9-paramètres-de-raisonnement-recommandés)
+- [10. Comparaison des formats de quantification](#10-comparaison-des-formats-de-quantification)
+- [11. Décodage spéculatif MTP](#11-décodage-spéculatif-mtp-accélération-majeure)
+- [12. Configuration VRAM](#12-configuration-vram-recommandée)
+- [13. Options de déploiement](#13-options-de-déploiement)
+- [14. Évaluations de référence](#14-évaluations-de-référence)
+- [15. Licence](#15-licence)
+- [16. Contact](#16-contact)
 
-En plus de conserver les capacités générales des grands modèles AI, ce modèle a été amélioré pour : les applications de domaine vertical financier, les Q&R financiers, la programmation quantitative, les appels d'outils et la programmation générale, avec compatibilité avec diverses plateformes d'agents.
+---
 
-Le développeur du modèle Chen Yumo utilise fréquemment ce modèle pour l'analyse de données financières locale, le développement de stratégies quantitatives, la recherche de marché, la rédaction d'articles, le développement de projets globaux, la programmation générale, et l'exécution de tâches complexes à contexte long 256K par OpenClaw/Hermes.
+## 1. Présentation du modèle
 
-Supporte le déploiement local gratuit sur les frameworks d'inférence mainstream comme llama.cpp, Ollama, LM Studio, et plus.
+MoziAI-27B-3.8 est un modèle d'IA multimodal open source local, développé par l'équipe de Chen Yumo, grand influenceur financier chinois. Il repose sur la base open source **Qwen3.8-27B** (architecture Dense 27B, licence MIT), combinée aux technologies développées en interne par l'équipe : données financières + compétences en finance + système de pensée dynamique en sept dimensions + mécanisme de réflexion itérative LOOP pour agents + algorithme de quantification hybride MoziSmartBit. Ce modèle abaisse le seuil de déploiement local pour les particuliers et les entreprises, avec une autorisation d'**utilisation commerciale gratuite**. Il peut être déployé localement sur des cartes graphiques grand public, réduisant considérablement les coûts de tokens cloud, offrant une liberté de tokens 7×24 heures et garantissant la confidentialité et la sécurité des données locales.
 
-**Date de sortie : 2026-08-30** | **Version : V3.8**
+---
 
-## Fonctionnalités du modèle
+## 2. Caractéristiques du modèle
 
-- **🧠 Cadre de réflexion sept dimensionnel dynamique** : Framework de raisonnement principal auto-développé par MoziAI. Face à toute tâche, le modèle produit d'abord le tag **moziAI-Think**, développant dynamiquement la réflexion structurée selon la complexité — de la réponse bidimensionnelle rapide « compréhension de la tâche + exigences de ressources » (Level 0) à l'évaluation pentadimensionnelle (Level 1) jusqu'au raisonnement profond sept dimensionnel complet (Level 2) : ①Compréhension de la tâche ②Évaluation de la complexité ③Analyse des dépendances ④Évaluation des risques ⑤Exigences de ressources ⑥Critères d'acceptation ⑦Stratégie d'exécution.
-- **🧠 Mécanisme d'itération LOOP de l'agent** : Pour les tâches complexes, MoziAI entre automatiquement en mode itératif **moziAI-Loop** : Tour 1 exécution + évaluation → Tour 2 ajustement + vérification, assurant que la sortie est auto-vérifiée avant la réponse finale.
-- **🧠 Quantification intelligente MoziSmartBit** : Quantification hiérarchique intelligente auto-développée, équilibre optimal précision/taille, compressé à ~12,79 GB avec FP16 ~99% de précision.
-- **🧠 Focus sur le domaine vertical financier** : Optimisation profonde pour les Q&R financiers, la programmation quantitative et les appels d'outils.
-- **Support multilingue** : 201 langues et dialectes, chinois particulièrement optimisé, couvrant anglais, japonais, coréen, allemand, français, espagnol, portugais, etc.
-- **Capacités de programmation générale** : Full-stack, debug, architecture, scripts — Python/JS/TS/Go/Rust.
-- **Capacités rédactionnelles** : Rédaction multi-genres de haute qualité — rapports de recherche, articles analytiques, documentation technique, contenu créatif.
-- **Compréhension visuelle** : Vision multimodale, screenshots collés dans le chat, le modèle comprend le contenu des images.
-- **Support multi-framework** : Compatible llama.cpp, Ollama, LM Studio, Jan, etc.
-- **Support multi-plateforme Agent** : Compatibilité profonde avec OpenClaw, Hermes, OpenCode, Cursor, Windsurf, Claude Code, Codex, support natif des appels d'outils et orchestration de tâches multi-tours.
+### 🧠 Système de pensée dynamique en sept dimensions
 
-## Capacités principales
+Cadre de raisonnement central développé par MoziAI. Face à toute tâche, le modèle émet d'abord le marqueur **moziAI-Think**, puis déploie dynamiquement une réflexion structurée en fonction de la complexité de la tâche :
 
-| Domaine | Description |
-| ----- | ------------------------------------------ |
-| Analyse de marché | Interprétation macro/micro-économique, marchés actions/commodités/crypto |
-| Finances & Rapports | Indicateurs financiers, synthèse de rapports, valorisation et prévisions |
-| Contrôle des risques & Conformité | Évaluation des risques, conformité des conseils d'investissement, réglementation |
-| Quantitatif & Stratégie | Conception de stratégies quantitatives, quantification Pyramid/PEL, backtesting |
-| Appels d'outils | Données de marché en temps réel, bases de données, recherche de rapports |
-
-## Spécifications techniques
-
-| Élément | Paramètres |
-| ------ | ---------------------------------------------------------------------------------- |
-| Modèle de base | Qwen3.8-27B (architecture Dense, attention hybride 16 full + 48 linear, licence MIT) |
-| Échelle des paramètres | 27 milliards (27B) architecture Dense |
-| Méthode de quantification | Algorithme MoziSmartBit auto-développé + format standard GGUF |
-| Longueur du contexte | 256K (262 144 tokens) |
-| Taille du modèle | ~12,79 GB |
-| VRAM minimum | **16GB+** déployable (avec CPU offloading) ; **20GB+** fonctionnement fluide long contexte ; **24GB+** 256K complet + vision |
-| Framework d'inférence | llama.cpp / Ollama / LM Studio / Jan |
-| Vitesse d'inférence | Avec MTP : AMD R9700 70+ token/s, AMD MAX+395 iGPU 50+ token/s, AMD MAX+395 GPU 35+ token/s |
-| Équipe de développement | Équipe Chen Yumo |
-
-## Format de quantification et taille du modèle
-
-| Format | Taille | Précision | Description |
-| ---------------- | ------------- | --------- | ----------------- |
-| FP16 (Original) | ~54 GB | 100% | Précision originale 16 bits |
-| **MoziSmartBit** | **~12,79 GB** | **~99%** | **Ce modèle utilise la quantification intelligente auto-développée** |
-| Q4_K_M | ~17 GB | ~98% | Standard GGUF 4 bits |
-| Q5_K_M | ~20 GB | ~99% | Précision supérieure |
-| Q6_K | ~23 GB | ~99,5% | Quasi sans perte |
-| Q8_0 | ~31 GB | ~100% | Sans perte |
-
-> MoziAI V3.8 utilise le schéma de quantification intelligente MoziSmartBit, compressant le modèle Dense de 27 milliards de paramètres à environ 12,79 GB tout en maintenant ~99% de précision, avec un ratio de compression de 4,0x.
-
-## Technologie de quantification intelligente MoziSmartBit
-
-Les schémas traditionnels appliquent une précision uniforme à toutes les couches. La **quantification intelligente MoziSmartBit** auto-développée adopte une stratégie de quantification différentielle intelligente adaptée aux caractéristiques structurelles des modèles Dense.
-
-### Résultats de compression
-
-- **Perte de précision minimale** : Gain d'entraînement > perte de quantification
-- **Compression 4,0x** : De FP16 (~54 GB) à ~12,79 GB
-- **Déploiable sur GPU grand public** : 16 GB VRAM suffisent, 20 GB+ pour le contexte long 256K complet
-
-### Avantages comparatifs
-
-**vs Q4_K_M (~17 GB)** : ~20% plus petit, précision supérieure, seuil VRAM plus bas
-
-**vs FP16 original (~54 GB)** : Compression ~4,0x, ~99% de précision maintenue
-
-## Paramètres d'inférence recommandés
-
-Basés sur les recommandations officielles llama.cpp et l'optimisation locale (AMD Radeon AI PRO R9700 32GB) :
-
-| Paramètre | Chat général | Codage/Agent | Description |
+| Niveau | Cas d'usage | Tâches typiques | Dimensions déployées |
 | --- | --- | --- | --- |
-| temperature | 0,7 | 1,0 | Équilibre créativité/précision |
-| top\_p | 0,95 | 0,95 | Seuil de sampling noyau |
-| top\_k | 20 | 20 | Sampling tronqué |
-| repeat\_penalty | 1,05 | 1,05 | Pénalité de répétition |
-| presence\_penalty | 0 | 0 | Pas de pénalité de présence |
-| context\_length | 262144 | 262144 | Contexte long 256K |
-| batch\_size | 2048 | 2048 | Taille de lot |
-| ubatch\_size | 512 | 512 | Taille de micro-lot |
-| flash\_attention | auto | auto | Flash Attention automatique |
-| kv\_cache | q4\_0 | q4\_0 | Quantification du cache KV |
-| poll | 0 | 0 | Pas de polling GPU inactif, économie d'énergie |
-| reasoning | auto | auto | Chaîne de raisonnement |
-| reasoning\_budget | 400 | 400 | Budget tokens de raisonnement |
-| reasoning\_format | deepseek-legacy | deepseek-legacy | Format de raisonnement |
-| samplers | top\_k;top\_p;temperature;typ\_p | top\_k;top\_p;temperature;typ\_p | Ordre des échantillonneurs |
-| **spec-type** | **draft-mtp** | **draft-mtp** | **Décodage spéculatif MTP** |
+| **Level 0** | Questions-réponses simples | Explication de termes, recherche factuelle, traduction, résumé | ①Compréhension de la tâche ⑤Besoins en ressources (réponse rapide sur 2 dimensions) |
+| **Level 1** | Analyse et diagnostic | Étude de marché, rédaction de contenu, analyse de données, interprétation de rapports de recherche, évaluation de stratégies | ①②③⑤⑥ Évaluation sur 5 dimensions |
+| **Level 2** | Développement/stratégies complexes | Développement de code, conception d'architecture, développement de stratégies quantitatives, workflows multi-étapes, conception de systèmes | ①②③④⑤⑥⑦ Déduction approfondie sur les 7 dimensions |
 
-> 💡 **Note sur le mode réflexion** : Ce modèle intègre Qwen3.8 Thinking. Activé via `--reasoning auto`, le modèle effectue un raisonnement interne avant de répondre. `reasoning_budget` contrôle le nombre max de tokens de réflexion (400 recommandé, ajustable 100-1000).
+> Les sept dimensions : ①Compréhension de la tâche ②Évaluation de la complexité ③Dépendances ④Évaluation des risques ⑤Besoins en ressources ⑥Critères d'acceptation ⑦Stratégie d'exécution
 
-## Décodage spéculatif MTP (Fonctionnalité d'accélération importante)
+### 🔄 Mécanisme d'itération LOOP pour agents
 
-Ce modèle intègre des couches de décodage spéculatif MTP (Multi-Token Prediction). Quand activé, la vitesse d'inférence peut être améliorée de **1,5-2x**.
+Les tâches complexes entrent automatiquement en mode itératif **moziAI-Loop** : **1er tour exécution + évaluation → 2e tour ajustement + validation**, garantissant que la sortie est auto-vérifiée avant de fournir la réponse finale. Comme un ingénieur expérimenté, le modèle « décompose le problème → évalue la solution → exécute → réfléchit → optimise », améliorant considérablement la précision et l'exécutabilité des tâches complexes. Le Loop est automatiquement désactivé pour les questions et tâches simples.
 
-### Principe du MTP
+### 📦 Quantification intelligente MoziSmartBit
 
-Le MTP entraîne un tête de prédiction légère (Draft Model) supplémentaire dans l'architecture du modèle pour prédire les tokens suivants avant la validation du modèle principal.
+Quantification intelligente stratifiée développée en interne : le modèle Dense de 27 milliards de paramètres est compressé à environ **13,7 Go**, soit environ 3,3 Go (~20 %) de moins que le Q4_K_M standard (~17 Go), tout en conservant **~99 %** de la précision FP16. La quantification traditionnelle applique une précision uniforme à toutes les couches ; MoziSmartBit adopte une stratégie de différenciation intelligente adaptée à la structure des modèles Dense, avec une précision supérieure à celle du Q4_K_M.
 
-### Paramètres MTP pour llama.cpp
+### 💰 Focalisation sur le secteur financier vertical
 
-```bash
---spec-type draft-mtp \
---spec-draft-n-max 2 \
---spec-draft-p-min 0.75
+Optimisation approfondie pour les questions-réponses financières, la programmation quantitative et l'appel d'outils. Le secteur financier tolère extrêmement mal les hallucinations des modèles ; MoziAI y surpasse nettement les modèles généralistes de taille équivalente.
+
+### 🌐 Autres caractéristiques
+
+- **Prise en charge multilingue** : 201 langues et dialectes, capacités en chinois particulièrement optimisées
+- **Programmation générale** : développement full-stack, débogage de code, conception d'architecture, couvrant Python/JS/TS/Go/Rust
+- **Rédaction d'articles** : rapports de recherche, articles d'analyse, documentation technique, contenu créatif — rédaction de haute qualité tous genres confondus
+- **Compréhension visuelle** : vision multimodale, compréhension du contenu des images via captures d'écran locales
+- **Prise en charge multi-frameworks** : llama.cpp / Ollama / LM Studio / Jan
+- **Prise en charge multi-agents** : OpenClaw / Hermes / Cursor / Claude Code / Codex, etc. — appel d'outils natif et orchestration de tâches multi-tours
+
+---
+
+## 3. Notes de version
+
+Cette mise à jour renforce principalement : le mode de raisonnement dynamique en sept dimensions + l'itération LOOP développés par moziAI, lui permettant de reconnaître plus intelligemment la complexité des tâches, d'atteindre un taux d'achèvement plus élevé sur les tâches complexes et d'améliorer sa capacité à « réfléchir avant d'agir ».
+
+moziAI maintiendra un rythme actif de mises à jour itératives afin de suivre de près l'évolution future de l'intelligence artificielle, et continuera, grâce à ses technologies propriétaires, à rendre le déploiement des modèles d'IA locaux plus léger et leurs capacités toujours plus puissantes.
+
+---
+
+## 4. Capacités principales
+
+| Domaine de compétence | Description |
+| --- | --- |
+| Analyse de marché | Interprétation macro/micro-économique, analyse des cours et de la logique des actions A / actions de Hong Kong / actions américaines / matières premières / cryptomonnaies |
+| Finance et rapports de recherche | Interprétation des indicateurs clés des rapports financiers, extraction de résumés de rapports de recherche, aide à l'évaluation et aux prévisions de bénéfices |
+| Gestion des risques et conformité | Évaluation des risques des produits, alertes de conformité pour les conseils en investissement, interprétation des politiques de réglementation financière |
+| Quantitatif et stratégies | Conception d'idées de stratégies quantitatives, quantification Pyramid (PEL), logique de backtest, construction de facteurs et appel d'outils |
+| Appel d'outils | Connexion aux sources de données financières telles que les cotations en temps réel, les bases de données et la recherche de rapports |
+
+---
+
+## 5. Spécifications techniques
+
+| Élément | Paramètre |
+| --- | --- |
+| Modèle de base | Qwen3.8-27B (architecture Dense, attention mixte 16 full + 48 linear, licence MIT) |
+| Nombre de paramètres | 27 milliards (27B), architecture Dense |
+| Méthode de quantification | Quantification intelligente MoziSmartBit propriétaire + format standard GGUF |
+| Longueur du contexte | 128K (262 144 tokens) |
+| Taille du modèle | ~13,7 Go |
+| VRAM minimale | **16 Go+** déployable (déchargement CPU) ; **20 Go+** long contexte fluide ; **24 Go+** 128K complet + vision |
+| Framework d'inférence | llama.cpp / Ollama / LM Studio / Jan |
+| Vitesse d'inférence | Avec décodage spéculatif MTP : 70+ tok/s sur R9700, 50+ tok/s sur iGPU MAX+395, 35+ tok/s sur GPU |
+| Équipe de développement | Équipe de Chen Yumo |
+
+---
+
+## 6. ⚡ Démarrage rapide (3 fichiers = 100 % d'activation du raisonnement optimal)
+
+> ⚠️ **Point essentiel** : les capacités de raisonnement optimales de MoziAI nécessitent le **téléchargement simultané de 3 fichiers** — le modèle principal, la projection visuelle et le modèle de chat. L'absence de l'un d'entre eux entraîne la perte de la capacité correspondante.
+
+### 6.1 Téléchargement des fichiers du modèle
+
+Téléchargez **tous les fichiers du répertoire V3.8** depuis HuggingFace / ModelScope dans le même répertoire local :
+
+```
+V3.8/
+├── moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf   ← 主模型（必选，13.7 GB）
+├── moziAI-27B-3.8-mmproj-F16.gguf            ← 视觉投影（必选，927 MB）
+└── chat-template-moziai-27B-v38.jinja         ← 聊天模板（必选，含七维思考+Loop指令）
 ```
 
-| Paramètre | Valeur recommandée | Description |
-| --- | --- | --- |
-| --spec-type | draft-mtp | Activer le décodage spéculatif MTP |
-| --spec-draft-n-max | 2 | Tokens max devinés par étape (recommandé, taux d'acceptation ~80%) |
-| --spec-draft-p-min | 0,75 | Seuil de probabilité minimale d'acceptation |
+| Fichier | Taille | Nécessité | Rôle |
+| --- | --- | --- | --- |
+| Modèle principal `.gguf` | ~13,7 Go | **Obligatoire** | Poids du modèle, capacité de raisonnement principale |
+| Projection visuelle `mmproj` | ~927 Mo | **Obligatoire** | Compréhension visuelle multimodale ; sans chargement, les capacités d'image sont perdues |
+| Modèle de chat `.jinja` | Minimal | **Obligatoire** | Injecte l'identité MoziAI + les instructions du système de pensée en sept dimensions + du mécanisme LOOP |
 
-### Guide d'ajustement des paramètres MTP
+### 6.2 Démarrage et utilisation
 
-| spec-draft-n-max | Taux d'acceptation | Cas d'utilisation |
-| --- | --- | --- |
-| 1 | ~90% | Le plus conservateur |
-| **2** | **~80%** | **Recommandé : équilibre vitesse/précision** |
-| 3 | ~71% | Scénarios généraux |
-| 4-5 | ~60-65% | Écriture créative, génération de code |
-| 6 | ~50-55% | Sortie texte longue |
+```bash
+llama-server \
+  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
+  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  -c 131072 -ngl 99 \
+  --host 0.0.0.0 --port 8080
+```
 
-> ⚠️ **Note** : Le décodage spéculatif MTP n'a aucun impact négatif sur la qualité de sortie.
+Ouvrez `http://localhost:8080` dans votre navigateur pour commencer la conversation. Les paramètres complets recommandés figurent à la section 9.
 
-## Commande de démarrage llama.cpp
+---
+
+## 7. Téléchargement du modèle
+
+| Plateforme | Adresse |
+| --- | --- |
+| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main/V3.8) |
+| ModelScope (Módā) | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master/V3.8) |
+| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master/V3.8) |
+
+> 💡 **Utilisateurs de LM Studio** : recherchez `moziAI` dans [LM Studio](https://lmstudio.ai) pour un téléchargement en un clic, sans téléchargement manuel des fichiers.
+
+---
+
+## 8. Commandes de démarrage
+
+### Démarrage minimal (avec les trois fichiers)
+
+```bash
+llama-server \
+  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
+  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  -c 131072 -ngl 99 \
+  --host 0.0.0.0 --port 8080
+```
+
+### Démarrage complet recommandé
 
 ```bash
 llama-server \
@@ -180,188 +204,179 @@ llama-server \
   --temp 0.6 --top-p 0.95 --top-k 20
 ```
 
-> 💡 **Désactiver le MTP** : Supprimez les trois lignes `--spec-type draft-mtp`, `--spec-draft-n-max 2` et `--spec-draft-p-min 0.75`. La vitesse diminue d'environ 30-50%.
+> 💡 Pour désactiver MTP : supprimez `--spec-type draft-mtp` et les paramètres associés ; la vitesse diminue d'environ 30 à 50 % mais l'utilisation de la VRAM est réduite.
 
-## Recommandations VRAM
+---
 
-| VRAM | Contexte recommandé | Cache KV | Support Vision | Description |
-| --- | --- | --- | --- | --- |
-| 20 GB | 256K complet | q4\_0 | Support complet | Vision+256K, configuration recommandée |
-| 24 GB | 256K complet | q4\_0 | Support complet | Vision+256K, VRAM suffisant |
-| 32 GB+ | 256K complet | q4\_0 | Support complet | Vision+256K, configuration la plus forte |
+## 9. Paramètres de raisonnement recommandés
 
-**GPU NVIDIA**
+Basés sur les paramètres recommandés officiellement par llama.cpp et optimisés par des tests locaux (AMD Radeon AI PRO R9700 32 Go) :
 
-| VRAM | Modèle GPU |
-| --- | --- |
-| 16 GB | RTX 4060 Ti (CPU offloading nécessaire) |
-| 20 GB | RTX 5070 Ti |
-| 24 GB | RTX 4090 / RTX 3090 Ti |
-| 32 GB | RTX 5090 |
+| Paramètre | Chat général | Codage/Agent | Description |
+| --- | --- | --- | --- |
+| temperature | 0.7 | 1.0 | Équilibre entre créativité et précision |
+| top\_p | 0.95 | 0.95 | Seuil d'échantillonnage par noyau (nucleus sampling) |
+| top\_k | 20 | 20 | Échantillonnage par troncature |
+| repeat\_penalty | 1.05 | 1.05 | Pénalité de répétition |
+| context\_length | 262144 | 262144 | Contexte long de 128K |
+| reasoning | auto | auto | Active la chaîne de raisonnement (chaîne de pensée) |
+| reasoning\_budget | 400 | 400 | Budget de tokens de raisonnement |
+| reasoning\_format | deepseek-legacy | deepseek-legacy | Sortie du raisonnement dans un champ séparé |
+| **spec-type** | **draft-mtp** | **draft-mtp** | **Décodage spéculatif MTP (voir section 11)** |
 
-**GPU AMD**
+> 💡 **Mode réflexion** : activé via `--reasoning auto`, le modèle effectue d'abord un raisonnement interne avant de fournir la réponse. `reasoning_budget` contrôle le nombre maximal de tokens de réflexion (400 recommandé, réglable de 100 à 1000).
 
-| VRAM | Modèle GPU |
-| --- | --- |
-| 20 GB | RX 7900 XT |
-| 24 GB | RX 7900 XTX |
-| 32 GB | Radeon AI PRO R9700 |
+---
 
-**GPU Intel**
+## 10. Comparaison des formats de quantification
 
-| VRAM | Modèle GPU |
-| --- | --- |
-| 24 GB | Arc Pro B60 |
-| 16 GB | Arc Pro B50 (CPU offloading nécessaire) |
+| Format | Taille | Précision | Description |
+| --- | --- | --- | --- |
+| FP16 original | ~54 Go | 100 % | Sans perte, nécessite une carte graphique professionnelle |
+| **MoziSmartBit (ce modèle)** | **~13,7 Go** | **~99 %** | **Quantification intelligente propriétaire, précision optimale, taille minimale** |
+| Q4_K_M | ~17 Go | ~98 % | GGUF 4 bits standard |
+| Q5_K_M | ~20 Go | ~99 % | Précision supérieure |
+| Q6_K | ~23 Go | ~99,5 % | Quasi sans perte |
+| Q8_0 | ~31 Go | ~100 % | Sans perte |
 
-**CPU avec mémoire partagée / GPU intégré**
+> MoziSmartBit compresse le modèle Dense 27B à 13,7 Go (taux de compression 3,9x) tout en conservant environ 99 % de précision, soit environ 20 % de moins que le Q4_K_M, ce qui le rend plus adapté au déploiement local sur des cartes graphiques grand public.
 
-| VRAM | Processeur |
-| --- | --- |
-| 128 GB | AMD Ryzen AI Max+ 395 (Radeon 8060S iGPU) |
-| 128 GB | NVIDIA RTX Spark (Blackwell RTX GPU) |
+---
 
-> 💡 **Conseil** : Toute marque et tout modèle sont supportés dès que le VRAM est suffisant.
-> 💡 **Conseil** : Plus le contexte est long, plus le VRAM est consommé. En cas d'OOM, réduisez progressivement `-c`. `--fit on` ajuste automatiquement les couches.
+## 11. Décodage spéculatif MTP (accélération majeure)
 
-## Déploiement Ollama
+Ce modèle intègre une couche de décodage spéculatif MTP (Multi-Token Prediction). Une fois activée, la vitesse d'inférence est multipliée par **1,5 à 2**. Il s'agit d'une fonctionnalité native de l'architecture Qwen3.8 ; MoziAI a conservé l'intégralité des poids MTP.
+
+**Principe** : une tête de prédiction légère (modèle de draft) est entraînée en plus dans l'architecture du modèle. Elle devine à l'avance les tokens suivants avant la validation par le modèle principal, réduisant le nombre de passes forward et la latence d'inférence. Les erreurs de prédiction sont corrigées par le modèle principal, sans impact négatif sur la qualité de la sortie.
+
+### Paramètres d'activation
 
 ```bash
-FROM ./moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf
+--spec-type draft-mtp \
+--spec-draft-n-max 2 \
+--spec-draft-p-min 0.75
+```
 
+| Paramètre | Valeur recommandée | Description |
+| --- | --- | --- |
+| --spec-type | draft-mtp | Active le décodage spéculatif MTP |
+| --spec-draft-n-max | 2 | Devine au maximum 2 tokens à la fois (valeur recommandée, taux d'acceptation d'environ 80 %) |
+| --spec-draft-p-min | 0.75 | Seuil minimal de probabilité d'acceptation (0,0-1,0 ; plus il est élevé, plus c'est conservateur) |
+
+### Conseils de réglage des paramètres
+
+| n-max | Taux d'acceptation | Cas d'usage |
+| --- | --- | --- |
+| 1 | ~90 % | Le plus conservateur, gain de vitesse minimal |
+| **2** | **~80 %** | **Recommandé : équilibre entre vitesse et précision** |
+| 3 | ~71 % | Scénarios généraux, gain de vitesse notable |
+| 4-5 | ~60-65 % | Rédaction créative, génération de code |
+| 6 | ~50-55 % | Sorties longues en texte pur (à ajuster avec p-min) |
+
+---
+
+## 12. Configuration VRAM recommandée
+
+| VRAM | Configuration recommandée | Description |
+| --- | --- | --- |
+| 16 Go | Contexte réduit à 64K, déchargement CPU requis | Niveau d'entrée, par ex. RTX 4060 Ti |
+| **20 Go** | **128K complet, cache KV q4_0** | **Configuration recommandée**, par ex. RX 7900 XT / RTX 5070 Ti |
+| 24 Go | 128K complet, marge VRAM confortable | RTX 4090 / RX 7900 XTX |
+| 32 Go et plus | 128K complet, configuration la plus puissante | Radeon AI PRO R9700 / RTX 5090 |
+| 128 Go iGPU | 128K complet | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+
+> 💡 Plus le contexte est long, plus la VRAM utilisée est importante. En cas d'OOM, réduisez progressivement le paramètre `-c`. Utilisez `--fit on` pour laisser llama.cpp ajuster automatiquement le nombre de couches en fonction de la VRAM. Compatible avec toutes les cartes graphiques NVIDIA / AMD / Intel.
+
+---
+
+## 13. Options de déploiement
+
+### Déploiement avec Ollama
+
+```bash
+cat > Modelfile << 'EOF'
+FROM ./moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf
 PARAMETER temperature 0.6
 PARAMETER top_p 0.95
 PARAMETER top_k 20
-PARAMETER num_ctx 262144
+PARAMETER num_ctx 131072
 PARAMETER num_gpu 99
-
-PARAMETER mmproj ./moziAI-27B-3.8-mmproj-F16.gguf
-PARAMETER chat_template_file ./chat-template-moziai-27B-v38.jinja
+EOF
 
 ollama create moziAI-27B -f Modelfile
 ollama run moziAI-27B
 ```
 
-## Déploiement LM Studio / Jan
+### LM Studio / Jan
 
-Recherchez directement `moziAI` dans LM Studio / Jan et téléchargez la version Q4_K_M.
+Recherchez `moziAI` dans LM Studio / Jan et téléchargez la version quantifiée Q4\_K\_M.
 
-## Évaluation Benchmark
+> 💡 La prise en charge de mmproj et du chat\_template par Ollama est limitée ; il est recommandé d'utiliser llama.cpp en priorité pour bénéficier de toutes les fonctionnalités.
+
+---
+
+## 14. Évaluations de référence
+
+MoziAI-27B-3.8 est un modèle affiné (fine-tuning) à partir de la base Qwen3.8-27B, avec le secteur financier vertical comme direction d'optimisation principale.
 
 ### Capacités de codage
 
-| Benchmark | moziAI-27B-3.8 | Qwen3.6-27B | Qwen3.7-Plus | Muse Glimmer-30B | Opus4.6 Max |
-|---|---|---|---|---|---|
-| Terminal Bench 2.1 (Terminus) | 73,0 | 63,4 | 64,0 | 51,7 | 78,2 |
-| SWE-bench Pro | **61,7** | 53,5 | 57,6 | 51,2 | 53,4 |
-| NL2Repo-Bench | 42,3 | 36,2 | 41,1 | -- | 47,6 |
-| DeepSWE 1.1 | **42,2** | 13,3 | 14,2 | -- | -- |
-| QwenSWEBench | **79,0** | 49,3 | 59,2 | -- | 63,8 |
+| Benchmark | moziAI-27B | Qwen3.6-27B | Qwen3.7-Plus | Opus4.6 Max |
+| --- | --- | --- | --- | --- |
+| Terminal Bench 2.1 | 73.0 | 63.4 | 64.0 | 78.2 |
+| SWE-bench Pro | **61.7** | 53.5 | 57.6 | 53.4 |
+| DeepSWE 1.1 | **42.2** | 13.3 | 14.2 | -- |
+| QwenSWEBench | **79.0** | 49.3 | 59.2 | 63.8 |
 
-### Capacités Agent
+### Capacités d'agent
 
-| Benchmark | moziAI-27B-3.8 | Qwen3.6-27B | Qwen3.7-Plus | Muse Glimmer-30B | Opus4.6 Max |
-|---|---|---|---|---|---|
-| CoWorkBench | **70,7** | 61,0 | 65,1 | -- | 68,2 |
-| JobBench | **33,4** | 21,8 | 27,6 | -- | -- |
-| Agents' Last Exam (Score) | **42,9** | 27,3 | 33,6 | -- | -- |
-| WebArena-Verified | **64,8** | 48,8 | 55,3 | -- | -- |
-| AndroidWorld | **81,9** | 70,3 | 81,0 | -- | 62,0 |
+| Benchmark | moziAI-27B | Qwen3.6-27B | Qwen3.7-Plus | Opus4.6 Max |
+| --- | --- | --- | --- | --- |
+| CoWorkBench | **70.7** | 61.0 | 65.1 | 68.2 |
+| JobBench | **33.4** | 21.8 | 27.6 | -- |
+| Agents' Last Exam | **42.9** | 27.3 | 33.6 | -- |
+| WebArena-Verified | **64.8** | 48.8 | 55.3 | -- |
+| AndroidWorld | **81.9** | 70.3 | 81.0 | 62.0 |
 
 ### Capacités générales
 
-| Benchmark | moziAI-27B-3.8 | Qwen3.6-27B | Qwen3.7-Plus | Muse Glimmer-30B | Opus4.6 Max |
-|---|---|---|---|---|---|
-| IFBench | **79,5** | 69,1 | 79,1 | 77,0 | 62,5 |
-| GPQA Diamond | 89,2 | 87,8 | 90,3 | 83,5 | **91,3** |
+| Benchmark | moziAI-27B | Qwen3.6-27B | Qwen3.7-Plus | Opus4.6 Max |
+| --- | --- | --- | --- | --- |
+| IFBench | **79.5** | 69.1 | 79.1 | 62.5 |
+| GPQA Diamond | 89.2 | 87.8 | 90.3 | **91.3** |
 
 ### Capacités multimodales
 
-| Benchmark | moziAI-27B-3.8 | Qwen3.6-27B | Qwen3.7-Plus | Muse Glimmer-30B | Opus4.6 Max |
-|---|---|---|---|---|---|
-| MathVision (With CI) | **94,6** | 85,1 | 90,3 | -- | 65,5 |
-| BabyVision (With CI) | **85,6** | 28,9 | 70,4 | -- | 12,6 |
-| CharXiv RQ (With CI) | **90,2** | 78,4 | 85,8 | -- | 66,0 |
-| OmniDocBench 1.5 | 91,1 | 89,4 | **91,4** | 75,8 | 86,6 |
-| RealWorldQA | 85,9 | 84,1 | **86,9** | -- | 73,9 |
-| Vision2Web | **62,9** | 45,0 | 42,1 | -- | -- |
+| Benchmark | moziAI-27B | Qwen3.6-27B | Qwen3.7-Plus | Opus4.6 Max |
+| --- | --- | --- | --- | --- |
+| MathVision | **94.6** | 85.1 | 90.3 | 65.5 |
+| BabyVision | **85.6** | 28.9 | 70.4 | 12.6 |
+| CharXiv RQ | **90.2** | 78.4 | 85.8 | 66.0 |
+| Vision2Web | **62.9** | 45.0 | 42.1 | -- |
 
-## Téléchargement du modèle
+> Les données des concurrents proviennent de résultats d'évaluation officiellement publiés. Dans le secteur financier vertical (interprétation des rapports financiers, stratégies quantitatives, gestion des risques et conformité, appel d'outils par agents, etc.), MoziAI surpasse nettement les modèles généralistes.
 
-| Plateforme | URL |
-| --- | --- |
-| HuggingFace | [chenyumo/moziAI-27B-3.8-Q4_K_M](https://huggingface.co/chenyumo/moziAI-27B-3.8-Q4_K_M) |
-| ModelScope (魔搭) | [chenyumo/moziAI-27B-3.8-Q4_K_M](https://modelscope.cn/models/chenyumo/moziAI-27B-3.8-Q4_K_M) |
-| GitHub | [chenyumo166/moziAI-27B-3.8-Q4_K_M](https://github.com/chenyumo166/moziAI-27B-3.8-Q4_K_M) |
+---
 
-> 💡 **Utilisateurs LM Studio** : Recherchez directement `moziAI` dans [LM Studio](https://lmstudio.ai) pour un téléchargement en un clic.
-
-⚠️ **Important : La capacité visuelle nécessite le chargement supplémentaire du fichier mmproj**
-
-- **Fichier vision** : `moziAI-27B-3.8-mmproj-F16.gguf` (~927 MB, précision BF16)
-- **Emplacement** : Même répertoire que le fichier modèle GGUF
-- **Chargement** : Via le paramètre `--mmproj` au démarrage de llama-server
-
-> Sans le fichier vision, la capacité de compréhension d'image est perdue.
-
-## Démarrage rapide
-
-### 1. Télécharger les fichiers du modèle
-
-```
-V3.8/
-├── moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf      # Modèle principal (requis)
-├── moziAI-27B-3.8-mmproj-F16.gguf              # Projection vision (optionnel)
-└── chat-template-moziai-27B-v38.jinja           # Modèle de chat (recommandé)
-```
-
-### 2. Démarrer le service d'inférence
-
-```bash
-llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
-  -c 131072 -ngl 99
-```
-
-### 3. Commencer à utiliser
-
-Ouvrez `http://localhost:8080` dans votre navigateur.
-
-### Structure des répertoires
-
-```
-moziAI-27B/
-├── README.md              # Ce fichier (documentation chinoise)
-├── README.en.md           # Version anglaise
-├── LICENSE                # Licence
-├── V3.8/                  # Version V3.8
-│   ├── moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf    # Modèle principal
-│   ├── moziAI-27B-3.8-mmproj-F16.gguf            # Projection vision
-│   └── chat-template-moziai-27B-v38.jinja         # Modèle de chat
-```
-
-## Mots-clés SEO
-
-Modèle AI financier, modèle open-source local, MoziSmartBit, quantification intelligente, GGUF, Qwen3.8-27B, domaine vertical financier, appels d'outils, Agent, llama.cpp, Ollama, contexte long 256K, multimodal, LLM local, edge AI, self-hosted AI, consumer GPU deployment, intelligent quantization
-
-## Licence (Important)
+## 15. Licence
 
 Ce modèle est distribué sous une **licence restrictive personnalisée** :
 
-✅ **Autorisé** : Utilisation commerciale gratuite, copie et distribution
-❌ **Interdit** : Développement secondaire, revente, sous-licence
-📋 **Exigences** : Conserver la notice de copyright, attribution : moziAI-27B
+- ✅ **Autorisé** — utilisation commerciale gratuite, copie et distribution
+- ❌ **Interdit** — développement dérivé, revente, sous-licenciement
+- 📋 **Exigé** — conserver la mention de copyright d'origine et indiquer la source : moziAI-27B
 
-## Avertissement
+Ce modèle est fourni « en l'état », sans garantie d'aucune sorte. Les sorties du modèle sont fournies à titre informatif uniquement et ne constituent pas des conseils en investissement. L'utilisateur assume l'ensemble des risques liés à son utilisation.
 
-Ce modèle est fourni « en l'état » sans garantie d'aucune sorte.
+Veuillez consulter le fichier [LICENSE](LICENSE) pour les conditions détaillées.
 
-## Contact
+---
+
+## 16. Contact
 
 - **HuggingFace** : [@chenyumo](https://huggingface.co/chenyumo)
 - **GitHub** : [@chenyumo166](https://github.com/chenyumo166)
 - **Weibo** : [@rimochen](https://weibo.com/rimochen)
 - **E-mail** : 263515@qq.com
 
-Copyright (c) 2026 陈雨墨/ chenyumo166. All rights reserved.
+Copyright (c) 2026 陈雨墨 / chenyumo166. Tous droits réservés.
