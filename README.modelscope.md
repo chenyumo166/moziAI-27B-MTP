@@ -19,7 +19,7 @@ pipeline_tag: text-generation
 
 # MoziAI-27B-3.8 — 可免费本地部署的小而强的多模态 AI 模型
 
-[English](V3.8/README.en.md) | 简体中文（当前页） | [繁体中文](V3.8/README.zh-hant.md) | [日本語](V3.8/README.ja.md) | [한국어](V3.8/README.ko.md) | [हिन्दी](V3.8/README.hi.md) | [Deutsch](V3.8/README.de.md) | [Français](V3.8/README.fr.md) | [Nederlands](V3.8/README.nl.md) | [Italiano](V3.8/README.it.md) | [Русский](V3.8/README.ru.md)
+[English](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.en.md?status=1) | 简体中文（当前页） | [繁体中文](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.zh-hant.md?status=1) | [日本語](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.ja.md?status=1) | [한국어](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.ko.md?status=1) | [हिन्दी](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.hi.md?status=1) | [Deutsch](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.de.md?status=1) | [Français](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.fr.md?status=1) | [Nederlands](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.nl.md?status=1) | [Italiano](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.it.md?status=1) | [Русский](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/file/view/master/V3.8%2FREADME.ru.md?status=1)
 
 **发布日期：2026-08-30** · **版本：V3.8**
 
@@ -131,12 +131,12 @@ moziAI 会保持活跃的版本升级迭代更新频率，确保紧随未来人�
 
 ### 6.1 下载模型文件
 
-在 HuggingFace / ModelScope 下载 **V3.8 目录下的所有文件**到本地同一目录：
+在 HuggingFace / ModelScope 下载**这 3 个文件**到本地同一目录（主模型在**仓库根目录**，视觉投影在 `mmproj/27B/`，聊天模板在 `V3.8/`）：
 
 ```
 V3.8/
-├── moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf   ← 主模型（必选，13.7 GB）
-└── chat-template-moziai-27B-v38.jinja         ← 聊天模板（必选，含七维思考+Loop指令）
+├── moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf   ← 主模型（必选，13.7 GB）
+└── chat-template-moziai-27B-V3.8.jinja         ← 聊天模板（必选，含七维思考+Loop指令）
 
 mmproj/27B/
 └── moziAI-27B-mmproj-BF16-V1.0.gguf           ← 视觉投影（必选，927 MB）
@@ -152,9 +152,9 @@ mmproj/27B/
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
 ```
@@ -167,9 +167,9 @@ llama-server \
 
 | 平台 | 地址 |
 | --- | --- |
-| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main/V3.8) |
-| ModelScope（魔搭） | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master/V3.8) |
-| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master/V3.8) |
+| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main) |
+| ModelScope（魔搭） | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master) |
+| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master) |
 
 > 💡 **LM Studio 用户**：在 [LM Studio](https://lmstudio.ai) 中搜索 `moziAI` 一键下载，无需手动下载文件。
 
@@ -181,9 +181,9 @@ llama-server \
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
 ```
@@ -192,9 +192,9 @@ llama-server \
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
@@ -297,7 +297,7 @@ llama-server \
 
 ```bash
 cat > Modelfile << 'EOF'
-FROM ./moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf
+FROM ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf
 PARAMETER temperature 0.6
 PARAMETER top_p 0.95
 PARAMETER top_k 20

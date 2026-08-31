@@ -135,8 +135,8 @@ HuggingFace / ModelScope에서 **V3.8 디렉터리의 모든 파일**을 로컬 
 
 ```
 V3.8/
-├── moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf   ← 主模型（必选，13.7 GB）
-└── chat-template-moziai-27B-v38.jinja         ← 聊天模板（必选，含七维思考+Loop指令）
+├── moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf   ← 主模型（必选，13.7 GB）
+└── chat-template-moziai-27B-V3.8.jinja         ← 聊天模板（必选，含七维思考+Loop指令）
 
 mmproj/27B/
 └── moziAI-27B-mmproj-BF16-V1.0.gguf            ← 视觉投影（必选，927 MB）
@@ -152,9 +152,9 @@ mmproj/27B/
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
 ```
@@ -167,9 +167,9 @@ llama-server \
 
 | 플랫폼 | 주소 |
 | --- | --- |
-| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main/V3.8) |
-| ModelScope | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master/V3.8) |
-| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master/V3.8) |
+| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main) |
+| ModelScope | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master) |
+| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master) |
 
 > 💡 **LM Studio 사용자**: [LM Studio](https://lmstudio.ai)에서 `moziAI`를 검색하여 원클릭으로 다운로드할 수 있으며, 파일을 수동으로 다운로드할 필요가 없습니다.
 
@@ -181,9 +181,9 @@ llama-server \
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
 ```
@@ -192,9 +192,9 @@ llama-server \
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
@@ -297,7 +297,7 @@ llama.cpp 공식 권장 매개변수와 로컬 실측 최적화를 기반으로 
 
 ```bash
 cat > Modelfile << 'EOF'
-FROM ./moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf
+FROM ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf
 PARAMETER temperature 0.6
 PARAMETER top_p 0.95
 PARAMETER top_k 20

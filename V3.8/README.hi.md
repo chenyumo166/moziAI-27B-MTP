@@ -135,8 +135,8 @@ HuggingFace / ModelScope से **V3.8 निर्देशिका की स
 
 ```
 V3.8/
-├── moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf   ← 主模型（必选，13.7 GB）
-└── chat-template-moziai-27B-v38.jinja         ← 聊天模板（必选，含七维思考+Loop指令）
+├── moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf   ← 主模型（必选，13.7 GB）
+└── chat-template-moziai-27B-V3.8.jinja         ← 聊天模板（必选，含七维思考+Loop指令）
 
 mmproj/27B/
 └── moziAI-27B-mmproj-BF16-V1.0.gguf            ← 视觉投影（必选，927 MB）
@@ -152,9 +152,9 @@ mmproj/27B/
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
 ```
@@ -167,9 +167,9 @@ llama-server \
 
 | प्लेटफ़ॉर्म | पता |
 | --- | --- |
-| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main/V3.8) |
-| ModelScope (魔搭) | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master/V3.8) |
-| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master/V3.8) |
+| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main) |
+| ModelScope (魔搭) | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master) |
+| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master) |
 
 > 💡 **LM Studio उपयोगकर्ता**: [LM Studio](https://lmstudio.ai) में `moziAI` खोजें और एक क्लिक में डाउनलोड करें, मैन्युअल रूप से फ़ाइलें डाउनलोड करने की आवश्यकता नहीं है।
 
@@ -181,9 +181,9 @@ llama-server \
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
 ```
@@ -192,9 +192,9 @@ llama-server \
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
@@ -297,7 +297,7 @@ llama.cpp के आधिकारिक अनुशंसित पैरा�
 
 ```bash
 cat > Modelfile << 'EOF'
-FROM ./moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf
+FROM ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf
 PARAMETER temperature 0.6
 PARAMETER top_p 0.95
 PARAMETER top_k 20

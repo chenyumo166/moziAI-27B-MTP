@@ -135,8 +135,8 @@ Download **all files in the V3.8 directory** from HuggingFace / ModelScope to th
 
 ```
 V3.8/
-├── moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf   ← Main model (required, 13.7 GB)
-└── chat-template-moziai-27B-v38.jinja         ← Chat template (required, includes 7D thinking + Loop instructions)
+├── moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf   ← Main model (required, 13.7 GB)
+└── chat-template-moziai-27B-V3.8.jinja         ← Chat template (required, includes 7D thinking + Loop instructions)
 
 mmproj/27B/
 └── moziAI-27B-mmproj-BF16-V1.0.gguf            ← Vision projector (required, 927 MB)
@@ -152,9 +152,9 @@ mmproj/27B/
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
 ```
@@ -167,9 +167,9 @@ Open `http://localhost:8080` in your browser to start chatting. Full recommended
 
 | Platform | URL |
 | --- | --- |
-| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main/V3.8) |
-| ModelScope | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master/V3.8) |
-| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master/V3.8) |
+| HuggingFace | [chenyumo/moziAI-27B-MTP](https://huggingface.co/chenyumo/moziAI-27B-MTP/tree/main) |
+| ModelScope | [chenyumo/moziAI-27B-MTP](https://modelscope.cn/models/chenyumo/moziAI-27B-MTP/tree/master) |
+| GitHub | [chenyumo166/moziAI-27B-MTP](https://github.com/chenyumo166/moziAI-27B-MTP/tree/master) |
 
 > 💡 **LM Studio users**: search `moziAI` in [LM Studio](https://lmstudio.ai) for one-click download, no manual file download needed.
 
@@ -181,9 +181,9 @@ Open `http://localhost:8080` in your browser to start chatting. Full recommended
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
 ```
@@ -192,9 +192,9 @@ llama-server \
 
 ```bash
 llama-server \
-  -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
+  -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
-  --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
+  --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
   -c 131072 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
@@ -297,7 +297,7 @@ This model has built-in MTP (Multi-Token Prediction) speculative decoding layers
 
 ```bash
 cat > Modelfile << 'EOF'
-FROM ./moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf
+FROM ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf
 PARAMETER temperature 0.6
 PARAMETER top_p 0.95
 PARAMETER top_k 20
