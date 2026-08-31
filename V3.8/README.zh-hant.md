@@ -136,8 +136,10 @@ moziAI 會保持活躍的版本升級迭代更新頻率，確保緊隨未來人�
 ```
 V3.8/
 ├── moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf   ← 主模型（必選，13.7 GB）
-├── moziAI-27B-3.8-mmproj-F16.gguf            ← 視覺投影（必選，927 MB）
 └── chat-template-moziai-27B-v38.jinja         ← 聊天模板（必選，含七維思考+Loop指令）
+
+mmproj/27B/
+└── moziAI-27B-mmproj-BF16-V1.0.gguf            ← 視覺投影（必選，927 MB）
 ```
 
 | 檔案 | 大小 | 必要性 | 作用 |
@@ -151,7 +153,7 @@ V3.8/
 ```bash
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
-  --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
+  --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
@@ -180,7 +182,7 @@ llama-server \
 ```bash
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
-  --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
+  --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
   -c 131072 -ngl 99 \
   --host 0.0.0.0 --port 8080
@@ -191,7 +193,7 @@ llama-server \
 ```bash
 llama-server \
   -m V3.8/moziAI-27B-3.8-Q4_K_M-Qwen3.8-27B.gguf \
-  --mmproj V3.8/moziAI-27B-3.8-mmproj-F16.gguf \
+  --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-v38.jinja \
   -c 131072 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
