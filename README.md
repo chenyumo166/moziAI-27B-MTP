@@ -3,6 +3,8 @@ language:
 - zh
 - en
 license: other
+tasks:
+- text-generation
 tags:
 - gguf
 - Dense
