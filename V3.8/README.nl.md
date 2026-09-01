@@ -116,16 +116,16 @@ moziAI blijft actief versie-upgrades en iteraties publiceren om gelijke tred te 
 | Basismodel | Qwen3.8-27B (Dense-architectuur, hybride aandacht 16 full + 48 linear, MIT-licentie) |
 | Parametergrootte | 27 miljard (27B) Dense-architectuur |
 | Kwantiseringsmethode | Zelf ontwikkelde MoziSmartBit slimme kwantisering + standaard GGUF-formaat |
-| Contextlengte | 128K (262.144 tokens) |
+| Contextlengte | 256K (262.144 tokens) |
 | Modelgrootte | ~13,7 GB |
-| Minimale VRAM | **16GB+** implementeerbaar (CPU-offload); **20GB+** soepele lange context; **24GB+** volledige 128K + visie |
+| Minimale VRAM | **16GB+** implementeerbaar (CPU-offload); **20GB+** soepele lange context; **32GB+** volledige 256K + visie |
 | Inferentieframework | llama.cpp / Ollama / LM Studio / Jan |
 | Inferentiesnelheid | Met MTP-speculatieve decodering: R9700 bereikt 70+ tok/s, MAX+395 iGPU 50+ tok/s, GPU 35+ tok/s |
 | Ontwikkelteam | Team Chen Yumo |
 
 ---
 
-## 6. ⚡ Snel starten (3 bestanden = 100% activatie van de beste redeneercapaciteiten)
+## 6. ⚡ Snel starten 3 bestanden = 100% activatie van de beste redeneercapaciteiten
 
 > ⚠️ **Kerntip**: de beste redeneercapaciteiten van MoziAI vereisen het **gelijktijdig downloaden van 3 bestanden** — het hoofdmodel, de visuele projector en de chattemplate. Als er een ontbreekt, gaat de bijbehorende capaciteit verloren.
 
@@ -195,7 +195,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -220,7 +220,7 @@ Gebaseerd op de officieel aanbevolen parameters van llama.cpp en lokaal gemeten 
 | top\_p | 0.95 | 0.95 | Kernmonsterdrempel |
 | top\_k | 20 | 20 | Truncated sampling |
 | repeat\_penalty | 1.05 | 1.05 | Herhalingsstraf |
-| context\_length | 262144 | 262144 | 128K lange context |
+| context\_length | 131072 | 262144 | Chat 128K / Coderen 256K (standaard llama.cpp 128K) |
 | reasoning | auto | auto | Redeneerketen (thought chain) inschakelen |
 | reasoning\_budget | 400 | 400 | Redeneerbudget in tokens |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | Redenering naar een apart veld uitvoeren |
@@ -245,7 +245,7 @@ Gebaseerd op de officieel aanbevolen parameters van llama.cpp en lokaal gemeten 
 
 ---
 
-## 11. MTP-speculatieve decodering (belangrijke versnellingsfunctie)
+## 11. MTP-speculatieve decodering belangrijke versnellingsfunctie
 
 Dit model bevat een ingebouwde MTP (Multi-Token Prediction) speculatieve decoderinglaag; na inschakeling stijgt de inferentiesnelheid met **1,5-2x**. Dit is een native functie van de Qwen3.8-architectuur; MoziAI heeft de volledige MTP-gewichten behouden.
 
@@ -284,8 +284,8 @@ Dit model bevat een ingebouwde MTP (Multi-Token Prediction) speculatieve decoder
 | 16 GB | Context verlagen naar 64K, CPU-offload nodig | Instapniveau, zoals RTX 4060 Ti |
 | **20 GB** | **128K volledig, q4_0 KV-cache** | **Aanbevolen configuratie**, zoals RX 7900 XT / RTX 5070 Ti |
 | 24 GB | 128K volledig, ruime VRAM-reserve | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | 128K volledig, sterkste configuratie | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB iGPU | 128K volledig | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | 256K volledig, sterkste configuratie | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB iGPU | 256K volledig | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 Hoe langer de context, hoe meer VRAM er wordt gebruikt. Verlaag bij OOM geleidelijk de `-c`-parameter. Gebruik `--fit on` om llama.cpp het aantal lagen automatisch aan het VRAM te laten aanpassen. Ondersteunt gpu's van alle merken: NVIDIA / AMD / Intel.
 

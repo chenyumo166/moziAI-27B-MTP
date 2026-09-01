@@ -32,7 +32,7 @@ pipeline_tag: text-generation
 - [3. Note sull'aggiornamento della versione](#3-note-sullaggiornamento-della-versione)
 - [4. Capacità principali](#4-capacità-principali)
 - [5. Specifiche tecniche](#5-specifiche-tecniche)
-- [6. ⚡ Avvio rapido](#6--avvio-rapido-3-file--100-delle-migliori-capacità-di-ragionamento) — **Download del trio di file**
+- [6. ⚡ Avvio rapido](#6--avvio-rapido-3-file--attivazione-al-100-delle-migliori-capacità-di-ragionamento) — **Download del trio di file**
 - [7. Download del modello](#7-download-del-modello)
 - [8. Comandi di avvio](#8-comandi-di-avvio)
 - [9. Parametri di inferenza consigliati](#9-parametri-di-inferenza-consigliati)
@@ -116,16 +116,16 @@ moziAI manterrà un ritmo attivo di aggiornamenti e iterazioni delle versioni, p
 | Modello base | Qwen3.8-27B (architettura Dense, attenzione ibrida 16 full + 48 linear, licenza MIT) |
 | Dimensione dei parametri | 27 miliardi (27B), architettura Dense |
 | Metodo di quantizzazione | Quantizzazione intelligente MoziSmartBit sviluppata in proprio + formato standard GGUF |
-| Lunghezza del contesto | 128K (262,144 tokens) |
+| Lunghezza del contesto | 256K (262,144 tokens) |
 | Dimensioni del modello | ~13.7 GB |
-| VRAM minima | **16GB+** distribuibile (offload CPU); **20GB+** per contesto lungo fluido; **24GB+** per 128K completo + visione |
+| VRAM minima | **16GB+** distribuibile (offload CPU); **20GB+** per contesto lungo fluido; **32GB+** per 256K completo + visione |
 | Framework di inferenza | llama.cpp / Ollama / LM Studio / Jan |
 | Velocità di inferenza | Con decodifica speculativa MTP: R9700 fino a 70+ tok/s, iGPU MAX+395 fino a 50+ tok/s, GPU fino a 35+ tok/s |
 | Team di sviluppo | Team di Chen Yumo |
 
 ---
 
-## 6. ⚡ Avvio rapido (3 file = attivazione al 100% delle migliori capacità di ragionamento)
+## 6. ⚡ Avvio rapido 3 file = attivazione al 100% delle migliori capacità di ragionamento
 
 > ⚠️ **Nota fondamentale**: le migliori capacità di ragionamento di MoziAI richiedono il download **simultaneo di 3 file** — modello principale, proiezione visiva e template di chat. La mancanza di uno qualsiasi comporta la perdita della capacità corrispondente.
 
@@ -195,7 +195,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -220,7 +220,7 @@ Basati sui parametri consigliati ufficiali di llama.cpp e su ottimizzazioni test
 | top\_p | 0.95 | 0.95 | Soglia del campionamento nucleare (top-p) |
 | top\_k | 20 | 20 | Campionamento con troncamento |
 | repeat\_penalty | 1.05 | 1.05 | Penalità di ripetizione |
-| context\_length | 262144 | 262144 | Contesto lungo 128K |
+| context\_length | 131072 | 262144 | Chat 128K / Codifica 256K (predefinito llama.cpp 128K) |
 | reasoning | auto | auto | Attiva la catena di ragionamento (chain of thought) |
 | reasoning\_budget | 400 | 400 | Budget di token per il ragionamento |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | Output del ragionamento in un campo separato |
@@ -245,7 +245,7 @@ Basati sui parametri consigliati ufficiali di llama.cpp e su ottimizzazioni test
 
 ---
 
-## 11. Decodifica speculativa MTP (importante funzionalità di accelerazione)
+## 11. Decodifica speculativa MTP importante funzionalità di accelerazione
 
 Questo modello integra il livello di decodifica speculativa MTP (Multi-Token Prediction); una volta attivato, la velocità di inferenza aumenta di **1.5-2 volte**. Si tratta di una funzionalità nativa dell'architettura Qwen3.8 e MoziAI ha conservato tutti i pesi MTP.
 
@@ -284,8 +284,8 @@ Questo modello integra il livello di decodifica speculativa MTP (Multi-Token Pre
 | 16 GB | Contesto ridotto a 64K, richiede offload CPU | Livello base, ad es. RTX 4060 Ti |
 | **20 GB** | **128K completo, cache KV q4_0** | **Configurazione consigliata**, ad es. RX 7900 XT / RTX 5070 Ti |
 | 24 GB | 128K completo, ampio margine di VRAM | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | 128K completo, configurazione più potente | Radeon AI PRO R9700 / RTX 5090 |
-| iGPU 128 GB | 128K completo | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | 256K completo, configurazione più potente | Radeon AI PRO R9700 / RTX 5090 |
+| iGPU 128 GB | 256K completo | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 Più lungo è il contesto, maggiore è l'occupazione di VRAM. In caso di OOM, riducete gradualmente il parametro `-c`. Usate `--fit on` per far adattare automaticamente a llama.cpp il numero di layer in base alla VRAM disponibile. Supporta schede grafiche di tutti i marchi: NVIDIA / AMD / Intel.
 

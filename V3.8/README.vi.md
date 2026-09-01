@@ -31,7 +31,7 @@ pipeline_tag: text-generation
 - [3. Ghi chú nâng cấp phiên bản](#3-ghi-chú-nâng-cấp-phiên-bản)
 - [4. Năng lực cốt lõi](#4-năng-lực-cốt-lõi)
 - [5. Thông số kỹ thuật](#5-thông-số-kỹ-thuật)
-- [6. ⚡ Bắt đầu nhanh](#6--bắt-đầu-nhanh3-tệp--100-kích-hoạt-năng-lực-suy-luận-tốt-nhất) — **tải 3 tệp**
+- [6. ⚡ Bắt đầu nhanh](#6--bắt-đầu-nhanh-3-tệp--100-kích-hoạt-năng-lực-suy-luận-tốt-nhất) — **tải 3 tệp**
 - [7. Tải mô hình](#7-tải-mô-hình)
 - [8. Lệnh khởi chạy](#8-lệnh-khởi-chạy)
 - [9. Tham số suy luận được khuyến nghị](#9-tham-số-suy-luận-được-khuyến-nghị)
@@ -115,16 +115,16 @@ moziAI duy trì tần suất nâng cấp phiên bản tích cực, đảm bảo 
 | Mô hình nền tảng | Qwen3.8-27B (kiến trúc Dense, chú ý lai 16 full + 48 linear, giấy phép MIT) |
 | Quy mô tham số | 27 tỷ (27B) kiến trúc Dense |
 | Phương thức lượng tử hóa | Lượng tử hóa thông minh MoziSmartBit + định dạng chuẩn GGUF |
-| Độ dài ngữ cảnh | 128K (262.144 token) |
+| Độ dài ngữ cảnh | 256K (262.144 token) |
 | Kích thước mô hình | ~13,7 GB |
-| VRAM tối thiểu | **16GB+** triển khai được (offload CPU); **20GB+** ngữ cảnh dài mượt mà; **24GB+** 128K đầy đủ + thị giác |
+| VRAM tối thiểu | **16GB+** triển khai được (offload CPU); **20GB+** ngữ cảnh dài mượt mà; **32GB+** 256K đầy đủ + thị giác |
 | Khung suy luận | llama.cpp / Ollama / LM Studio / Jan |
 | Tốc độ suy luận | Với giải mã suy đoán MTP: R9700 70+ tok/s, MAX+395 iGPU 50+ tok/s, GPU 35+ tok/s |
 | Đội phát triển | Đội ngũ Chen Yumo |
 
 ---
 
-## 6. ⚡ Bắt đầu nhanh (3 tệp = 100% kích hoạt năng lực suy luận tốt nhất)
+## 6. ⚡ Bắt đầu nhanh 3 tệp = 100% kích hoạt năng lực suy luận tốt nhất
 
 > ⚠️ **Lưu ý cốt lõi**: Năng lực suy luận tốt nhất của MoziAI yêu cầu **tải đồng thời 3 tệp** — mô hình chính, máy chiếu thị giác, mẫu trò chuyện. Thiếu bất kỳ tệp nào sẽ mất năng lực tương ứng.
 
@@ -194,7 +194,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -219,7 +219,7 @@ Dựa trên tham số khuyến nghị chính thức của llama.cpp và tối ư
 | top\_p | 0,95 | 0,95 | Ngưỡng lấy mẫu hạt nhân |
 | top\_k | 20 | 20 | Lấy mẫu cắt ngắn |
 | repeat\_penalty | 1,05 | 1,05 | Phạt lặp lại |
-| context\_length | 262144 | 262144 | Ngữ cảnh dài 128K |
+| context\_length | 131072 | 262144 | Chat 128K / Lập trình 256K (mặc định llama.cpp 128K) |
 | reasoning | auto | auto | Bật chuỗi suy luận (CoT) |
 | reasoning\_budget | 400 | 400 | Ngân sách token suy luận |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | Xuất suy luận sang trường riêng |
@@ -244,7 +244,7 @@ Dựa trên tham số khuyến nghị chính thức của llama.cpp và tối ư
 
 ---
 
-## 11. Giải mã suy đoán MTP (Tính năng tăng tốc quan trọng)
+## 11. Giải mã suy đoán MTP Tính năng tăng tốc quan trọng
 
 Mô hình này có lớp giải mã suy đoán MTP (Multi-Token Prediction), tăng tốc độ suy luận **1,5-2 lần** khi bật. Đây là tính năng gốc của kiến trúc Qwen3.8; MoziAI giữ nguyên trọng số MTP đầy đủ.
 
@@ -283,8 +283,8 @@ Mô hình này có lớp giải mã suy đoán MTP (Multi-Token Prediction), tă
 | 16 GB | Ngữ cảnh giảm xuống 64K, cần offload CPU | Cấp nhập môn, ví dụ RTX 4060 Ti |
 | **20 GB** | **128K đầy đủ, bộ nhớ đệm KV q4_0** | **Cấu hình khuyến nghị**, ví dụ RX 7900 XT / RTX 5070 Ti |
 | 24 GB | 128K đầy đủ, dư VRAM đủ | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | 128K đầy đủ, cấu hình mạnh nhất | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB iGPU | 128K đầy đủ | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | 256K đầy đủ, cấu hình mạnh nhất | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB iGPU | 256K đầy đủ | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 Ngữ cảnh càng dài, VRAM càng nhiều. Khi OOM giảm `-c` dần. Dùng `--fit on` để llama.cpp tự điều chỉnh số lớp. Hỗ trợ NVIDIA / AMD / Intel.
 

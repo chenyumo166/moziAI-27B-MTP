@@ -31,7 +31,7 @@ pipeline_tag: text-generation
 - [3. Notatki o aktualizacji wersji](#3-notatki-o-aktualizacji-wersji)
 - [4. Kluczowe możliwości](#4-kluczowe-możliwości)
 - [5. Specyfikacja techniczna](#5-specyfikacja-techniczna)
-- [6. ⚡ Szybki start](#6--szybki-start3-pliki--100-aktywacja-najlepszych-możliwości-wnioskowania) — **pobierz 3 pliki**
+- [6. ⚡ Szybki start](#6--szybki-start-3-pliki--100-aktywacji-najlepszych-możliwości-wnioskowania) — **pobierz 3 pliki**
 - [7. Pobieranie modelu](#7-pobieranie-modelu)
 - [8. Polecenia uruchamiania](#8-polecenia-uruchamiania)
 - [9. Zalecane parametry wnioskowania](#9-zalecane-parametry-wnioskowania)
@@ -115,16 +115,16 @@ moziAI utrzymuje aktywną częstotliwość aktualizacji wersji, aby nadążać z
 | Model bazowy | Qwen3.8-27B (architektura Dense, uwaga hybrydowa 16 full + 48 linear, licencja MIT) |
 | Rozmiar parametrów | 27 mld (27B) architektura Dense |
 | Metoda kwantyzacji | Autorska inteligentna kwantyzacja MoziSmartBit + standardowy format GGUF |
-| Długość kontekstu | 128K (262 144 tokenów) |
+| Długość kontekstu | 256K (262 144 tokenów) |
 | Rozmiar modelu | ~13,7 GB |
-| Minimalne VRAM | **16GB+** wdrażalny (offload CPU); **20GB+** płynny długi kontekst; **24GB+** pełne 128K + widzenie |
+| Minimalne VRAM | **16GB+** wdrażalny (offload CPU); **20GB+** płynny długi kontekst; **32GB+** pełne 256K + widzenie |
 | Frameworki wnioskowania | llama.cpp / Ollama / LM Studio / Jan |
 | Szybkość wnioskowania | Z dekodowaniem spekulacyjnym MTP: R9700 70+ tok/s, MAX+395 iGPU 50+ tok/s, GPU 35+ tok/s |
 | Zespół deweloperski | Zespół Chen Yumo |
 
 ---
 
-## 6. ⚡ Szybki start (3 pliki = 100% aktywacji najlepszych możliwości wnioskowania)
+## 6. ⚡ Szybki start 3 pliki = 100% aktywacji najlepszych możliwości wnioskowania
 
 > ⚠️ **Kluczowa uwaga**: Najlepsze możliwości wnioskowania MoziAI wymagają **pobrania 3 plików jednocześnie** — modelu głównego, projektora wizyjnego, szablonu czatu. Brak któregokolwiek spowoduje utratę odpowiednich możliwości.
 
@@ -194,7 +194,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -219,7 +219,7 @@ Na podstawie oficjalnych zaleceń llama.cpp i optymalizacji lokalnej (AMD Radeon
 | top\_p | 0,95 | 0,95 | Próg próbkowania jądrowego |
 | top\_k | 20 | 20 | Próbkowanie ucięte |
 | repeat\_penalty | 1,05 | 1,05 | Kara za powtarzanie |
-| context\_length | 262144 | 262144 | Długi kontekst 128K |
+| context\_length | 131072 | 262144 | Czat 128K / Kodowanie 256K (domyślnie llama.cpp 128K) |
 | reasoning | auto | auto | Włącz łańcuch wnioskowania (CoT) |
 | reasoning\_budget | 400 | 400 | Budżet tokenów wnioskowania |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | Wnioskowanie w osobnym polu |
@@ -244,7 +244,7 @@ Na podstawie oficjalnych zaleceń llama.cpp i optymalizacji lokalnej (AMD Radeon
 
 ---
 
-## 11. Dekodowanie spekulacyjne MTP (kluczowa funkcja przyspieszająca)
+## 11. Dekodowanie spekulacyjne MTP kluczowa funkcja przyspieszająca
 
 Model zawiera warstwę dekodowania spekulacyjnego MTP (Multi-Token Prediction), która zwiększa szybkość wnioskowania **1,5-2 razy** po włączeniu. To natywna funkcja architektury Qwen3.8; MoziAI zachowuje pełne wagi MTP.
 
@@ -283,8 +283,8 @@ Model zawiera warstwę dekodowania spekulacyjnego MTP (Multi-Token Prediction), 
 | 16 GB | Kontekst zmniejszony do 64K, wymaga offload CPU | Poziom wejściowy, np. RTX 4060 Ti |
 | **20 GB** | **Pełne 128K, pamięć KV q4_0** | **Zalecana konfiguracja**, np. RX 7900 XT / RTX 5070 Ti |
 | 24 GB | Pełne 128K, wystarczający zapas VRAM | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | Pełne 128K, najsilniejsza konfiguracja | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB iGPU | Pełne 128K | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | Pełne 256K, najsilniejsza konfiguracja | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB iGPU | Pełne 256K | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 Im dłuższy kontekst, tym więcej VRAM. Przy OOM stopniowo obniżaj `-c`. Użyj `--fit on`, aby llama.cpp automatycznie dostosował liczbę warstw. Wspiera NVIDIA / AMD / Intel.
 

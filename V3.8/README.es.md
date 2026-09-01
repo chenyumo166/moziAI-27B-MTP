@@ -31,7 +31,7 @@ pipeline_tag: text-generation
 - [3. Notas de actualización de versión](#3-notas-de-actualización-de-versión)
 - [4. Capacidades principales](#4-capacidades-principales)
 - [5. Especificaciones técnicas](#5-especificaciones-técnicas)
-- [6. ⚡ Inicio rápido](#6--inicio-rápido3-archivos--100-activación-de-la-mejor-capacidad-de-inferencia) — **descarga de 3 archivos**
+- [6. ⚡ Inicio rápido](#6--inicio-rápido-3-archivos--100-activación-de-la-mejor-capacidad-de-inferencia) — **descarga de 3 archivos**
 - [7. Descarga del modelo](#7-descarga-del-modelo)
 - [8. Comandos de ejecución](#8-comandos-de-ejecución)
 - [9. Parámetros de inferencia recomendados](#9-parámetros-de-inferencia-recomendados)
@@ -115,16 +115,16 @@ MoziAI mantiene una frecuencia activa de actualización de versiones, asegurando
 | Modelo base | Qwen3.8-27B (arquitectura Dense, atención híbrida 16 full + 48 linear, licencia MIT) |
 | Tamaño de parámetros | 27 mil millones (27B) arquitectura Dense |
 | Método de cuantización | Cuantización inteligente MoziSmartBit + formato estándar GGUF |
-| Longitud de contexto | 128K (262 144 tokens) |
+| Longitud de contexto | 256K (262 144 tokens) |
 | Tamaño del modelo | ~13.7 GB |
-| VRAM mínima | **16GB+** implementable (descarga CPU); **20GB+** contexto largo fluido; **24GB+** 128K completo + visión |
+| VRAM mínima | **16GB+** implementable (descarga CPU); **20GB+** contexto largo fluido; **32GB+** 256K completo + visión |
 | Frameworks de inferencia | llama.cpp / Ollama / LM Studio / Jan |
 | Velocidad de inferencia | Con decodificación especulativa MTP: R9700 70+ tok/s, MAX+395 iGPU 50+ tok/s, GPU 35+ tok/s |
 | Equipo de desarrollo | Equipo Chen Yumo |
 
 ---
 
-## 6. ⚡ Inicio rápido (3 archivos = 100% activación de la mejor capacidad de inferencia)
+## 6. ⚡ Inicio rápido 3 archivos = 100% activación de la mejor capacidad de inferencia
 
 > ⚠️ **Nota clave**: la mejor capacidad de inferencia de MoziAI requiere **descargar 3 archivos simultáneamente** — modelo principal, proyector de visión, plantilla de chat. La falta de cualquiera pierde la capacidad correspondiente.
 
@@ -194,7 +194,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -219,7 +219,7 @@ Basado en parámetros oficiales recomendados de llama.cpp y optimización local 
 | top\_p | 0.95 | 0.95 | Umbral de muestreo nuclear |
 | top\_k | 20 | 20 | Muestreo truncado |
 | repeat\_penalty | 1.05 | 1.05 | Penalización de repetición |
-| context\_length | 262144 | 262144 | Contexto largo 128K |
+| context\_length | 131072 | 262144 | Chat 128K / Codificación 256K (llama.cpp por defecto 128K) |
 | reasoning | auto | auto | Activar cadena de razonamiento (CoT) |
 | reasoning\_budget | 400 | 400 | Presupuesto de tokens de razonamiento |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | Razonamiento en campo separado |
@@ -244,7 +244,7 @@ Basado en parámetros oficiales recomendados de llama.cpp y optimización local 
 
 ---
 
-## 11. Decodificación especulativa MTP (característica clave de aceleración)
+## 11. Decodificación especulativa MTP característica clave de aceleración
 
 Este modelo incorpora la capa de decodificación especulativa MTP (Multi-Token Prediction), que aumenta la velocidad de inferencia **1.5-2 veces** al activarse. Es una característica nativa de la arquitectura Qwen3.8; MoziAI conserva los pesos MTP completos.
 
@@ -283,8 +283,8 @@ Este modelo incorpora la capa de decodificación especulativa MTP (Multi-Token P
 | 16 GB | Contexto reducido a 64K, requiere descarga CPU | Nivel de entrada, como RTX 4060 Ti |
 | **20 GB** | **128K completo, caché KV q4_0** | **Configuración recomendada**, como RX 7900 XT / RTX 5070 Ti |
 | 24 GB | 128K completo, margen VRAM amplio | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | 128K completo, configuración más potente | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB iGPU | 128K completo | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | 256K completo, configuración más potente | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB iGPU | 256K completo | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 Cuanto más largo el contexto, más VRAM. En OOM reduzca `-c` gradualmente. Use `--fit on` para ajuste automático de capas. Compatible con NVIDIA / AMD / Intel.
 

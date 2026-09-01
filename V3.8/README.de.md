@@ -116,16 +116,16 @@ moziAI bleibt mit einer aktiven, hohen Frequenz von Versionsupdates und Iteratio
 | Basismodell | Qwen3.8-27B (Dense-Architektur, gemischte Aufmerksamkeit: 16 full + 48 linear, MIT-Lizenz) |
 | Parameterumfang | 27 Milliarden (27B) Dense-Architektur |
 | Quantisierungsmethode | Selbst entwickelte MoziSmartBit-Intelligentquantisierung + GGUF-Standardformat |
-| Kontextlänge | 128K (262.144 Tokens) |
+| Kontextlänge | 256K (262.144 Tokens) |
 | Modellgröße | ~13,7 GB |
-| Minimaler VRAM | **16 GB+** bereitstellbar (CPU-Offload); **20 GB+** flüssige lange Kontexte; **24 GB+** volle 128K + Vision |
+| Minimaler VRAM | **16 GB+** bereitstellbar (CPU-Offload); **20 GB+** flüssige lange Kontexte; **32 GB+** volle 256K + Vision |
 | Inferenz-Framework | llama.cpp / Ollama / LM Studio / Jan |
 | Inferenzgeschwindigkeit | Mit MTP-Spekulationsdecodierung: R9700 erreicht 70+ tok/s, MAX+395 iGPU 50+ tok/s, GPU 35+ tok/s |
 | Entwicklungsteam | Team 陈雨墨 (Chen Yumo) |
 
 ---
 
-## 6. ⚡ Schnellstart (3 Dateien = 100 % aktivierte beste Inferenzfähigkeit)
+## 6. ⚡ Schnellstart 3 Dateien = 100 % aktivierte beste Inferenzfähigkeit
 
 > ⚠️ **Wichtiger Hinweis**: Für die beste Inferenzfähigkeit von MoziAI müssen **3 Dateien gleichzeitig heruntergeladen werden** – Hauptmodell, visuelles Projektionsmodul und Chat-Template. Fehlt eine davon, geht die entsprechende Fähigkeit verloren.
 
@@ -195,7 +195,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -220,7 +220,7 @@ Basierend auf den offiziell empfohlenen Parametern von llama.cpp und lokalen Pra
 | top\_p | 0.95 | 0.95 | Kern-Sampling-Schwellenwert |
 | top\_k | 20 | 20 | Truncated Sampling |
 | repeat\_penalty | 1.05 | 1.05 | Wiederholungsstrafe |
-| context\_length | 262144 | 262144 | 128K langer Kontext |
+| context\_length | 131072 | 262144 | Chat 128K / Codierung 256K (llama.cpp Standard 128K) |
 | reasoning | auto | auto | Reasoning-Kette (Chain of Thought) aktivieren |
 | reasoning\_budget | 400 | 400 | Reasoning-Budget-Tokens |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | Reasoning in ein separates Feld ausgeben |
@@ -245,7 +245,7 @@ Basierend auf den offiziell empfohlenen Parametern von llama.cpp und lokalen Pra
 
 ---
 
-## 11. MTP-Spekulationsdecodierung (wichtiges Beschleunigungsmerkmal)
+## 11. MTP-Spekulationsdecodierung wichtiges Beschleunigungsmerkmal
 
 Dieses Modell enthält eine integrierte MTP-Spekulationsdecodierungsschicht (Multi-Token-Prediction). Nach der Aktivierung erhöht sich die Inferenzgeschwindigkeit um das **1,5- bis 2-Fache**. Dies ist ein natives Merkmal der Qwen3.8-Architektur; MoziAI hat die vollständigen MTP-Gewichte beibehalten.
 
@@ -284,8 +284,8 @@ Dieses Modell enthält eine integrierte MTP-Spekulationsdecodierungsschicht (Mul
 | 16 GB | Kontext auf 64K reduzieren, CPU-Offload erforderlich | Einstiegsklasse, z. B. RTX 4060 Ti |
 | **20 GB** | **volle 128K, q4_0-KV-Cache** | **empfohlene Konfiguration**, z. B. RX 7900 XT / RTX 5070 Ti |
 | 24 GB | volle 128K, ausreichende VRAM-Reserve | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | volle 128K, stärkste Konfiguration | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB iGPU | volle 128K | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | volle 256K, stärkste Konfiguration | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB iGPU | volle 256K | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 Je länger der Kontext, desto mehr VRAM wird benötigt. Bei OOM reduzieren Sie den Parameter `-c` schrittweise. Mit `--fit on` passt llama.cpp die Anzahl der Schichten automatisch an den VRAM an. Unterstützt Grafikkarten aller Marken: NVIDIA / AMD / Intel.
 

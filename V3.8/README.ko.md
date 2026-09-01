@@ -32,7 +32,7 @@ pipeline_tag: text-generation
 - [3. 버전 업그레이드 안내](#3-버전-업그레이드-안내)
 - [4. 핵심 역량](#4-핵심-역량)
 - [5. 기술 사양](#5-기술-사양)
-- [6. ⚡ 빠른 시작](#6-빠른-시작-3개-파일-100-최고-추론-능력-활성화) — **3종 세트 다운로드**
+- [6. ⚡ 빠른 시작](#6--빠른-시작-3개-파일--최고-추론-능력-100-활성화) — **3종 세트 다운로드**
 - [7. 모델 다운로드](#7-모델-다운로드)
 - [8. 시작 명령](#8-시작-명령)
 - [9. 권장 추론 매개변수](#9-권장-추론-매개변수)
@@ -116,16 +116,16 @@ moziAI는 활발한 버전 업그레이드와 반복 업데이트 주기를 유�
 | 베이스 모델 | Qwen3.8-27B(Dense 아키텍처, 하이브리드 어텐션 16 full + 48 linear, MIT 라이선스) |
 | 파라미터 규모 | 270억(27B) Dense 아키텍처 |
 | 양자화 방식 | 자체 개발 MoziSmartBit 스마트 양자화 + GGUF 표준 형식 |
-| 컨텍스트 길이 | 128K(262,144 tokens) |
+| 컨텍스트 길이 | 256K(262,144 tokens) |
 | 모델 크기 | ~13.7 GB |
-| 최소 VRAM | **16GB+** 배포 가능(CPU 오프로드); **20GB+** 원활한 긴 컨텍스트; **24GB+** 전체 128K + 비전 |
+| 최소 VRAM | **16GB+** 배포 가능(CPU 오프로드); **20GB+** 원활한 긴 컨텍스트; **32GB+** 전체 256K + 비전 |
 | 추론 프레임워크 | llama.cpp / Ollama / LM Studio / Jan |
 | 추론 속도 | MTP 추측 디코딩 기준: R9700 70+ tok/s, MAX+395 내장 GPU 50+ tok/s, GPU 35+ tok/s |
 | 개발 팀 | 천위모(陈雨墨) 팀 |
 
 ---
 
-## 6. ⚡ 빠른 시작（3개 파일 = 최고 추론 능력 100% 활성화）
+## 6. ⚡ 빠른 시작 3개 파일 = 최고 추론 능력 100% 활성화
 
 > ⚠️ **핵심 안내**: MoziAI의 최고 추론 능력을 사용하려면 **파일 3개를 동시에 다운로드**해야 합니다 — 메인 모델, 비전 프로젝터, 채팅 템플릿. 하나라도 빠지면 해당 기능이 손실됩니다.
 
@@ -195,7 +195,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -220,7 +220,7 @@ llama.cpp 공식 권장 매개변수와 로컬 실측 최적화를 기반으로 
 | top\_p | 0.95 | 0.95 | 핵 샘플링 임계값 |
 | top\_k | 20 | 20 | 절단 샘플링 |
 | repeat\_penalty | 1.05 | 1.05 | 반복 페널티 |
-| context\_length | 262144 | 262144 | 128K 긴 컨텍스트 |
+| context\_length | 131072 | 262144 | 채팅 128K / 코딩 256K (llama.cpp 기본 128K) |
 | reasoning | auto | auto | 추론 체인(사고 체인) 활성화 |
 | reasoning\_budget | 400 | 400 | 추론 예산 토큰 |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | 추론을 별도 필드로 출력 |
@@ -245,7 +245,7 @@ llama.cpp 공식 권장 매개변수와 로컬 실측 최적화를 기반으로 
 
 ---
 
-## 11. MTP 추측 디코딩（중요한 가속 기능）
+## 11. MTP 추측 디코딩 중요한 가속 기능
 
 본 모델에는 MTP(Multi-Token Prediction) 추측 디코딩 레이어가 내장되어 있어, 활성화하면 추론 속도가 **1.5-2배** 빨라집니다. 이는 Qwen3.8 아키텍처의 네이티브 기능으로, MoziAI는 완전한 MTP 가중치를 유지하고 있습니다.
 
@@ -284,8 +284,8 @@ llama.cpp 공식 권장 매개변수와 로컬 실측 최적화를 기반으로 
 | 16 GB | 컨텍스트를 64K로 축소, CPU 오프로드 필요 | 입문급, 예: RTX 4060 Ti |
 | **20 GB** | **128K 풀 구성, q4_0 KV 캐시** | **권장 구성**, 예: RX 7900 XT / RTX 5070 Ti |
 | 24 GB | 128K 풀 구성, VRAM 여유 충분 | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | 128K 풀 구성, 최강 구성 | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB 내장 GPU | 128K 풀 구성 | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | 256K 풀 구성, 최강 구성 | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB 내장 GPU | 256K 풀 구성 | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 컨텍스트가 길수록 VRAM 사용량이 늘어납니다. OOM 발생 시 `-c` 매개변수를 점진적으로 낮추세요. `--fit on`을 사용하면 llama.cpp가 VRAM에 맞게 레이어 수를 자동으로 조정합니다. NVIDIA / AMD / Intel 전 브랜드 그래픽 카드를 지원합니다.
 

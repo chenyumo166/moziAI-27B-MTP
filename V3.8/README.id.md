@@ -31,7 +31,7 @@ pipeline_tag: text-generation
 - [3. Catatan Upgrade Versi](#3-catatan-upgrade-versi)
 - [4. Kemampuan Inti](#4-kemampuan-inti)
 - [5. Spesifikasi Teknis](#5-spesifikasi-teknis)
-- [6. ⚡ Mulai Cepat](#6--mulai-cepat3-file--100-aktifkan-kemampuan-inferensi-terbaik) — **unduh 3 file**
+- [6. ⚡ Mulai Cepat](#6--mulai-cepat-3-file--100-aktivasi-kemampuan-inferensi-terbaik) — **unduh 3 file**
 - [7. Unduh Model](#7-unduh-model)
 - [8. Perintah Menjalankan](#8-perintah-menjalankan)
 - [9. Parameter Inferensi yang Direkomendasikan](#9-parameter-inferensi-yang-direkomendasikan)
@@ -115,16 +115,16 @@ moziAI akan menjaga frekuensi pembaruan versi yang aktif, memastikan mengikuti p
 | Model Dasar | Qwen3.8-27B (arsitektur Dense, perhatian hibrida 16 full + 48 linear, lisensi MIT) |
 | Ukuran Parameter | 27 miliar (27B) arsitektur Dense |
 | Metode Kuantisasi | Kuantisasi cerdas MoziSmartBit + format standar GGUF |
-| Panjang Konteks | 128K (262.144 token) |
+| Panjang Konteks | 256K (262.144 token) |
 | Ukuran Model | ~13,7 GB |
-| VRAM Minimum | **16GB+** dapat di-deploy (offload CPU); **20GB+** konteks panjang lancar; **24GB+** 128K penuh + visi |
+| VRAM Minimum | **16GB+** dapat di-deploy (offload CPU); **20GB+** konteks panjang lancar; **32GB+** 256K penuh + visi |
 | Framework Inferensi | llama.cpp / Ollama / LM Studio / Jan |
 | Kecepatan Inferensi | Dengan decoding spekulatif MTP: R9700 70+ tok/s, MAX+395 iGPU 50+ tok/s, GPU 35+ tok/s |
 | Tim Pengembang | Tim Chen Yumo |
 
 ---
 
-## 6. ⚡ Mulai Cepat (3 File = 100% Aktivasi Kemampuan Inferensi Terbaik)
+## 6. ⚡ Mulai Cepat 3 File = 100% Aktivasi Kemampuan Inferensi Terbaik
 
 > ⚠️ **Poin Penting**: Kemampuan inferensi terbaik MoziAI memerlukan **unduh 3 file sekaligus** — model utama, proyektor visi, template chat. Kehilangan salah satu akan mengurangi kemampuan terkait.
 
@@ -194,7 +194,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -219,7 +219,7 @@ Berdasarkan parameter resmi llama.cpp dan optimasi lokal (AMD Radeon AI PRO R970
 | top\_p | 0,95 | 0,95 | Ambang sampling nukleus |
 | top\_k | 20 | 20 | Sampling terpotong |
 | repeat\_penalty | 1,05 | 1,05 | Penalti pengulangan |
-| context\_length | 262144 | 262144 | Konteks panjang 128K |
+| context\_length | 131072 | 262144 | Chat 128K / Pengodean 256K (default llama.cpp 128K) |
 | reasoning | auto | auto | Aktifkan rantai penalaran (CoT) |
 | reasoning\_budget | 400 | 400 | Anggaran token penalaran |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | Output penalaran ke field terpisah |
@@ -244,7 +244,7 @@ Berdasarkan parameter resmi llama.cpp dan optimasi lokal (AMD Radeon AI PRO R970
 
 ---
 
-## 11. Decoding Spekulatif MTP (Fitur Akselerasi Penting)
+## 11. Decoding Spekulatif MTP Fitur Akselerasi Penting
 
 Model ini memiliki lapisan decoding spekulatif MTP (Multi-Token Prediction), yang meningkatkan kecepatan inferensi **1,5-2 kali** saat diaktifkan. Ini adalah fitur asli arsitektur Qwen3.8; MoziAI mempertahankan bobot MTP lengkap.
 
@@ -283,8 +283,8 @@ Model ini memiliki lapisan decoding spekulatif MTP (Multi-Token Prediction), yan
 | 16 GB | Konteks turun ke 64K, perlu offload CPU | Level pemula, mis. RTX 4060 Ti |
 | **20 GB** | **128K penuh, cache KV q4_0** | **Konfigurasi yang direkomendasikan**, mis. RX 7900 XT / RTX 5070 Ti |
 | 24 GB | 128K penuh, sisa VRAM cukup | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | 128K penuh, konfigurasi terkuat | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB iGPU | 128K penuh | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | 256K penuh, konfigurasi terkuat | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB iGPU | 256K penuh | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 Semakin panjang konteks, semakin banyak VRAM yang digunakan. Saat OOM turunkan `-c` bertahap. Gunakan `--fit on` agar llama.cpp menyesuaikan jumlah lapisan otomatis. Mendukung semua kartu NVIDIA / AMD / Intel.
 

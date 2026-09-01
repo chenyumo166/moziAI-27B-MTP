@@ -31,7 +31,7 @@ pipeline_tag: text-generation
 - [3. Sürüm Yükseltme Notları](#3-sürüm-yükseltme-notları)
 - [4. Temel Yetenekler](#4-temel-yetenekler)
 - [5. Teknik Özellikler](#5-teknik-özellikler)
-- [6. ⚡ Hızlı Başlangıç](#6--hızlı-başlangıç3-dosya--100-en-iyi-çıkarım-yeteneğini-etkinleştirin) — **3 dosya indirme**
+- [6. ⚡ Hızlı Başlangıç](#6--hızlı-başlangıç-3-dosya--100-en-i̇yi-çıkarım-yeteneğini-etkinleştirin) — **3 dosya indirme**
 - [7. Model İndirme](#7-model-i̇ndirme)
 - [8. Çalıştırma Komutları](#8-çalıştırma-komutları)
 - [9. Önerilen Çıkarım Parametreleri](#9-önerilen-çıkarım-parametreleri)
@@ -115,16 +115,16 @@ moziAI, gelecekteki yapay zeka gelişimini takip etmek için aktif sürüm yüks
 | Taban Model | Qwen3.8-27B (Dense mimarisi, hibrit dikkat 16 full + 48 linear, MIT lisansı) |
 | Parametre Boyutu | 27 milyar (27B) Dense mimarisi |
 | Kuantizasyon Yöntemi | Kendi geliştirilen MoziSmartBit akıllı kuantizasyon + GGUF standart formatı |
-| Bağlam Uzunluğu | 128K (262.144 token) |
+| Bağlam Uzunluğu | 256K (262.144 token) |
 | Model Boyutu | ~13,7 GB |
-| Minimum VRAM | **16GB+** dağıtılabilir (CPU offload); **20GB+** akıcı uzun bağlam; **24GB+** tam 128K + görüş |
+| Minimum VRAM | **16GB+** dağıtılabilir (CPU offload); **20GB+** akıcı uzun bağlam; **32GB+** tam 256K + görüş |
 | Çıkarım Çerçeveleri | llama.cpp / Ollama / LM Studio / Jan |
 | Çıkarım Hızı | MTP spekülatif kod çözme ile: R9700 70+ tok/sn, MAX+395 iGPU 50+ tok/sn, GPU 35+ tok/sn |
 | Geliştirme Ekibi | Chen Yumo Ekibi |
 
 ---
 
-## 6. ⚡ Hızlı Başlangıç (3 Dosya = %100 En İyi Çıkarım Yeteneğini Etkinleştirin)
+## 6. ⚡ Hızlı Başlangıç 3 Dosya = %100 En İyi Çıkarım Yeteneğini Etkinleştirin
 
 > ⚠️ **Temel Not**: MoziAI'nin en iyi çıkarım yeteneği için **3 dosyayı birlikte indirmeniz** gerekir — ana model, görüş projektörü, sohbet şablonu. Herhangi birinin eksik olması ilgili yeteneği kaybettirir.
 
@@ -194,7 +194,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -219,7 +219,7 @@ llama.cpp resmi önerilen parametreleri ve yerel optimizasyona dayanır (AMD Rad
 | top\_p | 0,95 | 0,95 | Çekirdek örnekleme eşiği |
 | top\_k | 20 | 20 | Kesilmiş örnekleme |
 | repeat\_penalty | 1,05 | 1,05 | Tekrar cezası |
-| context\_length | 262144 | 262144 | Uzun bağlam 128K |
+| context\_length | 131072 | 262144 | Sohbet 128K / Kodlama 256K (llama.cpp varsayılan 128K) |
 | reasoning | auto | auto | Akıl yürütme zincirini etkinleştir (CoT) |
 | reasoning\_budget | 400 | 400 | Akıl yürütme bütçe tokenleri |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | Akıl yürütmeyi ayrı alanda çıkar |
@@ -244,7 +244,7 @@ llama.cpp resmi önerilen parametreleri ve yerel optimizasyona dayanır (AMD Rad
 
 ---
 
-## 11. MTP Spekülatif Kod Çözme (Önemli Hızlandırma Özelliği)
+## 11. MTP Spekülatif Kod Çözme Önemli Hızlandırma Özelliği
 
 Bu model, etkinleştirildiğinde çıkarım hızını **1,5-2 kat** artıran MTP (Multi-Token Prediction) spekülatif kod çözme katmanına sahiptir. Bu, Qwen3.8 mimarisinin yerel bir özelliğidir; MoziAI tam MTP ağırlıklarını korur.
 
@@ -283,8 +283,8 @@ Bu model, etkinleştirildiğinde çıkarım hızını **1,5-2 kat** artıran MTP
 | 16 GB | Bağlam 64K'ya düşürülür, CPU offload gerekir | Giriş seviyesi, ör. RTX 4060 Ti |
 | **20 GB** | **128K tam, q4_0 KV önbelleği** | **Önerilen yapılandırma**, ör. RX 7900 XT / RTX 5070 Ti |
 | 24 GB | 128K tam, yeterli VRAM boşluğu | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | 128K tam, en güçlü yapılandırma | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB iGPU | 128K tam | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | 256K tam, en güçlü yapılandırma | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB iGPU | 256K tam | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 Bağlam ne kadar uzunsa VRAM kullanımı o kadar artar. OOM durumunda `-c`'yi kademeli düşürün. llama.cpp'nin katman sayısını otomatik ayarlaması için `--fit on` kullanın. NVIDIA / AMD / Intel destekler.
 

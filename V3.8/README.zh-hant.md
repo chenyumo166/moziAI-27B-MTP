@@ -32,12 +32,12 @@ pipeline_tag: text-generation
 - [3. 版本升級說明](#3-版本升級說明)
 - [4. 核心能力](#4-核心能力)
 - [5. 技術規格](#5-技術規格)
-- [6. ⚡ 快速開始](#6--快速開始3-個檔案--100-啟用最佳推理能力) — **三件套下載**
+- [6. ⚡ 快速開始](#6--快速開始-3-個檔案--100-啟用最佳推理能力) — **三件套下載**
 - [7. 模型下載](#7-模型下載)
 - [8. 啟動命令](#8-啟動命令)
 - [9. 推薦推理參數](#9-推薦推理參數)
 - [10. 量化格式對比](#10-量化格式對比)
-- [11. MTP 推測解碼](#11-mtp-推測解碼重要加速特性)
+- [11. MTP 推測解碼](#11-mtp-推測解碼-重要加速特性)
 - [12. 顯存配置推薦](#12-顯存配置推薦)
 - [13. 部署方式](#13-部署方式)
 - [14. 基準評測](#14-基準評測)
@@ -116,7 +116,7 @@ moziAI 會保持活躍的版本升級迭代更新頻率，確保緊隨未來人�
 | 底座模型 | Qwen3.8-27B（Dense 架構，混合注意力 16 full + 48 linear，MIT 許可證） |
 | 參數規模 | 270 億（27B）Dense 架構 |
 | 量化方式 | 自研 MoziSmartBit 智慧量化 + GGUF 標準格式 |
-| 上下文長度 | 128K（262,144 tokens） |
+| 上下文長度 | 256K（262,144 tokens） |
 | 模型體積 | ~13.7 GB |
 | 最低顯存 | **16GB+** 可部署（CPU 卸載）；**20GB+** 流暢長上下文；**24GB+** 完整 128K + 視覺 |
 | 推理框架 | llama.cpp / Ollama / LM Studio / Jan |
@@ -125,7 +125,7 @@ moziAI 會保持活躍的版本升級迭代更新頻率，確保緊隨未來人�
 
 ---
 
-## 6. ⚡ 快速開始（3 個檔案 = 100% 啟用最佳推理能力）
+## 6. ⚡ 快速開始 3 個檔案 = 100% 啟用最佳推理能力
 
 > ⚠️ **核心提示**：MoziAI 的最佳推理能力需要**同時下載 3 個檔案**——主模型、視覺投影、聊天模板。缺少任何一個都會損失對應能力。
 
@@ -195,7 +195,7 @@ llama-server \
   -m ./moziAI-27B-MTP-V3.8-Q4_K_M-Qwen3.8-27B.gguf \
   --mmproj mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf \
   --chat-template-file V3.8/chat-template-moziai-27B-V3.8.jinja \
-  -c 131072 -ngl 99 -t 28 \
+  -c 262144 -ngl 99 -t 28 \
   --batch-size 1024 --ubatch-size 128 \
   --flash-attn auto \
   --cache-type-k q4_0 --cache-type-v q4_0 --kv-unified \
@@ -220,7 +220,7 @@ llama-server \
 | top\_p | 0.95 | 0.95 | 核取樣閾值 |
 | top\_k | 20 | 20 | 截斷取樣 |
 | repeat\_penalty | 1.05 | 1.05 | 重複懲罰 |
-| context\_length | 262144 | 262144 | 128K 長上下文 |
+| context\_length | 131072 | 262144 | 聊天 128K / 編碼 256K（llama.cpp 預設 128K） |
 | reasoning | auto | auto | 開啟推理鏈（思維鏈） |
 | reasoning\_budget | 400 | 400 | 推理預算 token |
 | reasoning\_format | deepseek-legacy | deepseek-legacy | 推理輸出到獨立欄位 |
@@ -245,7 +245,7 @@ llama-server \
 
 ---
 
-## 11. MTP 推測解碼（重要加速特性）
+## 11. MTP 推測解碼 重要加速特性
 
 本模型內建 MTP（Multi-Token Prediction）推測解碼層，開啟後推理速度提升 **1.5-2 倍**。這是 Qwen3.8 架構的原生特性，MoziAI 保留了完整 MTP 權重。
 
@@ -284,8 +284,8 @@ llama-server \
 | 16 GB | 上下文降至 64K，需 CPU 卸載 | 入門級，如 RTX 4060 Ti |
 | **20 GB** | **128K 滿配，q4_0 KV 快取** | **推薦配置**，如 RX 7900 XT / RTX 5070 Ti |
 | 24 GB | 128K 滿配，顯存餘量充足 | RTX 4090 / RX 7900 XTX |
-| 32 GB+ | 128K 滿配，最強配置 | Radeon AI PRO R9700 / RTX 5090 |
-| 128 GB 內顯 | 128K 滿配 | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
+| 32 GB+ | 256K 滿配，最強配置 | Radeon AI PRO R9700 / RTX 5090 |
+| 128 GB 內顯 | 256K 滿配 | AMD Ryzen AI Max+ 395 / NVIDIA RTX Spark |
 
 > 💡 上下文越長，顯存占用越多。OOM 時逐步降低 `-c` 參數。使用 `--fit on` 讓 llama.cpp 自動調整層數以適配顯存。支援 NVIDIA / AMD / Intel 全品牌顯示卡。
 
