@@ -1,14 +1,14 @@
-MoziAI-35B-A3B-MOE Custom Restricted License Agreement
-Version 1.0 - August 10, 2026
+MoziAI-27B-MTP Custom Restricted License Agreement
+Version 1.0 - September 1, 2026
 
 Copyright (c) 2026 陈雨墨 (chenyumo166). All rights reserved.
 
-Repository: https://github.com/chenyumo166/moziAI-35B-A3B-MOE-MTP
+Repository: https://github.com/chenyumo166/moziAI-27B-MTP
 
 
 1. 定义
 
-   “本模型”是指 MoziAI-35B-A3B-MOE（墨子AI）金融垂直领域大模型及其相关的所有代码、模型权重、配置文件、文档和任何其他相关材料。
+   “本模型”是指 MoziAI-27B-MTP（墨子AI）金融垂直领域大模型及其相关的所有代码、模型权重、配置文件、文档和任何其他相关材料。
 
    “许可人”是指获得本模型副本的任何个人或组织。
 
@@ -42,7 +42,7 @@ Repository: https://github.com/chenyumo166/moziAI-35B-A3B-MOE-MTP
 4. 使用条件
 
    (a) 保留声明：使用、复制或分发本模型时，必须保留以下版权声明：
-       “MoziAI-35B-A3B-MOE Copyright (c) 2026 陈雨墨 (chenyumo166). 原始仓库：https://github.com/chenyumo166/moziAI-35B-A3B-MOE-MTP”
+       “MoziAI-27B-MTP Copyright (c) 2026 陈雨墨 (chenyumo166). 原始仓库：https://github.com/chenyumo166/moziAI-27B-MTP”
 
    (b) 标注来源：在产品或服务中使用本模型时，应在合理范围内标注来源：陈雨墨 / chenyumo166 / moziAI。
 
@@ -53,7 +53,7 @@ Repository: https://github.com/chenyumo166/moziAI-35B-A3B-MOE-MTP
 
    (b) “MoziAI”、“墨子AI”、“chenyumo166” 等名称和商标的所有权归原作者所有。
 
-   (c) 本模型的底座模型 Ornith-1.0-35B 采用 MIT 许可证，其版权归属原作者，本许可证仅适用于本团队的微调与开发部分。
+   (c) 本模型的底座模型 Qwen3.8-27B 采用 MIT 许可证，其版权归属原作者，本许可证仅适用于本团队的微调与开发部分。
 
 
 6. 免责声明
@@ -89,4 +89,4 @@ Repository: https://github.com/chenyumo166/moziAI-35B-A3B-MOE-MTP
 
 Copyright (c) 2026 陈雨墨 (chenyumo166). All rights reserved.
 
-For inquiries: https://github.com/chenyumo166/moziAI-35B-A3B-MOE-MTP
+For inquiries: https://github.com/chenyumo166/moziAI-27B-MTP
