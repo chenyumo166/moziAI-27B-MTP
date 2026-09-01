@@ -31,7 +31,7 @@ pipeline_tag: text-generation
 - [3. Notas de actualización de versión](#3-notas-de-actualización-de-versión)
 - [4. Capacidades principales](#4-capacidades-principales)
 - [5. Especificaciones técnicas](#5-especificaciones-técnicas)
-- [6. ⚡ Inicio rápido](#6--inicio-rápido-3-archivos--100-activación-de-la-mejor-capacidad-de-inferencia) — **descarga de 3 archivos**
+- [6. Inicio rápido](#6-inicio-rápido-3-archivos-100-activación-de-la-mejor-capacidad-de-inferencia) — **descarga de 3 archivos**
 - [7. Descarga del modelo](#7-descarga-del-modelo)
 - [8. Comandos de ejecución](#8-comandos-de-ejecución)
 - [9. Parámetros de inferencia recomendados](#9-parámetros-de-inferencia-recomendados)
@@ -124,7 +124,7 @@ MoziAI mantiene una frecuencia activa de actualización de versiones, asegurando
 
 ---
 
-## 6. ⚡ Inicio rápido 3 archivos = 100% activación de la mejor capacidad de inferencia
+## 6. Inicio rápido 3 archivos 100 activación de la mejor capacidad de inferencia
 
 > ⚠️ **Nota clave**: la mejor capacidad de inferencia de MoziAI requiere **descargar 3 archivos simultáneamente** — modelo principal, proyector de visión, plantilla de chat. La falta de cualquiera pierde la capacidad correspondiente.
 

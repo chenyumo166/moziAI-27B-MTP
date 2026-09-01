@@ -34,7 +34,7 @@ pipeline_tag: text-generation
 - [3. Version Upgrade Notes](#3-version-upgrade-notes)
 - [4. Core Capabilities](#4-core-capabilities)
 - [5. Technical Specifications](#5-technical-specifications)
-- [6. ⚡ Quick Start](#6--quick-start-3-files--100-activate-best-inference)
+- [6. Quick Start](#6-quick-start-3-files-100-activate-best-inference)
 - [7. Model Downloads](#7-model-downloads)
 - [8. Launch Commands](#8-launch-commands)
 - [9. Recommended Inference Parameters](#9-recommended-inference-parameters)
@@ -127,7 +127,7 @@ moziAI will maintain an active version upgrade iteration cadence to stay at the 
 
 ---
 
-## 6. ⚡ Quick Start 3 Files = 100% Activate Best Inference
+## 6. Quick Start 3 Files 100 Activate Best Inference
 
 > ⚠️ **Key note**: MoziAI's best inference capability requires **downloading 3 files simultaneously** — main model, vision projector, chat template. Missing any one will lose the corresponding capability.
 

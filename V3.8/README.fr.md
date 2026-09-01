@@ -32,7 +32,7 @@ pipeline_tag: text-generation
 - [3. Notes de version](#3-notes-de-version)
 - [4. Capacités principales](#4-capacités-principales)
 - [5. Spécifications techniques](#5-spécifications-techniques)
-- [6. ⚡ Démarrage rapide](#6--démarrage-rapide-3-fichiers--100--dactivation-du-raisonnement-optimal) — **Téléchargement des trois fichiers**
+- [6. Démarrage rapide](#6-démarrage-rapide-3-fichiers-100-dactivation-du-raisonnement-optimal) — **Téléchargement des trois fichiers**
 - [7. Téléchargement du modèle](#7-téléchargement-du-modèle)
 - [8. Commandes de démarrage](#8-commandes-de-démarrage)
 - [9. Paramètres de raisonnement recommandés](#9-paramètres-de-raisonnement-recommandés)
@@ -125,7 +125,7 @@ moziAI maintiendra un rythme actif de mises à jour itératives afin de suivre d
 
 ---
 
-## 6. ⚡ Démarrage rapide 3 fichiers = 100 % d'activation du raisonnement optimal
+## 6. Démarrage rapide 3 fichiers 100 d'activation du raisonnement optimal
 
 > ⚠️ **Point essentiel** : les capacités de raisonnement optimales de MoziAI nécessitent le **téléchargement simultané de 3 fichiers** — le modèle principal, la projection visuelle et le modèle de chat. L'absence de l'un d'entre eux entraîne la perte de la capacité correspondante.
 

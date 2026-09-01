@@ -32,7 +32,7 @@ pipeline_tag: text-generation
 - [3. Note sull'aggiornamento della versione](#3-note-sullaggiornamento-della-versione)
 - [4. Capacità principali](#4-capacità-principali)
 - [5. Specifiche tecniche](#5-specifiche-tecniche)
-- [6. ⚡ Avvio rapido](#6--avvio-rapido-3-file--attivazione-al-100-delle-migliori-capacità-di-ragionamento) — **Download del trio di file**
+- [6. Avvio rapido](#6-avvio-rapido-3-file-attivazione-al-100-delle-migliori-capacità-di-ragionamento) — **Download del trio di file**
 - [7. Download del modello](#7-download-del-modello)
 - [8. Comandi di avvio](#8-comandi-di-avvio)
 - [9. Parametri di inferenza consigliati](#9-parametri-di-inferenza-consigliati)
@@ -125,7 +125,7 @@ moziAI manterrà un ritmo attivo di aggiornamenti e iterazioni delle versioni, p
 
 ---
 
-## 6. ⚡ Avvio rapido 3 file = attivazione al 100% delle migliori capacità di ragionamento
+## 6. Avvio rapido 3 file attivazione al 100 delle migliori capacità di ragionamento
 
 > ⚠️ **Nota fondamentale**: le migliori capacità di ragionamento di MoziAI richiedono il download **simultaneo di 3 file** — modello principale, proiezione visiva e template di chat. La mancanza di uno qualsiasi comporta la perdita della capacità corrispondente.
 

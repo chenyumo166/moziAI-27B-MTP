@@ -32,7 +32,7 @@ pipeline_tag: text-generation
 - [3. Versionshinweise](#3-versionshinweise)
 - [4. Kernfunktionen](#4-kernfunktionen)
 - [5. Technische Spezifikationen](#5-technische-spezifikationen)
-- [6. ⚡ Schnellstart](#6--schnellstart-3-dateien--100--aktivierte-beste-inferenzfähigkeit) — **Download des Drei-Dateien-Pakets**
+- [6. Schnellstart](#6-schnellstart-3-dateien-100-aktivierte-beste-inferenzfähigkeit) — **Download des Drei-Dateien-Pakets**
 - [7. Modell-Download](#7-modell-download)
 - [8. Startbefehle](#8-startbefehle)
 - [9. Empfohlene Inferenzparameter](#9-empfohlene-inferenzparameter)
@@ -125,7 +125,7 @@ moziAI bleibt mit einer aktiven, hohen Frequenz von Versionsupdates und Iteratio
 
 ---
 
-## 6. ⚡ Schnellstart 3 Dateien = 100 % aktivierte beste Inferenzfähigkeit
+## 6. Schnellstart 3 Dateien 100 aktivierte beste Inferenzfähigkeit
 
 > ⚠️ **Wichtiger Hinweis**: Für die beste Inferenzfähigkeit von MoziAI müssen **3 Dateien gleichzeitig heruntergeladen werden** – Hauptmodell, visuelles Projektionsmodul und Chat-Template. Fehlt eine davon, geht die entsprechende Fähigkeit verloren.
 

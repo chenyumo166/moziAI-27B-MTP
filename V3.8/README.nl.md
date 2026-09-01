@@ -32,7 +32,7 @@ pipeline_tag: text-generation
 - [3. Versie-upgrade-informatie](#3-versie-upgrade-informatie)
 - [4. Kernmogelijkheden](#4-kernmogelijkheden)
 - [5. Technische specificaties](#5-technische-specificaties)
-- [6. ⚡ Snel starten (3 bestanden = 100% activatie van de beste redeneercapaciteiten)](#6--snel-starten-3-bestanden--100-activatie-van-de-beste-redeneercapaciteiten) — **drie bestanden downloaden**
+- [6. Snel starten (3 bestanden = 100% activatie van de beste redeneercapaciteiten)](#6-snel-starten-3-bestanden-100-activatie-van-de-beste-redeneercapaciteiten) — **drie bestanden downloaden**
 - [7. Modeldownload](#7-modeldownload)
 - [8. Startopdrachten](#8-startopdrachten)
 - [9. Aanbevolen inferentieparameters](#9-aanbevolen-inferentieparameters)
@@ -125,7 +125,7 @@ moziAI blijft actief versie-upgrades en iteraties publiceren om gelijke tred te 
 
 ---
 
-## 6. ⚡ Snel starten 3 bestanden = 100% activatie van de beste redeneercapaciteiten
+## 6. Snel starten 3 bestanden 100 activatie van de beste redeneercapaciteiten
 
 > ⚠️ **Kerntip**: de beste redeneercapaciteiten van MoziAI vereisen het **gelijktijdig downloaden van 3 bestanden** — het hoofdmodel, de visuele projector en de chattemplate. Als er een ontbreekt, gaat de bijbehorende capaciteit verloren.
 
