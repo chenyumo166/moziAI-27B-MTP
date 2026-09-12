@@ -48,7 +48,7 @@ pipeline_tag: text-generation
 
 ## 1. Обзор модели
 
-MoziAI-27B-3.8 — это локальная открытая мультимодальная ИИ-модель большого размера, разработанная командой Чэнь Юймо, известного китайского финансового эксперта, на основе открытой базовой модели **Qwen3.8-27B** (архитектура Dense 27B, лицензия MIT). Модель объединяет собственные разработки команды: финансовые данные + финансовые предметные возможности + динамическую семимерную систему мышления + итеративный механизм рефлексии агента LOOP + гибридный алгоритм квантования MoziSmartBit. Данная модель снижает порог локального развертывания для частных лиц и предприятий, разрешено **бесплатное коммерческое использование**, она может быть развернута локально на потребительских видеокартах, что значительно экономит затраты на облачные токены, обеспечивает свободу токенов 7×24 часа и гарантирует конфиденциальность и безопасность локальных данных.
+MoziAI-27B-3.8 — это локальная открытая мультимодальная ИИ-модель большого размера, разработанная командой Чэнь Юймо, известного китайского финансового эксперта, на основе открытой базовой модели **Qwen3.8-27B** (архитектура Dense 27B, лицензия Apache-2.0). Модель объединяет собственные разработки команды: финансовые данные + финансовые предметные возможности + динамическую семимерную систему мышления + итеративный механизм рефлексии агента LOOP + гибридный алгоритм квантования MoziSmartBit. Данная модель снижает порог локального развертывания для частных лиц и предприятий, разрешено **бесплатное коммерческое использование**, она может быть развернута локально на потребительских видеокартах, что значительно экономит затраты на облачные токены, обеспечивает свободу токенов 7×24 часа и гарантирует конфиденциальность и безопасность локальных данных.
 
 ---
 
@@ -113,7 +113,7 @@ moziAI сохраняет активную частоту итеративных
 
 | Параметр | Значение |
 | --- | --- |
-| Базовая модель | Qwen3.8-27B (архитектура Dense, гибридное внимание 16 full + 48 linear, лицензия MIT) |
+| Базовая модель | Qwen3.8-27B (архитектура Dense, гибридное внимание 16 full + 48 linear, лицензия Apache-2.0) |
 | Количество параметров | 27 млрд (27B), архитектура Dense |
 | Метод квантования | Собственное интеллектуальное квантование MoziSmartBit + стандартный формат GGUF |
 | Длина контекста | 256K (262 144 токенов) |
@@ -382,3 +382,26 @@ MoziAI-27B-3.8 доработан на основе базовой модели 
 - **E-mail**: 263515@qq.com
 
 Copyright (c) 2026 Чэнь Юймо / chenyumo166. Все права защищены.
+
+---
+<!-- UPSTREAM-LICENSE-NOTICE:BEGIN -->
+## 上游许可与归属声明 / Upstream License & Attribution Notice
+
+本模型是**组合作品**，采用分层许可。This model is a **combined work** distributed under layered licensing.
+
+| 组成部分 / Component | 许可 / License |
+|---|---|
+| 继承的上游 Qwen 组件 / Inherited Qwen components | **Apache License 2.0** |
+| MoziAI 原创增量 / MoziAI additions | **MoziAI Custom Restricted License** |
+
+- 继承的 Qwen 组件在任何时候均持续受 **Apache License 2.0** 约束；本仓库的限制性许可不构成对该等组件的重新授权、再许可或变更。许可全文见 [`LICENSE-APACHE`](../LICENSE-APACHE)。
+  The inherited Qwen components remain governed by the **Apache License, Version 2.0** at all times. This repository's restrictive license does not relicense, sublicense or otherwise modify them. Full text: [`LICENSE-APACHE`](../LICENSE-APACHE).
+- 上游版权、商标与归属声明见 [`NOTICE`](../NOTICE)。
+  Upstream copyright, trademark and attribution notices: [`NOTICE`](../NOTICE).
+- 本团队对上游作品所做的修改见 [`MODIFICATIONS.md`](../MODIFICATIONS.md)。
+  Modifications made by this team to the upstream work: [`MODIFICATIONS.md`](../MODIFICATIONS.md).
+- 本仓库的限制性条款**仅适用于 MoziAI 原创增量部分**。若与上游许可冲突，就上游组件而言以上游许可为准（见 `LICENSE` 第 11 条）。
+  This repository's restrictive terms apply **only to MoziAI's original additions**. Where they conflict with an upstream license, the upstream license prevails for the upstream components (see `LICENSE`, Section 11).
+- "Qwen"、"通义千问" 是阿里巴巴集团的商标。本项目与阿里巴巴集团、Qwen 团队无隶属、赞助或背书关系。
+  "Qwen" and "Tongyi Qianwen" are trademarks of Alibaba Group. This project is not affiliated with, endorsed by or sponsored by Alibaba Group or the Qwen team.
+<!-- UPSTREAM-LICENSE-NOTICE:END -->

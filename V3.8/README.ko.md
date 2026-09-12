@@ -48,7 +48,7 @@ pipeline_tag: text-generation
 
 ## 1. 모델 개요
 
-MoziAI-27B-3.8은 중국 금융 인플루언서 천위모(陈雨墨) 팀이 개발한 로컬 오픈소스 멀티모달 AI 대형 모델로, 오픈소스 베이스 모델 **Qwen3.8-27B**(Dense 27B 아키텍처, MIT 라이선스)를 기반으로 팀이 자체 개발한 금융 데이터 + 금융 분야 역량 + 동적 7차원 사고 체계 + 에이전트 LOOP 반성·반복 메커니즘 + MoziSmartBit 하이브리드 양자화 알고리즘을 결합하여 개발되었습니다. 본 모델은 개인과 기업의 로컬 배포 장벽을 낮추고 **무료 상업 사용**을 허용하며, 소비자용 그래픽 카드에서도 로컬 배포가 가능합니다. 클라우드 토큰 비용을 크게 절약하고 7×24시간 토큰 자유를 실현하며 로컬 데이터 프라이버시와 보안을 보장합니다.
+MoziAI-27B-3.8은 중국 금융 인플루언서 천위모(陈雨墨) 팀이 개발한 로컬 오픈소스 멀티모달 AI 대형 모델로, 오픈소스 베이스 모델 **Qwen3.8-27B**(Dense 27B 아키텍처, Apache-2.0 라이선스)를 기반으로 팀이 자체 개발한 금융 데이터 + 금융 분야 역량 + 동적 7차원 사고 체계 + 에이전트 LOOP 반성·반복 메커니즘 + MoziSmartBit 하이브리드 양자화 알고리즘을 결합하여 개발되었습니다. 본 모델은 개인과 기업의 로컬 배포 장벽을 낮추고 **무료 상업 사용**을 허용하며, 소비자용 그래픽 카드에서도 로컬 배포가 가능합니다. 클라우드 토큰 비용을 크게 절약하고 7×24시간 토큰 자유를 실현하며 로컬 데이터 프라이버시와 보안을 보장합니다.
 
 ---
 
@@ -113,7 +113,7 @@ moziAI는 활발한 버전 업그레이드와 반복 업데이트 주기를 유�
 
 | 항목 | 사양 |
 | --- | --- |
-| 베이스 모델 | Qwen3.8-27B(Dense 아키텍처, 하이브리드 어텐션 16 full + 48 linear, MIT 라이선스) |
+| 베이스 모델 | Qwen3.8-27B(Dense 아키텍처, 하이브리드 어텐션 16 full + 48 linear, Apache-2.0 라이선스) |
 | 파라미터 규모 | 270억(27B) Dense 아키텍처 |
 | 양자화 방식 | 자체 개발 MoziSmartBit 스마트 양자화 + GGUF 표준 형식 |
 | 컨텍스트 길이 | 256K(262,144 tokens) |
@@ -382,3 +382,26 @@ MoziAI-27B-3.8은 Qwen3.8-27B 베이스 모델을 미세 조정한 모델로, �
 - **E-mail**: 263515@qq.com
 
 Copyright (c) 2026 陈雨墨 / chenyumo166. All rights reserved.
+
+---
+<!-- UPSTREAM-LICENSE-NOTICE:BEGIN -->
+## 上游许可与归属声明 / Upstream License & Attribution Notice
+
+本模型是**组合作品**，采用分层许可。This model is a **combined work** distributed under layered licensing.
+
+| 组成部分 / Component | 许可 / License |
+|---|---|
+| 继承的上游 Qwen 组件 / Inherited Qwen components | **Apache License 2.0** |
+| MoziAI 原创增量 / MoziAI additions | **MoziAI Custom Restricted License** |
+
+- 继承的 Qwen 组件在任何时候均持续受 **Apache License 2.0** 约束；本仓库的限制性许可不构成对该等组件的重新授权、再许可或变更。许可全文见 [`LICENSE-APACHE`](../LICENSE-APACHE)。
+  The inherited Qwen components remain governed by the **Apache License, Version 2.0** at all times. This repository's restrictive license does not relicense, sublicense or otherwise modify them. Full text: [`LICENSE-APACHE`](../LICENSE-APACHE).
+- 上游版权、商标与归属声明见 [`NOTICE`](../NOTICE)。
+  Upstream copyright, trademark and attribution notices: [`NOTICE`](../NOTICE).
+- 本团队对上游作品所做的修改见 [`MODIFICATIONS.md`](../MODIFICATIONS.md)。
+  Modifications made by this team to the upstream work: [`MODIFICATIONS.md`](../MODIFICATIONS.md).
+- 本仓库的限制性条款**仅适用于 MoziAI 原创增量部分**。若与上游许可冲突，就上游组件而言以上游许可为准（见 `LICENSE` 第 11 条）。
+  This repository's restrictive terms apply **only to MoziAI's original additions**. Where they conflict with an upstream license, the upstream license prevails for the upstream components (see `LICENSE`, Section 11).
+- "Qwen"、"通义千问" 是阿里巴巴集团的商标。本项目与阿里巴巴集团、Qwen 团队无隶属、赞助或背书关系。
+  "Qwen" and "Tongyi Qianwen" are trademarks of Alibaba Group. This project is not affiliated with, endorsed by or sponsored by Alibaba Group or the Qwen team.
+<!-- UPSTREAM-LICENSE-NOTICE:END -->

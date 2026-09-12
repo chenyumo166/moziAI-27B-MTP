@@ -48,7 +48,7 @@ pipeline_tag: text-generation
 
 ## 1. Présentation du modèle
 
-MoziAI-27B-3.8 est un modèle d'IA multimodal open source local, développé par l'équipe de Chen Yumo, grand influenceur financier chinois. Il repose sur la base open source **Qwen3.8-27B** (architecture Dense 27B, licence MIT), combinée aux technologies développées en interne par l'équipe : données financières + compétences en finance + système de pensée dynamique en sept dimensions + mécanisme de réflexion itérative LOOP pour agents + algorithme de quantification hybride MoziSmartBit. Ce modèle abaisse le seuil de déploiement local pour les particuliers et les entreprises, avec une autorisation d'**utilisation commerciale gratuite**. Il peut être déployé localement sur des cartes graphiques grand public, réduisant considérablement les coûts de tokens cloud, offrant une liberté de tokens 7×24 heures et garantissant la confidentialité et la sécurité des données locales.
+MoziAI-27B-3.8 est un modèle d'IA multimodal open source local, développé par l'équipe de Chen Yumo, grand influenceur financier chinois. Il repose sur la base open source **Qwen3.8-27B** (architecture Dense 27B, licence Apache-2.0), combinée aux technologies développées en interne par l'équipe : données financières + compétences en finance + système de pensée dynamique en sept dimensions + mécanisme de réflexion itérative LOOP pour agents + algorithme de quantification hybride MoziSmartBit. Ce modèle abaisse le seuil de déploiement local pour les particuliers et les entreprises, avec une autorisation d'**utilisation commerciale gratuite**. Il peut être déployé localement sur des cartes graphiques grand public, réduisant considérablement les coûts de tokens cloud, offrant une liberté de tokens 7×24 heures et garantissant la confidentialité et la sécurité des données locales.
 
 ---
 
@@ -113,7 +113,7 @@ moziAI maintiendra un rythme actif de mises à jour itératives afin de suivre d
 
 | Élément | Paramètre |
 | --- | --- |
-| Modèle de base | Qwen3.8-27B (architecture Dense, attention mixte 16 full + 48 linear, licence MIT) |
+| Modèle de base | Qwen3.8-27B (architecture Dense, attention mixte 16 full + 48 linear, licence Apache-2.0) |
 | Nombre de paramètres | 27 milliards (27B), architecture Dense |
 | Méthode de quantification | Quantification intelligente MoziSmartBit propriétaire + format standard GGUF |
 | Longueur du contexte | 256K (262 144 tokens) |
@@ -382,3 +382,26 @@ Veuillez consulter le fichier [LICENSE](LICENSE) pour les conditions détaillée
 - **E-mail** : 263515@qq.com
 
 Copyright (c) 2026 陈雨墨 / chenyumo166. Tous droits réservés.
+
+---
+<!-- UPSTREAM-LICENSE-NOTICE:BEGIN -->
+## 上游许可与归属声明 / Upstream License & Attribution Notice
+
+本模型是**组合作品**，采用分层许可。This model is a **combined work** distributed under layered licensing.
+
+| 组成部分 / Component | 许可 / License |
+|---|---|
+| 继承的上游 Qwen 组件 / Inherited Qwen components | **Apache License 2.0** |
+| MoziAI 原创增量 / MoziAI additions | **MoziAI Custom Restricted License** |
+
+- 继承的 Qwen 组件在任何时候均持续受 **Apache License 2.0** 约束；本仓库的限制性许可不构成对该等组件的重新授权、再许可或变更。许可全文见 [`LICENSE-APACHE`](../LICENSE-APACHE)。
+  The inherited Qwen components remain governed by the **Apache License, Version 2.0** at all times. This repository's restrictive license does not relicense, sublicense or otherwise modify them. Full text: [`LICENSE-APACHE`](../LICENSE-APACHE).
+- 上游版权、商标与归属声明见 [`NOTICE`](../NOTICE)。
+  Upstream copyright, trademark and attribution notices: [`NOTICE`](../NOTICE).
+- 本团队对上游作品所做的修改见 [`MODIFICATIONS.md`](../MODIFICATIONS.md)。
+  Modifications made by this team to the upstream work: [`MODIFICATIONS.md`](../MODIFICATIONS.md).
+- 本仓库的限制性条款**仅适用于 MoziAI 原创增量部分**。若与上游许可冲突，就上游组件而言以上游许可为准（见 `LICENSE` 第 11 条）。
+  This repository's restrictive terms apply **only to MoziAI's original additions**. Where they conflict with an upstream license, the upstream license prevails for the upstream components (see `LICENSE`, Section 11).
+- "Qwen"、"通义千问" 是阿里巴巴集团的商标。本项目与阿里巴巴集团、Qwen 团队无隶属、赞助或背书关系。
+  "Qwen" and "Tongyi Qianwen" are trademarks of Alibaba Group. This project is not affiliated with, endorsed by or sponsored by Alibaba Group or the Qwen team.
+<!-- UPSTREAM-LICENSE-NOTICE:END -->

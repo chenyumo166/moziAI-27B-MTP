@@ -48,7 +48,7 @@ pipeline_tag: text-generation
 
 ## 1. मॉडल अवलोकन
 
-MoziAI-27B-3.8, चीन के प्रसिद्ध वित्तीय प्रभावशाली व्यक्तित्व चेन यूमो (Chen Yumo) की टीम द्वारा विकसित एक स्थानीय ओपन-सोर्स मल्टीमॉडल AI मॉडल है। यह ओपन-सोर्स बेस **Qwen3.8-27B** (Dense 27B आर्किटेक्चर, MIT लाइसेंस) पर आधारित है, और टीम द्वारा स्वयं विकसित वित्तीय डेटा + वित्तीय क्षेत्र क्षमताएँ + गतिशील सात-आयामी चिंतन प्रणाली + एजेंट LOOP चिंतन-पुनरावृत्ति तंत्र + MoziSmartBit हाइब्रिड क्वांटीकरण एल्गोरिदम को मिलाकर विकसित किया गया है। यह मॉडल व्यक्तियों और उद्यमों के लिए स्थानीय तैनाती की बाधा को कम करता है, **मुफ्त व्यावसायिक उपयोग** की अनुमति देता है, और उपभोक्ता-श्रेणी के GPU पर स्थानीय रूप से तैनात किया जा सकता है, जिससे क्लाउड token लागत में भारी बचत होती है, 7×24 घंटे token स्वतंत्रता प्राप्त होती है और स्थानीय डेटा की गोपनीयता और सुरक्षा सुनिश्चित होती है।
+MoziAI-27B-3.8, चीन के प्रसिद्ध वित्तीय प्रभावशाली व्यक्तित्व चेन यूमो (Chen Yumo) की टीम द्वारा विकसित एक स्थानीय ओपन-सोर्स मल्टीमॉडल AI मॉडल है। यह ओपन-सोर्स बेस **Qwen3.8-27B** (Dense 27B आर्किटेक्चर, Apache-2.0 लाइसेंस) पर आधारित है, और टीम द्वारा स्वयं विकसित वित्तीय डेटा + वित्तीय क्षेत्र क्षमताएँ + गतिशील सात-आयामी चिंतन प्रणाली + एजेंट LOOP चिंतन-पुनरावृत्ति तंत्र + MoziSmartBit हाइब्रिड क्वांटीकरण एल्गोरिदम को मिलाकर विकसित किया गया है। यह मॉडल व्यक्तियों और उद्यमों के लिए स्थानीय तैनाती की बाधा को कम करता है, **मुफ्त व्यावसायिक उपयोग** की अनुमति देता है, और उपभोक्ता-श्रेणी के GPU पर स्थानीय रूप से तैनात किया जा सकता है, जिससे क्लाउड token लागत में भारी बचत होती है, 7×24 घंटे token स्वतंत्रता प्राप्त होती है और स्थानीय डेटा की गोपनीयता और सुरक्षा सुनिश्चित होती है।
 
 ---
 
@@ -113,7 +113,7 @@ moziAI सक्रिय संस्करण उन्नयन और पु
 
 | आइटम | पैरामीटर |
 | --- | --- |
-| आधार मॉडल | Qwen3.8-27B (Dense आर्किटेक्चर, हाइब्रिड अटेंशन 16 full + 48 linear, MIT लाइसेंस) |
+| आधार मॉडल | Qwen3.8-27B (Dense आर्किटेक्चर, हाइब्रिड अटेंशन 16 full + 48 linear, Apache-2.0 लाइसेंस) |
 | पैरामीटर आकार | 27 अरब (27B) Dense आर्किटेक्चर |
 | क्वांटीकरण विधि | स्वयं विकसित MoziSmartBit स्मार्ट क्वांटीकरण + GGUF मानक प्रारूप |
 | संदर्भ लंबाई | 256K (262,144 tokens) |
@@ -382,3 +382,26 @@ MoziAI-27B-3.8, Qwen3.8-27B आधार पर फाइन-ट्यून क
 - **E-mail**: 263515@qq.com
 
 Copyright (c) 2026 चेन यूमो / chenyumo166. सर्वाधिकार सुरक्षित।
+
+---
+<!-- UPSTREAM-LICENSE-NOTICE:BEGIN -->
+## 上游许可与归属声明 / Upstream License & Attribution Notice
+
+本模型是**组合作品**，采用分层许可。This model is a **combined work** distributed under layered licensing.
+
+| 组成部分 / Component | 许可 / License |
+|---|---|
+| 继承的上游 Qwen 组件 / Inherited Qwen components | **Apache License 2.0** |
+| MoziAI 原创增量 / MoziAI additions | **MoziAI Custom Restricted License** |
+
+- 继承的 Qwen 组件在任何时候均持续受 **Apache License 2.0** 约束；本仓库的限制性许可不构成对该等组件的重新授权、再许可或变更。许可全文见 [`LICENSE-APACHE`](../LICENSE-APACHE)。
+  The inherited Qwen components remain governed by the **Apache License, Version 2.0** at all times. This repository's restrictive license does not relicense, sublicense or otherwise modify them. Full text: [`LICENSE-APACHE`](../LICENSE-APACHE).
+- 上游版权、商标与归属声明见 [`NOTICE`](../NOTICE)。
+  Upstream copyright, trademark and attribution notices: [`NOTICE`](../NOTICE).
+- 本团队对上游作品所做的修改见 [`MODIFICATIONS.md`](../MODIFICATIONS.md)。
+  Modifications made by this team to the upstream work: [`MODIFICATIONS.md`](../MODIFICATIONS.md).
+- 本仓库的限制性条款**仅适用于 MoziAI 原创增量部分**。若与上游许可冲突，就上游组件而言以上游许可为准（见 `LICENSE` 第 11 条）。
+  This repository's restrictive terms apply **only to MoziAI's original additions**. Where they conflict with an upstream license, the upstream license prevails for the upstream components (see `LICENSE`, Section 11).
+- "Qwen"、"通义千问" 是阿里巴巴集团的商标。本项目与阿里巴巴集团、Qwen 团队无隶属、赞助或背书关系。
+  "Qwen" and "Tongyi Qianwen" are trademarks of Alibaba Group. This project is not affiliated with, endorsed by or sponsored by Alibaba Group or the Qwen team.
+<!-- UPSTREAM-LICENSE-NOTICE:END -->

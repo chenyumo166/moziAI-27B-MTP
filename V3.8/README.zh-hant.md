@@ -48,7 +48,7 @@ pipeline_tag: text-generation
 
 ## 1. 模型概述
 
-MoziAI-27B-3.8 是由中國財經大V陳雨墨團隊開發的本地開源多模態AI大模型，基於開源底座 **Qwen3.8-27B**（Dense 27B 架構，MIT 許可），結合團隊自主研發的金融資料 + 金融領域能力 + 動態七維思考體系 + 智慧體LOOP反思迭代機制 + MoziSmartBit混合量化演算法開發而成。本模型降低個人與企業的本地部署門檻，授權**免費商用**，在消費級顯示卡上即可本地部署，節約大量雲端 token 成本，實現 7×24 小時 token 自由並確保本地資料隱私與安全。
+MoziAI-27B-3.8 是由中國財經大V陳雨墨團隊開發的本地開源多模態AI大模型，基於開源底座 **Qwen3.8-27B**（Dense 27B 架構，Apache-2.0 許可），結合團隊自主研發的金融資料 + 金融領域能力 + 動態七維思考體系 + 智慧體LOOP反思迭代機制 + MoziSmartBit混合量化演算法開發而成。本模型降低個人與企業的本地部署門檻，授權**免費商用**，在消費級顯示卡上即可本地部署，節約大量雲端 token 成本，實現 7×24 小時 token 自由並確保本地資料隱私與安全。
 
 ---
 
@@ -113,7 +113,7 @@ moziAI 會保持活躍的版本升級迭代更新頻率，確保緊隨未來人�
 
 | 項目 | 參數 |
 | --- | --- |
-| 底座模型 | Qwen3.8-27B（Dense 架構，混合注意力 16 full + 48 linear，MIT 許可證） |
+| 底座模型 | Qwen3.8-27B（Dense 架構，混合注意力 16 full + 48 linear，Apache-2.0 許可證） |
 | 參數規模 | 270 億（27B）Dense 架構 |
 | 量化方式 | 自研 MoziSmartBit 智慧量化 + GGUF 標準格式 |
 | 上下文長度 | 256K（262,144 tokens） |
@@ -382,3 +382,26 @@ MoziAI-27B-3.8 基於 Qwen3.8-27B 底座微調，金融垂直領域為核心最�
 - **E-mail**：263515@qq.com
 
 Copyright (c) 2026 陳雨墨 / chenyumo166. All rights reserved.
+
+---
+<!-- UPSTREAM-LICENSE-NOTICE:BEGIN -->
+## 上游许可与归属声明 / Upstream License & Attribution Notice
+
+本模型是**组合作品**，采用分层许可。This model is a **combined work** distributed under layered licensing.
+
+| 组成部分 / Component | 许可 / License |
+|---|---|
+| 继承的上游 Qwen 组件 / Inherited Qwen components | **Apache License 2.0** |
+| MoziAI 原创增量 / MoziAI additions | **MoziAI Custom Restricted License** |
+
+- 继承的 Qwen 组件在任何时候均持续受 **Apache License 2.0** 约束；本仓库的限制性许可不构成对该等组件的重新授权、再许可或变更。许可全文见 [`LICENSE-APACHE`](../LICENSE-APACHE)。
+  The inherited Qwen components remain governed by the **Apache License, Version 2.0** at all times. This repository's restrictive license does not relicense, sublicense or otherwise modify them. Full text: [`LICENSE-APACHE`](../LICENSE-APACHE).
+- 上游版权、商标与归属声明见 [`NOTICE`](../NOTICE)。
+  Upstream copyright, trademark and attribution notices: [`NOTICE`](../NOTICE).
+- 本团队对上游作品所做的修改见 [`MODIFICATIONS.md`](../MODIFICATIONS.md)。
+  Modifications made by this team to the upstream work: [`MODIFICATIONS.md`](../MODIFICATIONS.md).
+- 本仓库的限制性条款**仅适用于 MoziAI 原创增量部分**。若与上游许可冲突，就上游组件而言以上游许可为准（见 `LICENSE` 第 11 条）。
+  This repository's restrictive terms apply **only to MoziAI's original additions**. Where they conflict with an upstream license, the upstream license prevails for the upstream components (see `LICENSE`, Section 11).
+- "Qwen"、"通义千问" 是阿里巴巴集团的商标。本项目与阿里巴巴集团、Qwen 团队无隶属、赞助或背书关系。
+  "Qwen" and "Tongyi Qianwen" are trademarks of Alibaba Group. This project is not affiliated with, endorsed by or sponsored by Alibaba Group or the Qwen team.
+<!-- UPSTREAM-LICENSE-NOTICE:END -->
