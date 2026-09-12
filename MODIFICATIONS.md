@@ -90,3 +90,12 @@ original upstream work (as required to be retained by Apache License
 ---
 
 *本文件最后更新：2026-09-12 / Last updated: 2026-09-12*
+
+---
+
+<!-- UPSTREAM-LICENSE-NOTICE:BEGIN -->
+## License
+
+License: see the **[MoziAI Model License](LICENSE.en.md)** (English v2.0). This model contains upstream components governed by the **Apache License 2.0** (Qwen3.8-27B). Upstream copyright and attribution notices: [`NOTICE`](NOTICE); modifications made by this team: [`MODIFICATIONS.md`](MODIFICATIONS.md).
+<!-- UPSTREAM-LICENSE-NOTICE:END -->
+

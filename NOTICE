@@ -23,12 +23,12 @@ included in or relied upon by this product.
   -> Apache License, Version 2.0
 
 重要 / IMPORTANT:
-  Qwen 基底组件并不会因为本仓库的 MoziAI 自定义限制性许可，
+  Qwen 基底组件并不会因为本仓库的 MoziAI 模型许可，
   而发生重新授权、再许可、豁免或变更，该等组件在任何时候
   均持续受 Apache License, Version 2.0 约束。
 
   The Qwen base components are NOT relicensed, sublicensed, exempted
-  or otherwise modified by the MoziAI Custom Restricted License used
+  or otherwise modified by the MoziAI Model License used
   by this repository. Those components remain governed by the
   Apache License, Version 2.0 at all times.
 
@@ -63,12 +63,10 @@ Apache License 2.0, Section 6, and do not imply any endorsement.
 4. MoziAI 团队原创贡献 / MoziAI original contributions
 ----------------------------------------------------------------
 
-以下内容为 MoziAI 团队原创成果，适用《MoziAI-27B-MTP
-定制限制性许可协议》（见 LICENSE.md 文件）：
+以下内容为 MoziAI 团队原创成果，适用《MoziAI 模型许可协议》（见 LICENSE.md 文件）：
 
 The following are original contributions of the MoziAI team and are
-licensed under the MoziAI-27B-MTP Custom Restricted License Agreement
-(see LICENSE.md):
+licensed under the MoziAI Model License (see LICENSE.md):
 
   - 金融领域训练数据与继续训练 / financial-domain data & continued training
   - 动态七维思考体系 / dynamic seven-dimensional thinking framework
@@ -81,15 +79,15 @@ licensed under the MoziAI-27B-MTP Custom Restricted License Agreement
 ----------------------------------------------------------------
 
   继承的 Qwen 组件 / inherited Qwen parts .... Apache License, Version 2.0
-  MoziAI 原创增量 / MoziAI additions ......... MoziAI Custom Restricted License
+  MoziAI 原创增量 / MoziAI additions ......... MoziAI Model License
   本分发整体 / this distribution as a whole .. 须同时满足以上全部
                                                 must satisfy all of the above
 
-若本仓库《定制限制性许可协议》的任何条款与 Apache License 2.0
+若本仓库《模型许可协议》的任何条款与 Apache License 2.0
 （适用于继承的 Qwen 组件）相冲突，就该等组件而言，
 以 Apache License 2.0 为准。
 
-To the extent any term of the MoziAI Custom Restricted License
+To the extent any term of the MoziAI Model License
 conflicts with the Apache License, Version 2.0 as applied to the
 inherited Qwen components, the Apache License, Version 2.0 prevails
 with respect to those components.
