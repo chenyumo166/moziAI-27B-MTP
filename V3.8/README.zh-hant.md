@@ -363,7 +363,7 @@ MoziAI-27B-3.8 基於 Qwen3.8-27B 底座微調，金融垂直領域為核心最�
 ## 15. 許可證
 
 许可协议：**Apache License 2.0**（官方英文原文 [`../LICENSE.md`](../LICENSE.md)，中文说明 [`../LICENSE.zh-CN.md`](../LICENSE.zh-CN.md)）。
-本模型整体依 Apache-2.0 分发（上游 Qwen3.8-27B 同为 Apache-2.0；Ornith 增量 MIT，声明已保留）；归属见 [`../NOTICE`](../NOTICE)，修改声明见 [`../MODIFICATIONS.md`](../MODIFICATIONS.md)。
+本模型整体依 Apache-2.0 分发（上游 Qwen3.8-27B 同为 Apache-2.0；MoziAI 原创增量同为 Apache-2.0）；归属见 [`../NOTICE`](../NOTICE)，修改声明见 [`../MODIFICATIONS.md`](../MODIFICATIONS.md)。
 ## 16. 聯絡方式
 
 - **HuggingFace**：[@chenyumo](https://huggingface.co/chenyumo)
@@ -380,7 +380,7 @@ Copyright (c) 2026 陳雨墨 / chenyumo166. All rights reserved.
 ## 许可 / License
 
 许可协议：**Apache License 2.0**。官方英文原文见 [`../LICENSE.md`](../LICENSE.md)，中文说明见 [`../LICENSE.zh-CN.md`](../LICENSE.zh-CN.md)。
-本模型整体依 Apache-2.0 分发；上游组件（Qwen3.8-27B）同为 Apache-2.0，Ornith 增量依其上游模型卡声明的 MIT（相关声明已保留）。上游归属见 [`../NOTICE`](../NOTICE)，修改声明见 [`../MODIFICATIONS.md`](../MODIFICATIONS.md)。
+本模型整体依 Apache-2.0 分发；上游组件（Qwen3.8-27B）同为 Apache-2.0，MoziAI 原创增量同样依 Apache-2.0。上游归属见 [`../NOTICE`](../NOTICE)，修改声明见 [`../MODIFICATIONS.md`](../MODIFICATIONS.md)。
 <!-- UPSTREAM-LICENSE-NOTICE:END -->
 
 

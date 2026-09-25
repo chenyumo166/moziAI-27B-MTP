@@ -149,5 +149,5 @@
   "license": "apache-2.0",
   "license_name": "Apache License 2.0",
   "license_link": "https://huggingface.co/chenyumo/moziAI-27B-MTP/blob/main/LICENSE.md",
-  "copyright": "Copyright (c) 2026 Chen Yumo (陈雨墨, chenyumo166). Licensed under the Apache License, Version 2.0. Upstream components: Qwen (Apache-2.0), Gemma 4 (Apache-2.0), Ornith increment (MIT) — see NOTICE."
+  "copyright": "Copyright (c) 2026 Chen Yumo (陈雨墨, chenyumo166). Licensed under the Apache License, Version 2.0. Upstream components: Qwen3.8-27B (Apache-2.0); MoziAI additions (Apache-2.0). See NOTICE."
 }

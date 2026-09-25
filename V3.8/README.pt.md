@@ -389,7 +389,7 @@ Copyright (c) 2026 陈雨墨 / chenyumo166. All rights reserved.
 ## License
 
 License: **Apache License 2.0** — authoritative text: [`../LICENSE.md`](../LICENSE.md) (Chinese note: [`../LICENSE.zh-CN.md`](../LICENSE.zh-CN.md)).
-This model is distributed as a whole under Apache-2.0; upstream components (Qwen3.8-27B) are Apache-2.0 and the Ornith increment is MIT as declared upstream (notices retained). Attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
+This model is distributed as a whole under Apache-2.0; upstream components (Qwen3.8-27B) are Apache-2.0, and MoziAI's own additions are likewise Apache-2.0. Attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
 <!-- UPSTREAM-LICENSE-NOTICE:END -->
 
 

@@ -363,7 +363,7 @@ MoziAI-27B-3.8 è un fine-tuning basato sul modello base Qwen3.8-27B, con il set
 ## 15. Licenza
 
 License: **Apache License 2.0** ([`../LICENSE.md`](../LICENSE.md); Chinese note [`../LICENSE.zh-CN.md`](../LICENSE.zh-CN.md)).
-Distributed as a whole under Apache-2.0 (upstream Qwen3.8-27B likewise Apache-2.0; Ornith increment MIT, notices retained). Attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
+Distributed as a whole under Apache-2.0 (upstream Qwen3.8-27B likewise Apache-2.0; MoziAI additions likewise Apache-2.0). Attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
 ## 16. Contatti
 
 - **HuggingFace**: [@chenyumo](https://huggingface.co/chenyumo)
@@ -380,7 +380,7 @@ Copyright (c) 2026 Chen Yumo / chenyumo166. Tutti i diritti riservati.
 ## License
 
 License: **Apache License 2.0** — authoritative text: [`../LICENSE.md`](../LICENSE.md) (Chinese note: [`../LICENSE.zh-CN.md`](../LICENSE.zh-CN.md)).
-This model is distributed as a whole under Apache-2.0; upstream components (Qwen3.8-27B) are Apache-2.0 and the Ornith increment is MIT as declared upstream (notices retained). Attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
+This model is distributed as a whole under Apache-2.0; upstream components (Qwen3.8-27B) are Apache-2.0, and MoziAI's own additions are likewise Apache-2.0. Attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
 <!-- UPSTREAM-LICENSE-NOTICE:END -->
 
 
