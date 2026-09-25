@@ -370,7 +370,7 @@ Dit model wordt geleverd onder een **aangepaste beperkende licentie**:
 
 Dit model wordt aangeboden 'zoals het is', zonder enige vorm van garantie. De modeloutput is uitsluitend ter referentie en vormt geen beleggingsadvies. Gebruikers dragen zelf het risico van het gebruik.
 
-Raadpleeg het bestand [LICENSE](LICENSE) voor de volledige voorwaarden.
+Raadpleeg het bestand [LICENSE.md](../LICENSE.md) voor de volledige voorwaarden.
 
 ---
 

@@ -138,7 +138,7 @@
   },
   "vision_end_token_id": 248054,
   "vision_start_token_id": 248053,
-  "base_model": "unsloth/Qwen3.8-27B",
+  "base_model": "Qwen/Qwen3.8-27B",
   "moziAI": {
     "model_name": "moziAI-27B-MTP",
     "version": "V3.8",

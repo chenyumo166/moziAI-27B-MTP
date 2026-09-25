@@ -68,12 +68,12 @@ The MoziAI team made the following changes to the original work:
 
 本声明仅记录 MoziAI 团队的修改行为，**不改变**任何上游组件的许可状态。
 继承自 Qwen 的组件持续受 **Apache License, Version 2.0** 约束，
-见 `LICENSE`；上游版权与归属声明见 `NOTICE`。
+见 `LICENSE.md`；上游版权与归属声明见 `NOTICE`。
 
 This statement only records the MoziAI team's modifications. It does
 **not** alter the license status of any upstream component. The
 inherited Qwen components remain governed by **Apache License,
-Version 2.0** — see `LICENSE`. Upstream copyright and
+Version 2.0** — see `LICENSE.md`. Upstream copyright and
 attribution notices are in `NOTICE`.
 
 ---

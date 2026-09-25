@@ -369,7 +369,7 @@ Este modelo usa uma **licença restritiva personalizada**:
 
 O modelo é fornecido \"como está\", sem garantias de qualquer tipo. A saída do modelo é apenas para referência e não constitui aconselhamento de investimento. O usuário assume todos os riscos.
 
-Consulte o arquivo [LICENSE](LICENSE) para os termos completos.
+Consulte o arquivo [LICENSE.md](../LICENSE.md) para os termos completos.
 
 ---
 

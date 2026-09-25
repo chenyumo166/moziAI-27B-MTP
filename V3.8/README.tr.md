@@ -369,7 +369,7 @@ Bu model **özel kısıtlayıcı lisans** kullanır:
 
 Model "olduğu gibi", herhangi bir garanti olmadan sağlanır. Model çıktısı yalnızca referans içindir ve yatırım tavsiyesi oluşturmaz. Kullanıcılar tüm riskleri üstlenir.
 
-Tam koşullar için [LICENSE](LICENSE) dosyasına bakın.
+Tam koşullar için [LICENSE.md](../LICENSE.md) dosyasına bakın.
 
 ---
 

@@ -2,7 +2,7 @@
 
 本模型整体依 **Apache License, Version 2.0** 分发——包括陈雨墨团队（MoziAI）原创增量部分。
 
-- 具法律效力的许可全文为英文原文，见仓库根目录 **[LICENSE](LICENSE)**（本文件仅为中文说明，供参考；两者冲突时以英文原文为准）
+- 具法律效力的许可全文为英文原文，见仓库根目录 **[LICENSE.md](LICENSE.md)**（本文件仅为中文说明，供参考；两者冲突时以英文原文为准）
 - 上游组件归属与商标声明见 **[NOTICE](NOTICE)**；本团队对上游作品的修改见 **[MODIFICATIONS.md](MODIFICATIONS.md)**
 - 上游组件许可：Qwen3.5 / Qwen3.6（35B）或 Qwen3.8-27B 及经 Ornith 血统继承的 Gemma 4 组件 = **Apache License 2.0**；Ornith 自研增量 = 其上游模型卡声明的 **MIT**（本仓库保留其版权与许可声明）
 
