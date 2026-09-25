@@ -23,13 +23,12 @@ included in or relied upon by this product.
   -> Apache License, Version 2.0
 
 重要 / IMPORTANT:
-  Qwen 基底组件并不会因为本仓库的 MoziAI 模型许可，
+  Qwen 基底组件并不会因为本仓库的分发行为，
   而发生重新授权、再许可、豁免或变更，该等组件在任何时候
   均持续受 Apache License, Version 2.0 约束。
 
   The Qwen base components are NOT relicensed, sublicensed, exempted
-  or otherwise modified by the MoziAI Model License used
-  by this repository. Those components remain governed by the
+  or otherwise modified by this repository's distribution. Those components remain governed by the
   Apache License, Version 2.0 at all times.
 
 ----------------------------------------------------------------
@@ -41,7 +40,7 @@ Portions of this model are derived from the Qwen series of models.
 
   Copyright (c) Alibaba Cloud / Qwen team. All rights reserved.
   Licensed under the Apache License, Version 2.0.
-  A copy of the Apache License 2.0 is provided in LICENSE-APACHE.
+  A copy of the Apache License 2.0 is provided in LICENSE.
   https://huggingface.co/Qwen
 
 ----------------------------------------------------------------
@@ -63,10 +62,12 @@ Apache License 2.0, Section 6, and do not imply any endorsement.
 4. MoziAI 团队原创贡献 / MoziAI original contributions
 ----------------------------------------------------------------
 
-以下内容为 MoziAI 团队原创成果，适用《MoziAI 模型许可协议》（见 LICENSE.md 文件）：
+以下内容为 MoziAI 团队原创成果，同样依 **Apache License, Version 2.0** 授权
+（与本作品整体一致，见 LICENSE.md 文件）：
 
-The following are original contributions of the MoziAI team and are
-licensed under the MoziAI Model License (see LICENSE.md):
+The following are original contributions of the MoziAI team and are licensed
+under the **Apache License, Version 2.0**, consistent with this distribution
+as a whole (see LICENSE.md):
 
   - 金融领域训练数据与继续训练 / financial-domain data & continued training
   - 动态七维思考体系 / dynamic seven-dimensional thinking framework
@@ -75,22 +76,20 @@ licensed under the MoziAI Model License (see LICENSE.md):
   - 对话模板、文档与脚本 / chat templates, documentation and scripts
 
 ----------------------------------------------------------------
-5. 许可对照表 / Layered license map
+5. 许可对照表 / License map
 ----------------------------------------------------------------
 
-  继承的 Qwen 组件 / inherited Qwen parts .... Apache License, Version 2.0
-  MoziAI 原创增量 / MoziAI additions ......... MoziAI Model License
-  本分发整体 / this distribution as a whole .. 须同时满足以上全部
-                                                must satisfy all of the above
+  继承的上游组件（Qwen3.8-27B）/ inherited upstream parts
+  ............................................. Apache License, Version 2.0
+  MoziAI 原创增量 / MoziAI additions ........... Apache License, Version 2.0
+  本分发整体 / this distribution as a whole .... Apache License, Version 2.0
 
-若本仓库《模型许可协议》的任何条款与 Apache License 2.0
-（适用于继承的 Qwen 组件）相冲突，就该等组件而言，
-以 Apache License 2.0 为准。
+本作品整体依 Apache License, Version 2.0 分发；上游组件归属与商标声明见本节
+第 1~3 节。具法律效力的文本为仓库根目录 LICENSE.md（英文原文）。
 
-To the extent any term of the MoziAI Model License
-conflicts with the Apache License, Version 2.0 as applied to the
-inherited Qwen components, the Apache License, Version 2.0 prevails
-with respect to those components.
+This distribution as a whole is licensed under the Apache License, Version 2.0.
+Upstream attribution and trademark notices are given in Sections 1–3 above.
+The authoritative text is LICENSE.md in the repository root.
 
 ----------------------------------------------------------------
 6. 核实说明 / Verification note

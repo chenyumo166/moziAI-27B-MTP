@@ -362,8 +362,8 @@ MoziAI-27B-3.8 は Qwen3.8-27B ベースモデルを微調整して開発され�
 
 ## 15. ライセンス
 
-License: see the **MoziAI Model License** ([`../LICENSE.en.md`](../LICENSE.en.md), English v2.0).
-This model contains upstream components governed by the **Apache License 2.0** (Qwen3.8-27B); attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
+License: **Apache License 2.0** ([`../LICENSE.md`](../LICENSE.md); Chinese note [`../LICENSE.zh-CN.md`](../LICENSE.zh-CN.md)).
+Distributed as a whole under Apache-2.0 (upstream Qwen3.8-27B likewise Apache-2.0; Ornith increment MIT, notices retained). Attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
 ## 16. お問い合わせ
 
 - **HuggingFace**：[@chenyumo](https://huggingface.co/chenyumo)
@@ -375,9 +375,12 @@ Copyright (c) 2026 陈雨墨 / chenyumo166. All rights reserved.
 
 ---
 
+
 <!-- UPSTREAM-LICENSE-NOTICE:BEGIN -->
 ## License
 
-License: see the **[MoziAI Model License](../LICENSE.en.md)** (English v2.0). This model contains upstream components governed by the **Apache License 2.0** (Qwen3.8-27B). Upstream copyright and attribution notices: [`../NOTICE`](../NOTICE); modifications made by this team: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
+License: **Apache License 2.0** — authoritative text: [`../LICENSE.md`](../LICENSE.md) (Chinese note: [`../LICENSE.zh-CN.md`](../LICENSE.zh-CN.md)).
+This model is distributed as a whole under Apache-2.0; upstream components (Qwen3.8-27B) are Apache-2.0 and the Ornith increment is MIT as declared upstream (notices retained). Attribution: [`../NOTICE`](../NOTICE); modifications: [`../MODIFICATIONS.md`](../MODIFICATIONS.md).
 <!-- UPSTREAM-LICENSE-NOTICE:END -->
+
 

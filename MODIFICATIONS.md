@@ -60,7 +60,7 @@ The MoziAI team made the following changes to the original work:
 | `mmproj/27B/moziAI-27B-mmproj-BF16-V1.0.gguf` | **新增** |
 | `V3.8/chat-template-moziai-27B-V3.8.jinja` | **新增** |
 | `README.md`、`README.modelscope.md`、`V3.8/README.*.md` | **新增/改写** |
-| `LICENSE.md`、`LICENSE-APACHE`、`NOTICE` | **新增/改写** |
+| `LICENSE.md`（Apache 2.0 全文）、`NOTICE`、`LICENSE.zh-CN.md` | **新增/改写** |
 
 ---
 
@@ -68,12 +68,12 @@ The MoziAI team made the following changes to the original work:
 
 本声明仅记录 MoziAI 团队的修改行为，**不改变**任何上游组件的许可状态。
 继承自 Qwen 的组件持续受 **Apache License, Version 2.0** 约束，
-见 `LICENSE-APACHE`；上游版权与归属声明见 `NOTICE`。
+见 `LICENSE`；上游版权与归属声明见 `NOTICE`。
 
 This statement only records the MoziAI team's modifications. It does
 **not** alter the license status of any upstream component. The
 inherited Qwen components remain governed by **Apache License,
-Version 2.0** — see `LICENSE-APACHE`. Upstream copyright and
+Version 2.0** — see `LICENSE`. Upstream copyright and
 attribution notices are in `NOTICE`.
 
 ---
@@ -93,9 +93,12 @@ original upstream work (as required to be retained by Apache License
 
 ---
 
+
 <!-- UPSTREAM-LICENSE-NOTICE:BEGIN -->
 ## License
 
-License: see the **[MoziAI Model License](LICENSE.en.md)** (English v2.0). This model contains upstream components governed by the **Apache License 2.0** (Qwen3.8-27B). Upstream copyright and attribution notices: [`NOTICE`](NOTICE); modifications made by this team: [`MODIFICATIONS.md`](MODIFICATIONS.md).
+License: **Apache License 2.0** — authoritative text: [`LICENSE.md`](LICENSE.md) (Chinese note: [`LICENSE.zh-CN.md`](LICENSE.zh-CN.md)).
+This model is distributed as a whole under Apache-2.0; upstream components (Qwen3.8-27B) are Apache-2.0 and the Ornith increment is MIT as declared upstream (notices retained). Attribution: [`NOTICE`](NOTICE); modifications: [`MODIFICATIONS.md`](MODIFICATIONS.md).
 <!-- UPSTREAM-LICENSE-NOTICE:END -->
+
 
